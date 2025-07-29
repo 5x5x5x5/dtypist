@@ -143,6 +143,15 @@ fn append_continuation_line(line: &str, commands: &mut Vec<Command>) -> ScriptRe
                 }
                 text.push_str(text_to_append);
             },
+            Command::Menu { ref mut items, .. } => {
+                // Parse menu item line: " :LABEL  "description""
+                if let Some(menu_item) = crate::menu::parse_menu_item_line(line) {
+                    items.push(MenuItem {
+                        label: menu_item.label,
+                        description: menu_item.title,
+                    });
+                }
+            },
             _ => {
                 // Ignore continuation lines for commands that don't support them
             }

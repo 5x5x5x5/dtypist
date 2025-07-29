@@ -7,9 +7,11 @@
 pub mod script;
 pub mod exercises;
 pub mod performance;
+pub mod menu;
 
 pub use script::{Script, ScriptError, ScriptResult};
 pub use script::commands::Command;
 pub use script::executor::{Executor, ExecutionResult};
 pub use exercises::{TutorialExercise, DrillExercise, SpeedTestExercise, ExerciseOutcome};
 pub use performance::{PerformanceTracker, ExerciseResult, PerformanceGrade, SpeedRecords};
+pub use menu::{Menu, MenuItem};
