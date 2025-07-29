@@ -13,6 +13,65 @@ use crossterm::{
 };
 use std::io::{stdout, Write};
 
+/// Helper function to center text in terminal
+fn center_text(text: &str) -> String {
+    // Try to get terminal size, fall back to reasonable defaults
+    let width = match crossterm::terminal::size() {
+        Ok((w, _)) => w as usize,
+        Err(_) => {
+            // If we can't get terminal size, try environment variables or use 80
+            std::env::var("COLUMNS")
+                .ok()
+                .and_then(|s| s.parse().ok())
+                .unwrap_or(80)
+        }
+    };
+    
+    let text_len = text.chars().count(); // Use char count for proper Unicode handling
+    if text_len >= width {
+        return text.to_string(); // Don't try to center if text is too long
+    }
+    
+    let padding = (width - text_len) / 2;
+    format!("{}{}", " ".repeat(padding), text)
+}
+
+/// Get appropriate line width for text content (smaller than terminal width)
+fn get_content_width() -> usize {
+    match crossterm::terminal::size() {
+        Ok((w, _)) => ((w as usize) * 3 / 4).min(60), // Use 75% of terminal width, max 60 chars
+        Err(_) => 60, // Default to 60 characters
+    }
+}
+
+/// Print text with simple, reliable left-justified formatting
+fn print_wrapped_text(text: &str) {
+    const LINE_WIDTH: usize = 50;
+    
+    // Split text into words and wrap them
+    let words: Vec<&str> = text.split_whitespace().collect();
+    let mut current_line = String::new();
+    
+    for word in words {
+        // If adding this word would exceed the line width, print current line and start new one
+        if !current_line.is_empty() && current_line.len() + 1 + word.len() > LINE_WIDTH {
+            println!("{}", current_line);
+            current_line.clear();
+        }
+        
+        // Add word to current line
+        if !current_line.is_empty() {
+            current_line.push(' ');
+        }
+        current_line.push_str(word);
+    }
+    
+    // Print any remaining text
+    if !current_line.is_empty() {
+        println!("{}", current_line);
+    }
+}
+
 /// Script executor state
 pub struct Executor {
     pub script: Script,
@@ -75,18 +134,29 @@ impl Executor {
             
             Command::Instruction { text } => {
                 let mut stdout = stdout();
-                execute!(stdout, Clear(ClearType::All), cursor::MoveTo(0, 0)).ok();
-                println!("{}", text);
-                println!("\nPress any key to continue...");
+                print!("\x1B[2J\x1B[1;1H");
+                
+                println!();
+                println!("{}", center_text("=== INSTRUCTION ==="));
+                println!();
+                
+                // Print text with proper wrapping, left-justified
+                print_wrapped_text(&text);
+                
+                println!();
+                println!("Press any key to continue...");
                 stdout.flush().ok();
                 Ok(ExecutionResult::WaitForInput)
             },
             
             Command::Clear { banner } => {
                 let mut stdout = stdout();
-                execute!(stdout, Clear(ClearType::All), cursor::MoveTo(0, 0)).ok();
+                print!("\x1B[2J\x1B[1;1H");
+                
                 if let Some(banner_text) = banner {
-                    println!("=== {} ===\n", banner_text);
+                    println!();
+                    println!("{}", center_text(&format!("=== {} ===", banner_text)));
+                    println!();
                 }
                 stdout.flush().ok();
                 Ok(ExecutionResult::Continue)

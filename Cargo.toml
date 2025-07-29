@@ -11,6 +11,10 @@ repository = "https://github.com/your-repo/gtypist-rs"
 name = "gtypist"
 path = "src/main.rs"
 
+[[bin]]
+name = "test_display"
+path = "src/test_display.rs"
+
 [dependencies]
 crossterm = "0.27"
 serde = { version = "1.0", features = ["derive"] }

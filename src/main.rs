@@ -17,16 +17,10 @@ use std::io::{stdout, Write};
 fn main() {
     let matches = create_cli().get_matches();
     
-    // Initialize terminal
-    if let Err(e) = enable_raw_mode() {
-        eprintln!("Failed to enable terminal raw mode: {}", e);
-        process::exit(1);
-    }
-    
-    // Ensure we clean up terminal on exit
+    // Run application (raw mode will be enabled when needed)
     let result = run_application(&matches);
     
-    // Cleanup terminal
+    // Cleanup terminal (in case raw mode was enabled)
     let _ = disable_raw_mode();
     let _ = execute!(stdout(), Clear(ClearType::All), cursor::MoveTo(0, 0));
     
@@ -77,8 +71,13 @@ fn run_application(matches: &ArgMatches) -> Result<(), Box<dyn std::error::Error
         return Err(format!("Lesson file not found: {}", lesson_file).into());
     }
     
-    // Display welcome message
+    // Display welcome message (before enabling raw mode)
     display_welcome()?;
+    
+    // Now enable raw mode for interactive parts
+    if let Err(e) = enable_raw_mode() {
+        return Err(format!("Failed to enable terminal raw mode: {}", e).into());
+    }
     
     // Parse and execute the lesson script
     let script = Script::from_file(lesson_file)?;
@@ -133,17 +132,44 @@ fn run_application(matches: &ArgMatches) -> Result<(), Box<dyn std::error::Error
     Ok(())
 }
 
+/// Helper function to center text in terminal
+fn center_text(text: &str) -> String {
+    // Try to get terminal size, fall back to reasonable defaults
+    let width = match crossterm::terminal::size() {
+        Ok((w, _)) => w as usize,
+        Err(_) => {
+            // If we can't get terminal size, try environment variables or use 80
+            std::env::var("COLUMNS")
+                .ok()
+                .and_then(|s| s.parse().ok())
+                .unwrap_or(80)
+        }
+    };
+    
+    let text_len = text.chars().count(); // Use char count for proper Unicode handling
+    if text_len >= width {
+        return text.to_string(); // Don't try to center if text is too long
+    }
+    
+    let padding = (width - text_len) / 2;
+    format!("{}{}", " ".repeat(padding), text)
+}
+
 fn display_welcome() -> Result<(), Box<dyn std::error::Error>> {
     let mut stdout = stdout();
-    execute!(stdout, Clear(ClearType::All), cursor::MoveTo(0, 0))?;
     
-    println!("=== GNU Typist - Rust Implementation ===");
-    println!("Version 2.10.1");
+    // Clear screen but don't use raw mode yet
+    print!("\x1B[2J\x1B[1;1H"); // ANSI escape codes for clear screen and move cursor
+    
     println!();
-    println!("A typing tutor to help you learn touch typing.");
-    println!("Press ESC at any time to exit.");
+    println!("{}", center_text("=== GNU Typist - Rust Implementation ===")); 
+    println!("{}", center_text("Version 2.10.1"));
     println!();
-    println!("Press any key to continue...");
+    println!("{}", center_text("A typing tutor to help you learn touch typing."));
+    println!("{}", center_text("Press ESC at any time to exit."));
+    println!();
+    println!("{}", center_text("Press any key to continue..."));
+    println!();
     stdout.flush()?;
     
     // Wait for user input
@@ -163,14 +189,18 @@ fn display_welcome() -> Result<(), Box<dyn std::error::Error>> {
 
 fn display_goodbye() -> Result<(), Box<dyn std::error::Error>> {
     let mut stdout = stdout();
-    execute!(stdout, Clear(ClearType::All), cursor::MoveTo(0, 0))?;
     
-    println!("=== GNU Typist ===");
+    // Clear screen with direct ANSI codes
+    print!("\x1B[2J\x1B[1;1H");
+    
+    println!();
+    println!("{}", center_text("=== GNU Typist ==="));
     println!();
     println!("Thanks for using GNU Typist!");
     println!("Keep practicing to improve your typing skills.");
     println!();
     println!("Press any key to exit...");
+    println!();
     stdout.flush()?;
     
     // Wait for user input
@@ -187,14 +217,18 @@ fn display_goodbye() -> Result<(), Box<dyn std::error::Error>> {
 
 fn display_completion() -> Result<(), Box<dyn std::error::Error>> {
     let mut stdout = stdout();
-    execute!(stdout, Clear(ClearType::All), cursor::MoveTo(0, 0))?;
     
-    println!("=== Lesson Complete ===");
+    // Clear screen with direct ANSI codes
+    print!("\x1B[2J\x1B[1;1H");
+    
+    println!();
+    println!("{}", center_text("=== Lesson Complete ==="));
     println!();
     println!("Congratulations! You have completed this lesson.");
     println!("Continue practicing to improve your typing skills.");
     println!();
     println!("Press any key to exit...");
+    println!();
     stdout.flush()?;
     
     // Wait for user input
