@@ -36,6 +36,52 @@ fn center_text(text: &str) -> String {
     format!("{}{}", " ".repeat(padding), text)
 }
 
+/// Get appropriate line width for text content (smaller than terminal width)
+fn get_content_width() -> usize {
+    match crossterm::terminal::size() {
+        Ok((w, _)) => ((w as usize) * 3 / 4).min(60), // Use 75% of terminal width, max 60 chars
+        Err(_) => 60, // Default to 60 characters
+    }
+}
+
+/// Print text with proper word wrapping, left-justified
+fn print_wrapped_text(text: &str) {
+    let width = get_content_width();
+    
+    for line in text.split('\n') {
+        if line.trim().is_empty() {
+            println!();
+            continue;
+        }
+        
+        if line.len() <= width {
+            println!("{}", line);
+        } else {
+            // Simple word wrapping
+            let words: Vec<&str> = line.split_whitespace().collect();
+            let mut current_line = String::new();
+            
+            for word in words {
+                if current_line.len() + word.len() + 1 <= width {
+                    if !current_line.is_empty() {
+                        current_line.push(' ');
+                    }
+                    current_line.push_str(word);
+                } else {
+                    if !current_line.is_empty() {
+                        println!("{}", current_line);
+                        current_line.clear();
+                    }
+                    current_line.push_str(word);
+                }
+            }
+            if !current_line.is_empty() {
+                println!("{}", current_line);
+            }
+        }
+    }
+}
+
 /// Exercise execution results
 #[derive(Debug, Clone, PartialEq)]
 pub enum ExerciseOutcome {
@@ -79,42 +125,11 @@ impl TutorialExercise {
             self.text.clone()
         };
         
-        // Word wrap the text properly
-        let width = match crossterm::terminal::size() {
-            Ok((w, _)) => (w as usize).saturating_sub(4),
-            Err(_) => 76,
-        };
-        
-        for line in display_text.split('\n') {
-            if line.len() <= width {
-                println!("  {}", line);
-            } else {
-                // Simple word wrapping
-                let words: Vec<&str> = line.split_whitespace().collect();
-                let mut current_line = String::new();
-                
-                for word in words {
-                    if current_line.len() + word.len() + 1 <= width {
-                        if !current_line.is_empty() {
-                            current_line.push(' ');
-                        }
-                        current_line.push_str(word);
-                    } else {
-                        if !current_line.is_empty() {
-                            println!("  {}", current_line);
-                            current_line.clear();
-                        }
-                        current_line.push_str(word);
-                    }
-                }
-                if !current_line.is_empty() {
-                    println!("  {}", current_line);
-                }
-            }
-        }
+        // Print text with proper wrapping, left-justified
+        print_wrapped_text(&display_text);
         
         println!();
-        println!("{}", center_text("Press SPACE to continue, ESC to quit..."));
+        println!("Press SPACE to continue, ESC to quit...");
         stdout.flush()?;
         
         // Wait for user input
@@ -164,7 +179,7 @@ impl DrillExercise {
         println!("{}", center_text(&format!("=== {} ===", 
             if self.practice_only { "DRILL PRACTICE" } else { "DRILL" })));
         println!();
-        println!("{}", center_text("Type the following text. Press ESC to quit, Ctrl+R to retry."));
+        println!("Type the following text. Press ESC to quit, Ctrl+R to retry.");
         println!();
         
         // Display target text (truncated to prevent excessive output)
@@ -175,10 +190,10 @@ impl DrillExercise {
             self.text.clone()
         };
         
-        println!("{}", center_text("Target:"));
-        println!("  {}", display_text);
+        println!("Target:");
+        println!("{}", display_text);
         println!();
-        println!("{}", center_text("Your typing:"));
+        println!("Your typing:");
         stdout.flush()?;
         
         let start_time = Instant::now();
@@ -296,14 +311,14 @@ impl DrillExercise {
         println!();
         println!("{}", center_text("=== RESULTS ==="));
         println!();
-        println!("{}", center_text(&format!("Characters typed: {}", result.total_chars)));
-        println!("{}", center_text(&format!("Correct: {}", result.correct_chars)));
-        println!("{}", center_text(&format!("Errors: {}", result.errors)));
-        println!("{}", center_text(&format!("Accuracy: {:.1}%", 100.0 - result.error_rate)));
-        println!("{}", center_text(&format!("Speed: {:.1} WPM", result.wpm)));
-        println!("{}", center_text(&format!("Time: {:.1}s", result.duration.as_secs_f32())));
+        println!("Characters typed: {}", result.total_chars);
+        println!("Correct: {}", result.correct_chars);
+        println!("Errors: {}", result.errors);
+        println!("Accuracy: {:.1}%", 100.0 - result.error_rate);
+        println!("Speed: {:.1} WPM", result.wpm);
+        println!("Time: {:.1}s", result.duration.as_secs_f32());
         println!();
-        println!("{}", center_text("Press any key to continue..."));
+        println!("Press any key to continue...");
         
         read()?;
         Ok(())
@@ -343,10 +358,10 @@ impl SpeedTestExercise {
             if self.practice_only { "SPEED TEST PRACTICE" } else { "SPEED TEST" })));
         
         if let Some(time_limit) = self.time_limit {
-            println!("{}", center_text(&format!("Time limit: {} seconds", time_limit.as_secs())));
+            println!("Time limit: {} seconds", time_limit.as_secs());
         }
         println!();
-        println!("{}", center_text("Type as fast and accurately as possible. Press ESC to quit."));
+        println!("Type as fast and accurately as possible. Press ESC to quit.");
         println!();
         
         // Display target text (truncated to prevent excessive output)
@@ -357,10 +372,10 @@ impl SpeedTestExercise {
             self.text.clone()
         };
         
-        println!("{}", center_text("Text to type:"));
-        println!("  {}", display_text);
+        println!("Text to type:");
+        println!("{}", display_text);
         println!();
-        println!("{}", center_text("Press any key to start..."));
+        println!("Press any key to start...");
         stdout.flush()?;
         
         // Wait for start signal
@@ -491,12 +506,12 @@ impl SpeedTestExercise {
         println!();
         println!("{}", center_text("=== SPEED TEST RESULTS ==="));
         println!();
-        println!("{}", center_text(&format!("Characters typed: {}", result.total_chars)));
-        println!("{}", center_text(&format!("Correct characters: {}", result.correct_chars)));
-        println!("{}", center_text(&format!("Errors: {}", result.errors)));
-        println!("{}", center_text(&format!("Accuracy: {:.1}%", 100.0 - result.error_rate)));
-        println!("{}", center_text(&format!("Speed: {:.1} WPM", result.wpm)));
-        println!("{}", center_text(&format!("Time: {:.1} seconds", result.duration.as_secs_f32())));
+        println!("Characters typed: {}", result.total_chars);
+        println!("Correct characters: {}", result.correct_chars);
+        println!("Errors: {}", result.errors);
+        println!("Accuracy: {:.1}%", 100.0 - result.error_rate);
+        println!("Speed: {:.1} WPM", result.wpm);
+        println!("Time: {:.1} seconds", result.duration.as_secs_f32());
         println!();
         
         // Grade the performance
@@ -507,9 +522,9 @@ impl SpeedTestExercise {
         } else {
             "Keep practicing!"
         };
-        println!("{}", center_text(grade));
+        println!("{}", grade);
         println!();
-        println!("{}", center_text("Press any key to continue..."));
+        println!("Press any key to continue...");
         
         read()?;
         Ok(())

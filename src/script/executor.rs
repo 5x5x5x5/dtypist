@@ -36,6 +36,52 @@ fn center_text(text: &str) -> String {
     format!("{}{}", " ".repeat(padding), text)
 }
 
+/// Get appropriate line width for text content (smaller than terminal width)
+fn get_content_width() -> usize {
+    match crossterm::terminal::size() {
+        Ok((w, _)) => ((w as usize) * 3 / 4).min(60), // Use 75% of terminal width, max 60 chars
+        Err(_) => 60, // Default to 60 characters
+    }
+}
+
+/// Print text with proper word wrapping, left-justified
+fn print_wrapped_text(text: &str) {
+    let width = get_content_width();
+    
+    for line in text.split('\n') {
+        if line.trim().is_empty() {
+            println!();
+            continue;
+        }
+        
+        if line.len() <= width {
+            println!("{}", line);
+        } else {
+            // Simple word wrapping
+            let words: Vec<&str> = line.split_whitespace().collect();
+            let mut current_line = String::new();
+            
+            for word in words {
+                if current_line.len() + word.len() + 1 <= width {
+                    if !current_line.is_empty() {
+                        current_line.push(' ');
+                    }
+                    current_line.push_str(word);
+                } else {
+                    if !current_line.is_empty() {
+                        println!("{}", current_line);
+                        current_line.clear();
+                    }
+                    current_line.push_str(word);
+                }
+            }
+            if !current_line.is_empty() {
+                println!("{}", current_line);
+            }
+        }
+    }
+}
+
 /// Script executor state
 pub struct Executor {
     pub script: Script,
@@ -104,42 +150,11 @@ impl Executor {
                 println!("{}", center_text("=== INSTRUCTION ==="));
                 println!();
                 
-                // Word wrap the instruction text
-                let width = match crossterm::terminal::size() {
-                    Ok((w, _)) => (w as usize).saturating_sub(4),
-                    Err(_) => 76,
-                };
-                
-                for line in text.split('\n') {
-                    if line.len() <= width {
-                        println!("  {}", line);
-                    } else {
-                        // Simple word wrapping
-                        let words: Vec<&str> = line.split_whitespace().collect();
-                        let mut current_line = String::new();
-                        
-                        for word in words {
-                            if current_line.len() + word.len() + 1 <= width {
-                                if !current_line.is_empty() {
-                                    current_line.push(' ');
-                                }
-                                current_line.push_str(word);
-                            } else {
-                                if !current_line.is_empty() {
-                                    println!("  {}", current_line);
-                                    current_line.clear();
-                                }
-                                current_line.push_str(word);
-                            }
-                        }
-                        if !current_line.is_empty() {
-                            println!("  {}", current_line);
-                        }
-                    }
-                }
+                // Print text with proper wrapping, left-justified
+                print_wrapped_text(&text);
                 
                 println!();
-                println!("{}", center_text("Press any key to continue..."));
+                println!("Press any key to continue...");
                 stdout.flush().ok();
                 Ok(ExecutionResult::WaitForInput)
             },
