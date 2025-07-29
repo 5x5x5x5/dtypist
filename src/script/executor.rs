@@ -44,41 +44,31 @@ fn get_content_width() -> usize {
     }
 }
 
-/// Print text with proper word wrapping, left-justified
+/// Print text with simple, reliable left-justified formatting
 fn print_wrapped_text(text: &str) {
-    let width = get_content_width();
+    const LINE_WIDTH: usize = 50;
     
-    for line in text.split('\n') {
-        if line.trim().is_empty() {
-            println!();
-            continue;
+    // Split text into words and wrap them
+    let words: Vec<&str> = text.split_whitespace().collect();
+    let mut current_line = String::new();
+    
+    for word in words {
+        // If adding this word would exceed the line width, print current line and start new one
+        if !current_line.is_empty() && current_line.len() + 1 + word.len() > LINE_WIDTH {
+            println!("{}", current_line);
+            current_line.clear();
         }
         
-        if line.len() <= width {
-            println!("{}", line);
-        } else {
-            // Simple word wrapping
-            let words: Vec<&str> = line.split_whitespace().collect();
-            let mut current_line = String::new();
-            
-            for word in words {
-                if current_line.len() + word.len() + 1 <= width {
-                    if !current_line.is_empty() {
-                        current_line.push(' ');
-                    }
-                    current_line.push_str(word);
-                } else {
-                    if !current_line.is_empty() {
-                        println!("{}", current_line);
-                        current_line.clear();
-                    }
-                    current_line.push_str(word);
-                }
-            }
-            if !current_line.is_empty() {
-                println!("{}", current_line);
-            }
+        // Add word to current line
+        if !current_line.is_empty() {
+            current_line.push(' ');
         }
+        current_line.push_str(word);
+    }
+    
+    // Print any remaining text
+    if !current_line.is_empty() {
+        println!("{}", current_line);
     }
 }
 
