@@ -189,7 +189,9 @@ fn display_welcome() -> Result<(), Box<dyn std::error::Error>> {
 
 fn display_goodbye() -> Result<(), Box<dyn std::error::Error>> {
     let mut stdout = stdout();
-    execute!(stdout, Clear(ClearType::All), cursor::MoveTo(0, 0))?;
+    
+    // Clear screen with direct ANSI codes
+    print!("\x1B[2J\x1B[1;1H");
     
     println!();
     println!("{}", center_text("=== GNU Typist ==="));
@@ -215,7 +217,9 @@ fn display_goodbye() -> Result<(), Box<dyn std::error::Error>> {
 
 fn display_completion() -> Result<(), Box<dyn std::error::Error>> {
     let mut stdout = stdout();
-    execute!(stdout, Clear(ClearType::All), cursor::MoveTo(0, 0))?;
+    
+    // Clear screen with direct ANSI codes
+    print!("\x1B[2J\x1B[1;1H");
     
     println!();
     println!("{}", center_text("=== Lesson Complete ==="));

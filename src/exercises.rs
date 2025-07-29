@@ -8,11 +8,33 @@ use std::time::{Duration, Instant};
 use crossterm::{
     cursor, execute, queue,
     style::{Color, Print, ResetColor, SetForegroundColor},
-    terminal::{Clear, ClearType},
     event::{read, Event, KeyCode, KeyEvent, KeyModifiers},
 };
 use std::io::{stdout, Write};
 use crate::performance::{PerformanceTracker, ExerciseResult};
+
+/// Helper function to center text in terminal
+fn center_text(text: &str) -> String {
+    // Try to get terminal size, fall back to reasonable defaults
+    let width = match crossterm::terminal::size() {
+        Ok((w, _)) => w as usize,
+        Err(_) => {
+            // If we can't get terminal size, try environment variables or use 80
+            std::env::var("COLUMNS")
+                .ok()
+                .and_then(|s| s.parse().ok())
+                .unwrap_or(80)
+        }
+    };
+    
+    let text_len = text.chars().count(); // Use char count for proper Unicode handling
+    if text_len >= width {
+        return text.to_string(); // Don't try to center if text is too long
+    }
+    
+    let padding = (width - text_len) / 2;
+    format!("{}{}", " ".repeat(padding), text)
+}
 
 /// Exercise execution results
 #[derive(Debug, Clone, PartialEq)]
@@ -42,8 +64,12 @@ impl TutorialExercise {
     pub fn execute(&self) -> Result<ExerciseOutcome, Box<dyn std::error::Error>> {
         let mut stdout = stdout();
         
-        // Clear screen and display text
-        execute!(stdout, Clear(ClearType::All), cursor::MoveTo(0, 0))?;
+        // Clear screen with direct ANSI codes
+        print!("\x1B[2J\x1B[1;1H");
+        
+        println!();
+        println!("{}", center_text("=== TUTORIAL ==="));
+        println!();
         
         // Display the tutorial text (truncated to prevent excessive output)
         const MAX_TUTORIAL_DISPLAY: usize = 2000;
@@ -52,8 +78,43 @@ impl TutorialExercise {
         } else {
             self.text.clone()
         };
-        println!("{}", display_text);
-        println!("\nPress SPACE to continue, ESC to quit...");
+        
+        // Word wrap the text properly
+        let width = match crossterm::terminal::size() {
+            Ok((w, _)) => (w as usize).saturating_sub(4),
+            Err(_) => 76,
+        };
+        
+        for line in display_text.split('\n') {
+            if line.len() <= width {
+                println!("  {}", line);
+            } else {
+                // Simple word wrapping
+                let words: Vec<&str> = line.split_whitespace().collect();
+                let mut current_line = String::new();
+                
+                for word in words {
+                    if current_line.len() + word.len() + 1 <= width {
+                        if !current_line.is_empty() {
+                            current_line.push(' ');
+                        }
+                        current_line.push_str(word);
+                    } else {
+                        if !current_line.is_empty() {
+                            println!("  {}", current_line);
+                            current_line.clear();
+                        }
+                        current_line.push_str(word);
+                    }
+                }
+                if !current_line.is_empty() {
+                    println!("  {}", current_line);
+                }
+            }
+        }
+        
+        println!();
+        println!("{}", center_text("Press SPACE to continue, ESC to quit..."));
         stdout.flush()?;
         
         // Wait for user input
@@ -96,11 +157,15 @@ impl DrillExercise {
         let mut position = 0;
         let mut typed_text = String::new();
         
-        // Clear screen and display exercise setup
-        execute!(stdout, Clear(ClearType::All), cursor::MoveTo(0, 0))?;
+        // Clear screen with direct ANSI codes
+        print!("\x1B[2J\x1B[1;1H");
         
-        println!("=== {} ===", if self.practice_only { "DRILL PRACTICE" } else { "DRILL" });
-        println!("Type the following text. Press ESC to quit, Ctrl+R to retry.\n");
+        println!();
+        println!("{}", center_text(&format!("=== {} ===", 
+            if self.practice_only { "DRILL PRACTICE" } else { "DRILL" })));
+        println!();
+        println!("{}", center_text("Type the following text. Press ESC to quit, Ctrl+R to retry."));
+        println!();
         
         // Display target text (truncated to prevent excessive output)
         const MAX_TARGET_DISPLAY: usize = 500;
@@ -109,10 +174,11 @@ impl DrillExercise {
         } else {
             self.text.clone()
         };
-        println!("Target:");
-        println!("{}\n", display_text);
         
-        println!("Your typing:");
+        println!("{}", center_text("Target:"));
+        println!("  {}", display_text);
+        println!();
+        println!("{}", center_text("Your typing:"));
         stdout.flush()?;
         
         let start_time = Instant::now();
@@ -224,14 +290,20 @@ impl DrillExercise {
     }
     
     fn display_results(&self, result: &ExerciseResult) -> Result<(), Box<dyn std::error::Error>> {
-        println!("\n=== RESULTS ===");
-        println!("Characters typed: {}", result.total_chars);
-        println!("Correct: {}", result.correct_chars);
-        println!("Errors: {}", result.errors);
-        println!("Accuracy: {:.1}%", 100.0 - result.error_rate);
-        println!("Speed: {:.1} WPM", result.wpm);
-        println!("Time: {:.1}s", result.duration.as_secs_f32());
-        println!("\nPress any key to continue...");
+        // Clear screen with direct ANSI codes
+        print!("\x1B[2J\x1B[1;1H");
+        
+        println!();
+        println!("{}", center_text("=== RESULTS ==="));
+        println!();
+        println!("{}", center_text(&format!("Characters typed: {}", result.total_chars)));
+        println!("{}", center_text(&format!("Correct: {}", result.correct_chars)));
+        println!("{}", center_text(&format!("Errors: {}", result.errors)));
+        println!("{}", center_text(&format!("Accuracy: {:.1}%", 100.0 - result.error_rate)));
+        println!("{}", center_text(&format!("Speed: {:.1} WPM", result.wpm)));
+        println!("{}", center_text(&format!("Time: {:.1}s", result.duration.as_secs_f32())));
+        println!();
+        println!("{}", center_text("Press any key to continue..."));
         
         read()?;
         Ok(())
@@ -263,14 +335,19 @@ impl SpeedTestExercise {
         let mut position = 0;
         let mut typed_text = String::new();
         
-        // Clear screen and display exercise setup
-        execute!(stdout, Clear(ClearType::All), cursor::MoveTo(0, 0))?;
+        // Clear screen with direct ANSI codes
+        print!("\x1B[2J\x1B[1;1H");
         
-        println!("=== {} ===", if self.practice_only { "SPEED TEST PRACTICE" } else { "SPEED TEST" });
+        println!();
+        println!("{}", center_text(&format!("=== {} ===", 
+            if self.practice_only { "SPEED TEST PRACTICE" } else { "SPEED TEST" })));
+        
         if let Some(time_limit) = self.time_limit {
-            println!("Time limit: {} seconds", time_limit.as_secs());
+            println!("{}", center_text(&format!("Time limit: {} seconds", time_limit.as_secs())));
         }
-        println!("Type as fast and accurately as possible. Press ESC to quit.\n");
+        println!();
+        println!("{}", center_text("Type as fast and accurately as possible. Press ESC to quit."));
+        println!();
         
         // Display target text (truncated to prevent excessive output)
         const MAX_TARGET_DISPLAY: usize = 500;
@@ -279,10 +356,11 @@ impl SpeedTestExercise {
         } else {
             self.text.clone()
         };
-        println!("Text to type:");
-        println!("{}\n", display_text);
         
-        println!("Press any key to start...");
+        println!("{}", center_text("Text to type:"));
+        println!("  {}", display_text);
+        println!();
+        println!("{}", center_text("Press any key to start..."));
         stdout.flush()?;
         
         // Wait for start signal
@@ -407,24 +485,32 @@ impl SpeedTestExercise {
     }
     
     fn display_speed_results(&self, result: &ExerciseResult) -> Result<(), Box<dyn std::error::Error>> {
-        println!("\n=== SPEED TEST RESULTS ===");
-        println!("Characters typed: {}", result.total_chars);
-        println!("Correct characters: {}", result.correct_chars);
-        println!("Errors: {}", result.errors);
-        println!("Accuracy: {:.1}%", 100.0 - result.error_rate);
-        println!("Speed: {:.1} WPM", result.wpm);
-        println!("Time: {:.1} seconds", result.duration.as_secs_f32());
+        // Clear screen with direct ANSI codes
+        print!("\x1B[2J\x1B[1;1H");
+        
+        println!();
+        println!("{}", center_text("=== SPEED TEST RESULTS ==="));
+        println!();
+        println!("{}", center_text(&format!("Characters typed: {}", result.total_chars)));
+        println!("{}", center_text(&format!("Correct characters: {}", result.correct_chars)));
+        println!("{}", center_text(&format!("Errors: {}", result.errors)));
+        println!("{}", center_text(&format!("Accuracy: {:.1}%", 100.0 - result.error_rate)));
+        println!("{}", center_text(&format!("Speed: {:.1} WPM", result.wpm)));
+        println!("{}", center_text(&format!("Time: {:.1} seconds", result.duration.as_secs_f32())));
+        println!();
         
         // Grade the performance
-        if result.wpm >= 40.0 && result.error_rate <= 5.0 {
-            println!("Excellent typing!");
+        let grade = if result.wpm >= 40.0 && result.error_rate <= 5.0 {
+            "Excellent typing!"
         } else if result.wpm >= 25.0 && result.error_rate <= 10.0 {
-            println!("Good job!");
+            "Good job!"
         } else {
-            println!("Keep practicing!");
-        }
+            "Keep practicing!"
+        };
+        println!("{}", center_text(grade));
+        println!();
+        println!("{}", center_text("Press any key to continue..."));
         
-        println!("\nPress any key to continue...");
         read()?;
         Ok(())
     }
