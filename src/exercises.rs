@@ -42,7 +42,7 @@ fn get_content_width() -> usize {
     50 // Fixed 50 characters for consistent, readable line lengths
 }
 
-/// Print text with simple, reliable left-justified formatting
+/// Print text with proper word wrapping and cursor positioning
 fn print_wrapped_text(text: &str) {
     const LINE_WIDTH: usize = 50;
     
@@ -53,7 +53,8 @@ fn print_wrapped_text(text: &str) {
     for word in words {
         // If adding this word would exceed the line width, print current line and start new one
         if !current_line.is_empty() && current_line.len() + 1 + word.len() > LINE_WIDTH {
-            println!("{}", current_line);
+            // Force cursor to column 1 and print the line
+            print!("\x1B[1G{}\n", current_line);
             current_line.clear();
         }
         
@@ -66,7 +67,7 @@ fn print_wrapped_text(text: &str) {
     
     // Print any remaining text
     if !current_line.is_empty() {
-        println!("{}", current_line);
+        print!("\x1B[1G{}\n", current_line);
     }
 }
 
@@ -98,8 +99,9 @@ impl TutorialExercise {
     pub fn execute(&self) -> Result<ExerciseOutcome, Box<dyn std::error::Error>> {
         let mut stdout = stdout();
         
-        // Clear screen with direct ANSI codes
-        print!("\x1B[2J\x1B[1;1H");
+        // Clear screen and position cursor at top-left
+        print!("\x1B[2J\x1B[H");
+        stdout.flush()?;
         
         println!();
         println!("{}", center_text("=== TUTORIAL ==="));
@@ -113,11 +115,11 @@ impl TutorialExercise {
             self.text.clone()
         };
         
-        // Print text with proper wrapping, left-justified
-        // Debug: Check for special characters
+        // Print text with proper wrapping, each line at left margin
         let clean_text = display_text.replace('\t', " ");
         print_wrapped_text(&clean_text);
         
+        println!();
         println!();
         println!("Press SPACE to continue, ESC to quit...");
         stdout.flush()?;
