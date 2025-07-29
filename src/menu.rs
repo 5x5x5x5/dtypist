@@ -4,7 +4,7 @@
 //! and navigate through the typing tutor interface.
 
 use crossterm::{
-    cursor, execute, queue,
+    cursor, execute,
     style::{Color, ResetColor, SetForegroundColor},
     terminal::{Clear, ClearType},
     event::{read, Event, KeyCode, KeyEvent},
@@ -51,15 +51,22 @@ impl Menu {
             // Display title
             println!("=== {} ===\n", self.title);
             
-            // Display menu items
+            // Find the maximum label width for consistent alignment
+            let max_label_width = self.items.iter()
+                .map(|item| item.label.len())
+                .max()
+                .unwrap_or(10)
+                .max(10); // Minimum width of 10
+            
+            // Display menu items with consistent formatting
             for (i, item) in self.items.iter().enumerate() {
                 if i == selected {
                     // Highlight selected item
-                    queue!(stdout, SetForegroundColor(Color::Yellow))?;
-                    println!("  > {:<10} {}", item.label, item.title);
-                    queue!(stdout, ResetColor)?;
+                    execute!(stdout, SetForegroundColor(Color::Yellow))?;
+                    println!("  > {:<width$} {}", item.label, item.title, width = max_label_width);
+                    execute!(stdout, ResetColor)?;
                 } else {
-                    println!("    {:<10} {}", item.label, item.title);
+                    println!("    {:<width$} {}", item.label, item.title, width = max_label_width);
                 }
             }
             
