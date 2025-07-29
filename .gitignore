@@ -2,3 +2,7 @@
 *.tar
 *.zip
 *.tgz
+
+# Added by cargo
+
+/target

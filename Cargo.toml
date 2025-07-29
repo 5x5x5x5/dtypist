@@ -1,0 +1,32 @@
+[package]
+name = "gtypist-rs"
+version = "0.1.0"
+edition = "2021"
+authors = ["Daniel Siegle <daniel.siegle@gmail.com>", "Original GNU Typist Authors"]
+description = "A Rust implementation of GNU Typist - typing tutor program"
+license = "GPL-3.0-or-later"
+repository = "https://github.com/your-repo/gtypist-rs"
+
+[[bin]]
+name = "gtypist"
+path = "src/bin/main.rs"
+
+[dependencies]
+crossterm = "0.27"
+serde = { version = "1.0", features = ["derive"] }
+clap = { version = "4.4", features = ["derive"] }
+chrono = { version = "0.4", features = ["serde"] }
+unicode-width = "0.1"
+thiserror = "1.0"
+anyhow = "1.0"
+
+[dev-dependencies]
+proptest = "1.4"
+mockall = "0.12"
+criterion = "0.5"
+test-case = "3.3"
+tempfile = "3.8"
+
+[[bench]]
+name = "benchmarks"
+harness = false
