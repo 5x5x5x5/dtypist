@@ -1,0 +1,72 @@
+\# Man page for typefortune
+\#
+\# Copyright (C) 2002 Felix Natter <fnatter@gmx.net>
+\#
+\# This program is free software; you can redistribute it and/or
+\# modify it under the terms of the GNU General Public License
+\# as published by the Free Software Foundation, either version 3
+\# of the License, or (at your option) any later version.
+\#
+\# This program is distributed in the hope that it will be useful,
+\# but WITHOUT ANY WARRANTY; without even the implied warranty of
+\# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+\# GNU General Public License for more details.
+\#
+\# You should have received a copy of the GNU General Public License
+\# along with this program; if not, write to the Free Software
+\# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+.TH TYPEFORTUNE "1" "March 2002" "typefortune" FSF
+.SH NAME
+typefortune \- generate a .typ file and call gtypist to run it
+.SH SYNOPSIS
+.B typefortune
+[ \fIOptions\fR... ]
+.SH DESCRIPTION
+\fBtypefortune\fR creates a \fBgtypist\fR lesson-file from
+\fBfortune\fR and runs \fBgtypist\fR on it.
+.SH OPTIONS
+.TP
+\fB\-d\fR
+use D: (drill) instead of S: (speed)
+.TP
+\fB\-s\fR
+run \fBfortune\fR \fB\-s\fR
+.TP
+\fB\-l\fR
+run \fBfortune\fR \fB\-l\fR
+.TP
+\fB\-n <\fIcount\fB>\fR
+practice \fI<count>\fR fortunes (default=1)
+.TP
+\fB\-o <\fIgtypist_options\fB>\fR
+pass options to \fBgtypist\fR
+.SH EXAMPLE
+.PP
+To practice 3 fortunes and run gtypist as \-\-silent \-e 5 \-\-word-processor:
+.IP
+.B
+typefortune \-n 3 \-o \(aqsilent e,5 word-processor\(aq
+.SH "DIANOSTICS"
+If
+.B typefortune
+quits with the following message
+.IP
+No fortunes found
+.PP
+then you are missing fortune cookies.
+.SH "SEE ALSO"
+.BR gtypist (1),
+.BR fortune (6)
+.PP
+The full documentation for
+.B gtypist (and typefortune)
+is maintained as a Texinfo manual.  If the
+.B info
+and
+.B gtypist
+programs are properly installed at your site, the command
+.IP
+.B info gtypist
+.PP
+(section "Using typefortune") should give you access to the complete manual.

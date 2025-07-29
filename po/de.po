@@ -1,0 +1,389 @@
+# German translations for GNU Typist package.
+# Copyright (C) 2011 Felix Natter
+# This file is distributed under the same license as the GNU Typist package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU Typist 2.10\n"
+"Report-Msgid-Bugs-To: bug-gtypist@gnu.org\n"
+"POT-Creation-Date: 2025-02-02 01:30+0200\n"
+"PO-Revision-Date: 2024-09-09 17:35+0200\n"
+"Last-Translator: Felix Natter <fnatter@gmx.net>\n"
+"Language-Team: German <de@li.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/gtypist.c:209 src/script.c:61
+msgid "internal error: strdup"
+msgstr "interner Fehler: strdup"
+
+#: src/gtypist.c:385
+msgid "invalid key binding"
+msgstr "ungültige Tastenkombination"
+
+#: src/gtypist.c:387
+msgid "invalid function key number"
+msgstr "ungültige Funktionstastennummer"
+
+#: src/gtypist.c:426 src/gtypist.c:536 src/gtypist.c:844
+msgid "data exceeds screen length"
+msgstr "die Daten passen nicht auf den Bildschirm"
+
+#: src/gtypist.c:469
+msgid "instructions are limited to two lines"
+msgstr "Einführungen sind auf zwei Zeilen beschränkt"
+
+#: src/gtypist.c:743 src/gtypist.c:1051 src/script.c:311
+msgid "internal error: fseek"
+msgstr "interner Fehler: fseek"
+
+#: src/gtypist.c:825 src/gtypist.c:1902 src/gtypist.c:1918 src/gtypist.c:1965 src/gtypist.c:2002 src/gtypist.c:2022 src/script.c:145 src/script.c:169 src/script.c:256
+msgid "internal error: malloc"
+msgstr "interner Fehler: malloc"
+
+#: src/gtypist.c:1376
+#, no-c-format
+msgid "'*' must immediately follow '%'"
+msgstr "'*' muss direkt auf '%' folgen"
+
+#: src/gtypist.c:1379 src/gtypist.c:1382
+#, no-c-format
+msgid "missing '%'"
+msgstr "'%' fehlt"
+
+#: src/gtypist.c:1386
+#, no-c-format
+msgid "'%' must immediately follow value"
+msgstr "'%' muss direkt nach dem Wert kommen"
+
+#: src/gtypist.c:1395
+msgid "overflow in do_error_max_set"
+msgstr "Überlauf in do_error_max_set"
+
+#: src/gtypist.c:1415
+msgid "Invalid value for \"E:\" (out of range)"
+msgstr "Ungültiger Wert für \"E:\" (außerhalb der gültigen Reichweite)"
+
+#: src/gtypist.c:1468 src/script.c:305
+#, c-format
+msgid "label '%s' not found"
+msgstr "Bezeichner '%s' nicht gefunden"
+
+#: src/gtypist.c:1528
+msgid "unknown command"
+msgstr "Unbekannter Befehl"
+
+#: src/gtypist.c:1562
+#, c-format
+msgid "Try '%s --help' for more information.\n"
+msgstr "Aufruf mit '%s --help' für mehr Informationen.\n"
+
+#: src/gtypist.c:1569
+#, c-format
+msgid "%s: invalid max-error value\n"
+msgstr "%s: Ungültiger Wert für max-error\n"
+
+#: src/gtypist.c:1576
+#, c-format
+msgid "%s: invalid curs-flash value\n"
+msgstr "%s: unzulässiger Wert für curs-flash\n"
+
+#: src/gtypist.c:1586
+#, c-format
+msgid "%s: invalid colours value\n"
+msgstr "%s: Ungültiger Farbwert\n"
+
+#: src/gtypist.c:1599
+#, c-format
+msgid "%s: invalid banner-colours value\n"
+msgstr "%s: Ungültiger Farbwert ('banner-colours')\n"
+
+# TODO: what is the whitespace used for ?
+#: src/gtypist.c:1680
+msgid " Tutorial "
+msgstr "Einführung"
+
+# TODO: what is the whitespace used for ?
+#: src/gtypist.c:1682
+msgid "  Query   "
+msgstr "  Anfrage   "
+
+# TODO: what is the whitespace used for ? TODO: Routine/Griff-Übung ??
+#: src/gtypist.c:1684
+msgid "  Drill   "
+msgstr "  Drill   "
+
+# TODO: Geschwindigkeitstest ??
+#: src/gtypist.c:1686
+msgid "Speed test"
+msgstr "Speed test"
+
+#: src/gtypist.c:1688
+msgid " Press RETURN or SPACE to continue, ESC to return to the menu "
+msgstr "ENTER oder LEERTASTE: weitermachen, ESCAPE: zurück zum Menü"
+
+#: src/gtypist.c:1691
+#, c-format
+msgid " Your error-rate is too high. You have to achieve %.1f%%. "
+msgstr "Deine Fehlerrate ist zu hoch. Du musst %.1f%% erreichen."
+
+#: src/gtypist.c:1695
+#, c-format
+msgid " You failed this test, so you need to go back to %s. "
+msgstr "Der Test war nicht gut genug: Zur Wiederh. zurück zu %s."
+
+#: src/gtypist.c:1699
+msgid " Press R to repeat, N for next exercise or E to exit "
+msgstr "Drücke W um zu wiederholen, N für nächste Übung oder B zum Beenden"
+
+#: src/gtypist.c:1703
+msgid " Press R to repeat or E to exit "
+msgstr "Drücke W um zu wiederholen oder B zum Beenden"
+
+#: src/gtypist.c:1706
+msgid " Are you sure you want to exit this lesson? [Y/N] "
+msgstr "Willst du wirklich diese Lektion verlassen ? [J/N]"
+
+#: src/gtypist.c:1710
+msgid " Sorry, gtypist is configured to forbid skipping exercises. "
+msgstr "Es ist nicht erlaubt, Übungen zu überspringen (siehe Konfig)."
+
+#: src/gtypist.c:1715
+msgid "Y/N"
+msgstr "J/N"
+
+#: src/gtypist.c:1725
+msgid "R/N/E"
+msgstr "W/N/B"
+
+#: src/gtypist.c:1746
+#, c-format
+msgid "%s: %s environment variable not set\n"
+msgstr "%s: '%s'-Umgebungsvariable nicht gesetzt\n"
+
+#: src/gtypist.c:1793
+msgid "can't find or open file"
+msgstr "Datei nicht vorhanden oder nicht lesbar"
+
+#: src/gtypist.c:1847
+msgid "Loading the script..."
+msgstr "Lade den Skript..."
+
+#: src/gtypist.c:1957
+msgid "internal error: fopen"
+msgstr "interner Fehler: fopen"
+
+#: src/cursmenu.c:326
+msgid "Use arrowed keys to move around, SPACE or RETURN to select and ESCAPE to go back"
+msgstr "Pfeiltasten: Bewegen, ENTER/LEERTASTE: Auswählen, ESCAPE: Zurückgehen"
+
+#: src/error.c:56
+msgid "line"
+msgstr "Zeile"
+
+#: src/script.c:161
+msgid "label contains space"
+msgstr "Bezeichner enthält Leerzeichen"
+
+#: src/script.c:187
+msgid "label redefinition"
+msgstr "Neudefinition von Bezeichnern"
+
+#: src/script.c:212
+msgid "Error while reading file"
+msgstr "Fehler beim Schreiben der Datei"
+
+#: src/script.c:229
+msgid "Invalid multibyte sequence (wrong encoding?)"
+msgstr "Ungültige multibyte-Sequenz (falsches Encoding? non-utf8?)"
+
+#: src/script.c:231
+msgid "data shortage"
+msgstr "zu wenig Daten"
+
+#: src/script.c:233
+msgid "missing ':'"
+msgstr "':' fehlt"
+
+#: src/script.c:237
+msgid "line too long for screen"
+msgstr "Zeile zu lang für den Bildschirm"
+
+#: src/script.c:327 src/script.c:329
+#, c-format
+msgid ""
+"Happy Typing!\n"
+"\n"
+msgstr ""
+"Fröhliches Tippen!\n"
+"\n"
+
+#: src/utf8.c:64
+msgid "couldn't convert UTF-8 to wide characters"
+msgstr "konnte UTF-8 nicht in breite Zeichen konvertieren"
+
+#: src/utf8.c:175
+msgid "error in setcchar()"
+msgstr "Fehler in setcchar()"
+
+#: src/infoview.c:112
+msgid "error writing config file!"
+msgstr "Fehler beim Schreiben der Konfigurationsdatei"
+
+#. TRANSLATORS: This message must not exceed 76 characters (UTF-8 code
+#. points, actually) or it will display incorrectly on an 80-character
+#. wide terminal.
+#: src/infoview.c:124
+msgid ""
+"Welcome to GNU Typist!\n"
+"\n"
+"This message is meant to get you started using gtypist. Please read the\n"
+"manual (at http://www.gnu.org/software/gtypist/doc/, or type \"info gtypist\")\n"
+"for more in-depth information!\n"
+"\n"
+"Use the arrow keys or PGUP/PGDN to scroll this window, SPACE/ENTER to start\n"
+"using gtypist, or 'D' to use gtypist and never show this dialog again.\n"
+"\n"
+"There are two types of typing exercises: \"drills\" and \"speed tests\". In a\n"
+"\"drill\", gtypist displays text in every other line on the screen and waits\n"
+"for the user to correctly type the exact same text in the intermediate\n"
+"lines. In a \"speed test\", gtypist displays text on the screen and waits\n"
+"for the user to correctly type the exact same text over the top.\n"
+"\n"
+"In both exercise types, you have to repeat the test if your error percentage\n"
+"is higher than a maximum error percentage. The default is 3%, but if this is\n"
+"too difficult you can change it by running gtypist with the \"-e <maxpct>\"\n"
+"command-line option.\n"
+"\n"
+"On most terminal emulators you can use Ctrl--/Ctrl-+ to resize the\n"
+"terminal window. For Mac OS X, Command--/Command-+ serve this purpose.\n"
+"On Windows, change the properties of the terminal window by clicking on\n"
+"the top left corner of the window and choosing 'Properties'.\n"
+"\n"
+"Several typing courses are available from the main menu. As well as the\n"
+"\"QWERTY\" courses, lessons are also available for other keyboard layouts,\n"
+"such as Dvorak and Colemak, and numeric keypads. There are also other\n"
+"lessons, besides the ones available on the main menu (such as the new\n"
+"lesson for programmers). To see a list of the other lessons, select\n"
+"\"More lessons...\" from the main menu.\n"
+"To use one of these other lessons, run gtypist with the name of the lesson\n"
+"file (including .typ) as a command-line argument. See the comments at the\n"
+"top of each file for more information about the source and the author of\n"
+"the lessons. If you want to write your own lessons, look at gtypist's\n"
+"manual, it's really simple!\n"
+"\n"
+"If you have any questions about GNU Typist, please write to the gtypist\n"
+"mailing list at <bug-gtypist@gnu.org>.\n"
+"\n"
+"Happy Typing!"
+msgstr ""
+"Willkommen bei GNU Typist!\n"
+"\n"
+"Diese Meldung soll dir helfen, die Grundlagen von GTypist zu verstehen.\n"
+"Bitte lies das Handbuch (http://www.gnu.org/software/gtypist/doc/ oder\n"
+"tippe \"info gtypist\") für weiter gehendere Informationen!\n"
+"\n"
+"Benutze die Pfeiltasten oder Bild hoch/runter, um in diesem Fenster zu\n"
+"scrollen, LEERTASTE/ENTER um GTypist zu benutzen oder 'D' um mit GTypist\n"
+"weiter zu machen und diesen Dialog nicht mehr anzuzeigen.\n"
+"\n"
+"Es gibt zwei Arten von Tippübungen: \"Drills\" und \"Speed tests\". Bei einem\n"
+"\"Drill\" zeigt GTypist die Eingabe in jeder zweiten Zeile an und wartet\n"
+"darauf, dass der Benutzer exakt den gleichen Text in den Zeilen dazwischen\n"
+"tippt.\n"
+"In einem \"Speed test\" zeigt GTypist einen Text an und erwartet, dass der\n"
+"Benutzer den Text korrekt darüber tippt.\n"
+"\n"
+"In beiden Übungstypen musst du den Test wiederholen, falls die Fehler-\n"
+"Wahrscheinlichkeit größer als eine maximale Fehlerwahrscheinlichkeit ist.\n"
+"Der Standardwert ist 3%, aber wenn das zu schwierig ist, kannst du es\n"
+"ändern, indem du GTypist mit der \"-e <maxprozent>\" Kommandozeilenoption\n"
+"startest.\n"
+"\n"
+"Bei den meisten Terminalemulatoren kannst du Strg--/Strg-+\n"
+"benutzen, um die Größe des Fensters anzupassen (Mac OS X: Cmd--/Cmd-+).\n"
+"Unter Windows ändere die Eigenschaften des Terminalfensters, indem du\n"
+"auf die obere linke Ecke klickst, und 'Eigenschaften' auswählst.\n"
+"\n"
+"Einige Tippkurse sind zugänglich aus dem Hauptmenü. Zusätzlich zu den\n"
+"\"QWERTY\" Kursen gibt es Kurse für andere Tastaturbelegungen wie Dvorak,\n"
+"Colemak und den Zahlenblock (\"numpad\"). Außerdem gibt es noch weitere\n"
+"Kurse neben denen im Hauptmenü, die unter \"More lessons...\" aufgeführt\n"
+"sind (beispielsweise der neue Kurs für Programmierer).\n"
+"Um solch einen Kurs zu benutzen, starte GTypist mit dem Namen des Kurses\n"
+"(inklusive .typ) als Kommandozeilenargument.\n"
+"\n"
+"Falls du mehr Informationen über den Kurs und dessen Quelle/Autor suchst,\n"
+"schau dir die Kommentare oben in der Datei an. Wenn du deine eigenen\n"
+"Kurse schreiben willst, schau dir das Handbuch an, es ist einfach!\n"
+"\n"
+"Solltest du irgendwelche Fragen über GNU Typist haben, schreib bitte an\n"
+"die GTypist Mailingliste <bug-gtypist@gnu.org>.\n"
+"\n"
+"Fröhliches Tippen!"
+
+#: src/infoview.c:217
+msgid "Welcome screen"
+msgstr "Willkommensbildschirm"
+
+# Drücke 
+#: src/infoview.c:273
+msgid "Press SPACE, ENTER or ESCAPE to start gtypist, or 'D' to disable this dialog"
+msgstr "Drücke LEERTASTE/ENTER/ESC um zu starten, oder 'D' um diesen Dialog abzustellen"
+
+#. TRANSLATORS: a '|' character in this message divides it in to two
+#. * halves, which are aligned to the left and right sides of the dialog
+#: src/speedbox.c:72
+#, c-format
+msgid "Raw speed|= %6.2f wpm"
+msgstr "Netto-Geschwindigkeit|= %6.2f wpm"
+
+#. TRANSLATORS: a '|' character in this message divides it in to two
+#. * halves, which are aligned to the left and right sides of the dialog
+#: src/speedbox.c:75
+#, c-format
+msgid "Raw speed|= %7.2f cpm"
+msgstr "Netto-Geschwindigkeit|= %7.2f cpm"
+
+#. TRANSLATORS: a '|' character in this message divides it in to two
+#. * halves, which are aligned to the left and right sides of the dialog
+#: src/speedbox.c:78
+#, c-format
+msgid "Adjusted speed|= %6.2f wpm"
+msgstr "Tatsächliche Geschwindigkeit|= %6.2f wpm"
+
+#. TRANSLATORS: a '|' character in this message divides it in to two
+#. * halves, which are aligned to the left and right sides of the dialog
+#: src/speedbox.c:81
+#, c-format
+msgid "Adjusted speed|= %7.2f cpm"
+msgstr "Tatsächliche Geschwindigkeit|= %7.2f cpm"
+
+#. TRANSLATORS: a '|' character in this message divides it in to two
+#. * halves, which are aligned to the left and right sides of the dialog
+#: src/speedbox.c:84
+#, c-format
+msgid "|with %.1f%% errors"
+msgstr "|mit %.1f%% Fehlern"
+
+#. TRANSLATORS: a '|' character in this message divides it in to two
+#. * halves, which are aligned to the left and right sides of the dialog
+#: src/speedbox.c:87
+#, c-format
+msgid "Personal best|= %6.2f wpm"
+msgstr "Pers. Bestzeit|= %6.2f wpm"
+
+#. TRANSLATORS: a '|' character in this message divides it in to two
+#. * halves, which are aligned to the left and right sides of the dialog
+#: src/speedbox.c:90
+#, c-format
+msgid "Personal best|= %7.2f cpm"
+msgstr "Pers. Bestzeit|= %7.2f cpm"
+
+#. TRANSLATORS: a '|' character in this message divides it in to two
+#. * halves, which are aligned to the left and right sides of the dialog
+#: src/speedbox.c:93
+msgid "|new personal best"
+msgstr "|neue persönliche Bestzeit"

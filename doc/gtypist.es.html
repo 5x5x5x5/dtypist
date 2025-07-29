@@ -1,0 +1,2272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Este es el manual de GNU Typist (versión 2.10.1,
+31 January 2025), un programa para aprender a mecanografiar en varios
+idiomas y con distintas disposiciones de teclado.
+
+Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2008,
+2011, 2012 Free Software Foundation, Inc.
+
+Copyright (C) de la traducción 2010-11, TMJQ, SL.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.  A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Manual de GNU Typist</title>
+
+<meta name="description" content="Manual de GNU Typist">
+<meta name="keywords" content="Manual de GNU Typist">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="#Top" rel="start" title="Top">
+<link href="#SEC_Contents" rel="contents" title="Índice general">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="es">
+<h1 class="settitle" align="center">Manual de GNU Typist</h1>
+
+
+
+
+<span id="SEC_Contents"></span>
+<h2 class="contents-heading">Índice general</h2>
+
+<div class="contents">
+
+<ul class="no-bullet">
+  <li><a id="toc-Distribucion-1" href="#Distribucion">Distribución</a></li>
+  <li><a id="toc-GNU-GENERAL-PUBLIC-LICENSE" href="#Copiado">GNU GENERAL PUBLIC LICENSE</a></li>
+  <li><a id="toc-Introduccion-1" href="#Introduccion">1 Introducción</a></li>
+  <li><a id="toc-Invocacion-1" href="#Invocacion">2 Invocación</a></li>
+  <li><a id="toc-Lecciones-suministradas-1" href="#Lecciones-suministradas">3 Lecciones suministradas</a></li>
+  <li><a id="toc-Uso-de-typefortune-1" href="#Uso-de-typefortune">4 Uso de <code>typefortune</code></a></li>
+  <li><a id="toc-Comandos-del-fichero-de-script" href="#Sintaxis-de-las-lecciones">5 Comandos del fichero de script</a></li>
+  <li><a id="toc-Creacion-de-lecciones-nuevas" href="#Lecciones-nuevas">6 Creación de lecciones nuevas</a>
+  <ul class="no-bullet">
+    <li><a id="toc-Lecciones-Ktouch-1" href="#Lecciones-Ktouch">6.1 Lecciones Ktouch</a></li>
+    <li><a id="toc-Ejercicios-a-partir-de-fortune" href="#Ejercicios-de-fortune">6.2 Ejercicios a partir de <code>fortune</code></a></li>
+    <li><a id="toc-Diseno-de-patrones-para-lecciones" href="#Patrones-para-lecciones">6.3 Diseño de patrones para lecciones</a>
+    <ul class="no-bullet">
+      <li><a id="toc-Estructura-de-los-ficheros-de-lecciones" href="#Estructura-de-los-ficheros-de-lecciones">6.3.1 Estructura de los ficheros de lecciones</a></li>
+      <li><a id="toc-Patrones-para-ejercicios" href="#Patrones-para-ejercicios">6.3.2 Patrones para ejercicios</a></li>
+    </ul></li>
+    <li><a id="toc-El-script-findwords" href="#Findwords">6.4 El script <code>findwords</code></a>
+    <ul class="no-bullet">
+      <li><a id="toc-Proposito" href="#Proposito">6.4.1 Propósito</a></li>
+      <li><a id="toc-Instalacion" href="#Instalacion">6.4.2 Instalación</a></li>
+      <li><a id="toc-Uso-de-findwords" href="#Uso-de-findwords">6.4.3 Uso de <code>findwords</code></a></li>
+    </ul></li>
+  </ul></li>
+  <li><a id="toc-El-modo-para-Emacs" href="#Modo-para-Emacs">7 El modo para Emacs</a></li>
+  <li><a id="toc-Variables-de-entorno-1" href="#Variables-de-entorno">8 Variables de entorno</a></li>
+  <li><a id="toc-Errores-y-omisiones-1" href="#Errores-y-omisiones">9 Errores y omisiones</a></li>
+  <li><a id="toc-Historia-de-GNU-Typist" href="#Historia">Apéndice A Historia de GNU Typist</a></li>
+  <li><a id="toc-Licencia-de-Documentacion-Publica-de-GNU" href="#Copia-del-manual">Apéndice B Licencia de Documentación Pública de GNU</a></li>
+</ul>
+</div>
+
+
+
+<span id="Top"></span><span id="GNU-Typist_002c-el-tutor-mecanografico"></span><h1 class="top">GNU Typist, el tutor mecanográfico</h1>
+<p>Este es el manual de GNU Typist (versión 2.10.1,
+31 January 2025), un programa para aprender a mecanografiar en varios
+idiomas y con distintas disposiciones de teclado.
+</p>
+<p>Copyright &copy; 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2008,
+2011, 2012 Free Software Foundation, Inc.
+</p>
+<p>Copyright &copy; de la traducción 2010-11, TMJQ, SL.
+</p>
+<blockquote>
+<p>Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.  A copy of the license is included in the section entitled
+&ldquo;GNU Free Documentation License&rdquo;.
+</p></blockquote>
+
+<p>GNU Typist es un tutor interactivo de mecanografiado que ayuda a
+escribir correctamente.  Tiene varias lecciones para diversas
+disposiciones de teclado y en diferentes idiomas.  Las lecciones de
+gtypist se describen en un lenguaje de script de fácil aprendizaje que
+el usuario puede emplear para modificar las lecciones existentes o
+crear nuevas.
+</p>
+
+
+<hr>
+<span id="Distribucion"></span><span id="Distribucion-1"></span><h2 class="unnumbered">Distribución</h2>
+
+<p>GNU Typist (o gtypist) es <em>software libre</em>; esto significa que
+cualquier persona es libre de usarlo y libre de redistribuirlo bajo
+ciertas condiciones.  Las condiciones precisas se establecen en la
+Licencia General Pública de GNU que viene con este programa y sigue a
+esta sección.
+</p>
+<p>GNU Typist se puede obtener de un amigo o de Internet:
+</p>
+<dl compact="compact">
+<dt>Sitio de distribución oficial</dt>
+<dd><p><a href="ftp://ftp.gnu.org/gnu/gtypist/">ftp://ftp.gnu.org/gnu/gtypist/</a>
+</p>
+</dd>
+<dt>Página web oficial</dt>
+<dd><p><a href="http://www.gnu.org/software/gtypist/gtypist.html">http://www.gnu.org/software/gtypist/gtypist.html</a>
+</p>
+</dd>
+<dt>Página web oficial replicada en castellano</dt>
+<dd><p><a href="http://gnu.manticore.es/paginas-replica/gtypist/gtypist.es.html">http://gnu.manticore.es/paginas-replica/gtypist/gtypist.es.html</a>
+</p>
+</dd>
+<dt>Manual en la web (en inglés)</dt>
+<dd><p><a href="http://www.gnu.org/software/gtypist/doc/gtypist.html">http://www.gnu.org/software/gtypist/doc/gtypist.html</a>
+</p>
+</dd>
+<dt>Manual en la web (en español)</dt>
+<dd><p><a href="http://www.manticore.es/cgi-bin/info2html.cgi?(gtypist.es-utf8)Top">http://www.manticore.es/cgi-bin/info2html.cgi?(gtypist.es-utf8)Top</a>
+</p>
+</dd>
+<dt>Página web de la sección de desarrollo (repositorio Git, tareas, asistencia...)</dt>
+<dd><p><a href="http://savannah.gnu.org/projects/gtypist/">http://savannah.gnu.org/projects/gtypist/</a>
+</p></dd>
+</dl>
+
+<hr>
+<span id="Copiado"></span><span id="GNU-GENERAL-PUBLIC-LICENSE"></span><h2 class="unnumbered">GNU GENERAL PUBLIC LICENSE</h2>
+<div align="center">Version 3, 29 June 2007
+</div>
+
+<div class="display">
+<pre class="display">Copyright &copy; 2007 Free Software Foundation, Inc. <a href="http://fsf.org/">http://fsf.org/</a>
+
+Everyone is permitted to copy and distribute verbatim copies of this
+license document, but changing it is not allowed.
+</pre></div>
+
+<span id="Preamble"></span><h3 class="heading">Preamble</h3>
+
+<p>The GNU General Public License is a free, copyleft license for
+software and other kinds of works.
+</p>
+<p>The licenses for most software and other practical works are designed
+to take away your freedom to share and change the works.  By contrast,
+the GNU General Public License is intended to guarantee your freedom
+to share and change all versions of a program&mdash;to make sure it remains
+free software for all its users.  We, the Free Software Foundation,
+use the GNU General Public License for most of our software; it
+applies also to any other work released this way by its authors.  You
+can apply it to your programs, too.
+</p>
+<p>When we speak of free software, we are referring to freedom, not
+price.  Our General Public Licenses are designed to make sure that you
+have the freedom to distribute copies of free software (and charge for
+them if you wish), that you receive source code or can get it if you
+want it, that you can change the software or use pieces of it in new
+free programs, and that you know you can do these things.
+</p>
+<p>To protect your rights, we need to prevent others from denying you
+these rights or asking you to surrender the rights.  Therefore, you
+have certain responsibilities if you distribute copies of the
+software, or if you modify it: responsibilities to respect the freedom
+of others.
+</p>
+<p>For example, if you distribute copies of such a program, whether
+gratis or for a fee, you must pass on to the recipients the same
+freedoms that you received.  You must make sure that they, too,
+receive or can get the source code.  And you must show them these
+terms so they know their rights.
+</p>
+<p>Developers that use the GNU GPL protect your rights with two steps:
+(1) assert copyright on the software, and (2) offer you this License
+giving you legal permission to copy, distribute and/or modify it.
+</p>
+<p>For the developers&rsquo; and authors&rsquo; protection, the GPL clearly explains
+that there is no warranty for this free software.  For both users&rsquo; and
+authors&rsquo; sake, the GPL requires that modified versions be marked as
+changed, so that their problems will not be attributed erroneously to
+authors of previous versions.
+</p>
+<p>Some devices are designed to deny users access to install or run
+modified versions of the software inside them, although the
+manufacturer can do so.  This is fundamentally incompatible with the
+aim of protecting users&rsquo; freedom to change the software.  The
+systematic pattern of such abuse occurs in the area of products for
+individuals to use, which is precisely where it is most unacceptable.
+Therefore, we have designed this version of the GPL to prohibit the
+practice for those products.  If such problems arise substantially in
+other domains, we stand ready to extend this provision to those
+domains in future versions of the GPL, as needed to protect the
+freedom of users.
+</p>
+<p>Finally, every program is threatened constantly by software patents.
+States should not allow patents to restrict development and use of
+software on general-purpose computers, but in those that do, we wish
+to avoid the special danger that patents applied to a free program
+could make it effectively proprietary.  To prevent this, the GPL
+assures that patents cannot be used to render the program non-free.
+</p>
+<p>The precise terms and conditions for copying, distribution and
+modification follow.
+</p>
+<span id="TERMS-AND-CONDITIONS"></span><h3 class="heading">TERMS AND CONDITIONS</h3>
+
+<ol start="0">
+<li> Definitions.
+
+<p>&ldquo;This License&rdquo; refers to version 3 of the GNU General Public License.
+</p>
+<p>&ldquo;Copyright&rdquo; also means copyright-like laws that apply to other kinds
+of works, such as semiconductor masks.
+</p>
+<p>&ldquo;The Program&rdquo; refers to any copyrightable work licensed under this
+License.  Each licensee is addressed as &ldquo;you&rdquo;.  &ldquo;Licensees&rdquo; and
+&ldquo;recipients&rdquo; may be individuals or organizations.
+</p>
+<p>To &ldquo;modify&rdquo; a work means to copy from or adapt all or part of the work
+in a fashion requiring copyright permission, other than the making of
+an exact copy.  The resulting work is called a &ldquo;modified version&rdquo; of
+the earlier work or a work &ldquo;based on&rdquo; the earlier work.
+</p>
+<p>A &ldquo;covered work&rdquo; means either the unmodified Program or a work based
+on the Program.
+</p>
+<p>To &ldquo;propagate&rdquo; a work means to do anything with it that, without
+permission, would make you directly or secondarily liable for
+infringement under applicable copyright law, except executing it on a
+computer or modifying a private copy.  Propagation includes copying,
+distribution (with or without modification), making available to the
+public, and in some countries other activities as well.
+</p>
+<p>To &ldquo;convey&rdquo; a work means any kind of propagation that enables other
+parties to make or receive copies.  Mere interaction with a user
+through a computer network, with no transfer of a copy, is not
+conveying.
+</p>
+<p>An interactive user interface displays &ldquo;Appropriate Legal Notices&rdquo; to
+the extent that it includes a convenient and prominently visible
+feature that (1) displays an appropriate copyright notice, and (2)
+tells the user that there is no warranty for the work (except to the
+extent that warranties are provided), that licensees may convey the
+work under this License, and how to view a copy of this License.  If
+the interface presents a list of user commands or options, such as a
+menu, a prominent item in the list meets this criterion.
+</p>
+</li><li> Source Code.
+
+<p>The &ldquo;source code&rdquo; for a work means the preferred form of the work for
+making modifications to it.  &ldquo;Object code&rdquo; means any non-source form
+of a work.
+</p>
+<p>A &ldquo;Standard Interface&rdquo; means an interface that either is an official
+standard defined by a recognized standards body, or, in the case of
+interfaces specified for a particular programming language, one that
+is widely used among developers working in that language.
+</p>
+<p>The &ldquo;System Libraries&rdquo; of an executable work include anything, other
+than the work as a whole, that (a) is included in the normal form of
+packaging a Major Component, but which is not part of that Major
+Component, and (b) serves only to enable use of the work with that
+Major Component, or to implement a Standard Interface for which an
+implementation is available to the public in source code form.  A
+&ldquo;Major Component&rdquo;, in this context, means a major essential component
+(kernel, window system, and so on) of the specific operating system
+(if any) on which the executable work runs, or a compiler used to
+produce the work, or an object code interpreter used to run it.
+</p>
+<p>The &ldquo;Corresponding Source&rdquo; for a work in object code form means all
+the source code needed to generate, install, and (for an executable
+work) run the object code and to modify the work, including scripts to
+control those activities.  However, it does not include the work&rsquo;s
+System Libraries, or general-purpose tools or generally available free
+programs which are used unmodified in performing those activities but
+which are not part of the work.  For example, Corresponding Source
+includes interface definition files associated with source files for
+the work, and the source code for shared libraries and dynamically
+linked subprograms that the work is specifically designed to require,
+such as by intimate data communication or control flow between those
+subprograms and other parts of the work.
+</p>
+<p>The Corresponding Source need not include anything that users can
+regenerate automatically from other parts of the Corresponding Source.
+</p>
+<p>The Corresponding Source for a work in source code form is that same
+work.
+</p>
+</li><li> Basic Permissions.
+
+<p>All rights granted under this License are granted for the term of
+copyright on the Program, and are irrevocable provided the stated
+conditions are met.  This License explicitly affirms your unlimited
+permission to run the unmodified Program.  The output from running a
+covered work is covered by this License only if the output, given its
+content, constitutes a covered work.  This License acknowledges your
+rights of fair use or other equivalent, as provided by copyright law.
+</p>
+<p>You may make, run and propagate covered works that you do not convey,
+without conditions so long as your license otherwise remains in force.
+You may convey covered works to others for the sole purpose of having
+them make modifications exclusively for you, or provide you with
+facilities for running those works, provided that you comply with the
+terms of this License in conveying all material for which you do not
+control copyright.  Those thus making or running the covered works for
+you must do so exclusively on your behalf, under your direction and
+control, on terms that prohibit them from making any copies of your
+copyrighted material outside their relationship with you.
+</p>
+<p>Conveying under any other circumstances is permitted solely under the
+conditions stated below.  Sublicensing is not allowed; section 10
+makes it unnecessary.
+</p>
+</li><li> Protecting Users&rsquo; Legal Rights From Anti-Circumvention Law.
+
+<p>No covered work shall be deemed part of an effective technological
+measure under any applicable law fulfilling obligations under article
+11 of the WIPO copyright treaty adopted on 20 December 1996, or
+similar laws prohibiting or restricting circumvention of such
+measures.
+</p>
+<p>When you convey a covered work, you waive any legal power to forbid
+circumvention of technological measures to the extent such
+circumvention is effected by exercising rights under this License with
+respect to the covered work, and you disclaim any intention to limit
+operation or modification of the work as a means of enforcing, against
+the work&rsquo;s users, your or third parties&rsquo; legal rights to forbid
+circumvention of technological measures.
+</p>
+</li><li> Conveying Verbatim Copies.
+
+<p>You may convey verbatim copies of the Program&rsquo;s source code as you
+receive it, in any medium, provided that you conspicuously and
+appropriately publish on each copy an appropriate copyright notice;
+keep intact all notices stating that this License and any
+non-permissive terms added in accord with section 7 apply to the code;
+keep intact all notices of the absence of any warranty; and give all
+recipients a copy of this License along with the Program.
+</p>
+<p>You may charge any price or no price for each copy that you convey,
+and you may offer support or warranty protection for a fee.
+</p>
+</li><li> Conveying Modified Source Versions.
+
+<p>You may convey a work based on the Program, or the modifications to
+produce it from the Program, in the form of source code under the
+terms of section 4, provided that you also meet all of these
+conditions:
+</p>
+<ol type="a" start="1">
+<li> The work must carry prominent notices stating that you modified it,
+and giving a relevant date.
+
+</li><li> The work must carry prominent notices stating that it is released
+under this License and any conditions added under section 7.  This
+requirement modifies the requirement in section 4 to &ldquo;keep intact all
+notices&rdquo;.
+
+</li><li> You must license the entire work, as a whole, under this License to
+anyone who comes into possession of a copy.  This License will
+therefore apply, along with any applicable section 7 additional terms,
+to the whole of the work, and all its parts, regardless of how they
+are packaged.  This License gives no permission to license the work in
+any other way, but it does not invalidate such permission if you have
+separately received it.
+
+</li><li> If the work has interactive user interfaces, each must display
+Appropriate Legal Notices; however, if the Program has interactive
+interfaces that do not display Appropriate Legal Notices, your work
+need not make them do so.
+</li></ol>
+
+<p>A compilation of a covered work with other separate and independent
+works, which are not by their nature extensions of the covered work,
+and which are not combined with it such as to form a larger program,
+in or on a volume of a storage or distribution medium, is called an
+&ldquo;aggregate&rdquo; if the compilation and its resulting copyright are not
+used to limit the access or legal rights of the compilation&rsquo;s users
+beyond what the individual works permit.  Inclusion of a covered work
+in an aggregate does not cause this License to apply to the other
+parts of the aggregate.
+</p>
+</li><li> Conveying Non-Source Forms.
+
+<p>You may convey a covered work in object code form under the terms of
+sections 4 and 5, provided that you also convey the machine-readable
+Corresponding Source under the terms of this License, in one of these
+ways:
+</p>
+<ol type="a" start="1">
+<li> Convey the object code in, or embodied in, a physical product
+(including a physical distribution medium), accompanied by the
+Corresponding Source fixed on a durable physical medium customarily
+used for software interchange.
+
+</li><li> Convey the object code in, or embodied in, a physical product
+(including a physical distribution medium), accompanied by a written
+offer, valid for at least three years and valid for as long as you
+offer spare parts or customer support for that product model, to give
+anyone who possesses the object code either (1) a copy of the
+Corresponding Source for all the software in the product that is
+covered by this License, on a durable physical medium customarily used
+for software interchange, for a price no more than your reasonable
+cost of physically performing this conveying of source, or (2) access
+to copy the Corresponding Source from a network server at no charge.
+
+</li><li> Convey individual copies of the object code with a copy of the written
+offer to provide the Corresponding Source.  This alternative is
+allowed only occasionally and noncommercially, and only if you
+received the object code with such an offer, in accord with subsection
+6b.
+
+</li><li> Convey the object code by offering access from a designated place
+(gratis or for a charge), and offer equivalent access to the
+Corresponding Source in the same way through the same place at no
+further charge.  You need not require recipients to copy the
+Corresponding Source along with the object code.  If the place to copy
+the object code is a network server, the Corresponding Source may be
+on a different server (operated by you or a third party) that supports
+equivalent copying facilities, provided you maintain clear directions
+next to the object code saying where to find the Corresponding Source.
+Regardless of what server hosts the Corresponding Source, you remain
+obligated to ensure that it is available for as long as needed to
+satisfy these requirements.
+
+</li><li> Convey the object code using peer-to-peer transmission, provided you
+inform other peers where the object code and Corresponding Source of
+the work are being offered to the general public at no charge under
+subsection 6d.
+
+</li></ol>
+
+<p>A separable portion of the object code, whose source code is excluded
+from the Corresponding Source as a System Library, need not be
+included in conveying the object code work.
+</p>
+<p>A &ldquo;User Product&rdquo; is either (1) a &ldquo;consumer product&rdquo;, which means any
+tangible personal property which is normally used for personal,
+family, or household purposes, or (2) anything designed or sold for
+incorporation into a dwelling.  In determining whether a product is a
+consumer product, doubtful cases shall be resolved in favor of
+coverage.  For a particular product received by a particular user,
+&ldquo;normally used&rdquo; refers to a typical or common use of that class of
+product, regardless of the status of the particular user or of the way
+in which the particular user actually uses, or expects or is expected
+to use, the product.  A product is a consumer product regardless of
+whether the product has substantial commercial, industrial or
+non-consumer uses, unless such uses represent the only significant
+mode of use of the product.
+</p>
+<p>&ldquo;Installation Information&rdquo; for a User Product means any methods,
+procedures, authorization keys, or other information required to
+install and execute modified versions of a covered work in that User
+Product from a modified version of its Corresponding Source.  The
+information must suffice to ensure that the continued functioning of
+the modified object code is in no case prevented or interfered with
+solely because modification has been made.
+</p>
+<p>If you convey an object code work under this section in, or with, or
+specifically for use in, a User Product, and the conveying occurs as
+part of a transaction in which the right of possession and use of the
+User Product is transferred to the recipient in perpetuity or for a
+fixed term (regardless of how the transaction is characterized), the
+Corresponding Source conveyed under this section must be accompanied
+by the Installation Information.  But this requirement does not apply
+if neither you nor any third party retains the ability to install
+modified object code on the User Product (for example, the work has
+been installed in ROM).
+</p>
+<p>The requirement to provide Installation Information does not include a
+requirement to continue to provide support service, warranty, or
+updates for a work that has been modified or installed by the
+recipient, or for the User Product in which it has been modified or
+installed.  Access to a network may be denied when the modification
+itself materially and adversely affects the operation of the network
+or violates the rules and protocols for communication across the
+network.
+</p>
+<p>Corresponding Source conveyed, and Installation Information provided,
+in accord with this section must be in a format that is publicly
+documented (and with an implementation available to the public in
+source code form), and must require no special password or key for
+unpacking, reading or copying.
+</p>
+</li><li> Additional Terms.
+
+<p>&ldquo;Additional permissions&rdquo; are terms that supplement the terms of this
+License by making exceptions from one or more of its conditions.
+Additional permissions that are applicable to the entire Program shall
+be treated as though they were included in this License, to the extent
+that they are valid under applicable law.  If additional permissions
+apply only to part of the Program, that part may be used separately
+under those permissions, but the entire Program remains governed by
+this License without regard to the additional permissions.
+</p>
+<p>When you convey a copy of a covered work, you may at your option
+remove any additional permissions from that copy, or from any part of
+it.  (Additional permissions may be written to require their own
+removal in certain cases when you modify the work.)  You may place
+additional permissions on material, added by you to a covered work,
+for which you have or can give appropriate copyright permission.
+</p>
+<p>Notwithstanding any other provision of this License, for material you
+add to a covered work, you may (if authorized by the copyright holders
+of that material) supplement the terms of this License with terms:
+</p>
+<ol type="a" start="1">
+<li> Disclaiming warranty or limiting liability differently from the terms
+of sections 15 and 16 of this License; or
+
+</li><li> Requiring preservation of specified reasonable legal notices or author
+attributions in that material or in the Appropriate Legal Notices
+displayed by works containing it; or
+
+</li><li> Prohibiting misrepresentation of the origin of that material, or
+requiring that modified versions of such material be marked in
+reasonable ways as different from the original version; or
+
+</li><li> Limiting the use for publicity purposes of names of licensors or
+authors of the material; or
+
+</li><li> Declining to grant rights under trademark law for use of some trade
+names, trademarks, or service marks; or
+
+</li><li> Requiring indemnification of licensors and authors of that material by
+anyone who conveys the material (or modified versions of it) with
+contractual assumptions of liability to the recipient, for any
+liability that these contractual assumptions directly impose on those
+licensors and authors.
+</li></ol>
+
+<p>All other non-permissive additional terms are considered &ldquo;further
+restrictions&rdquo; within the meaning of section 10.  If the Program as you
+received it, or any part of it, contains a notice stating that it is
+governed by this License along with a term that is a further
+restriction, you may remove that term.  If a license document contains
+a further restriction but permits relicensing or conveying under this
+License, you may add to a covered work material governed by the terms
+of that license document, provided that the further restriction does
+not survive such relicensing or conveying.
+</p>
+<p>If you add terms to a covered work in accord with this section, you
+must place, in the relevant source files, a statement of the
+additional terms that apply to those files, or a notice indicating
+where to find the applicable terms.
+</p>
+<p>Additional terms, permissive or non-permissive, may be stated in the
+form of a separately written license, or stated as exceptions; the
+above requirements apply either way.
+</p>
+</li><li> Termination.
+
+<p>You may not propagate or modify a covered work except as expressly
+provided under this License.  Any attempt otherwise to propagate or
+modify it is void, and will automatically terminate your rights under
+this License (including any patent licenses granted under the third
+paragraph of section 11).
+</p>
+<p>However, if you cease all violation of this License, then your license
+from a particular copyright holder is reinstated (a) provisionally,
+unless and until the copyright holder explicitly and finally
+terminates your license, and (b) permanently, if the copyright holder
+fails to notify you of the violation by some reasonable means prior to
+60 days after the cessation.
+</p>
+<p>Moreover, your license from a particular copyright holder is
+reinstated permanently if the copyright holder notifies you of the
+violation by some reasonable means, this is the first time you have
+received notice of violation of this License (for any work) from that
+copyright holder, and you cure the violation prior to 30 days after
+your receipt of the notice.
+</p>
+<p>Termination of your rights under this section does not terminate the
+licenses of parties who have received copies or rights from you under
+this License.  If your rights have been terminated and not permanently
+reinstated, you do not qualify to receive new licenses for the same
+material under section 10.
+</p>
+</li><li> Acceptance Not Required for Having Copies.
+
+<p>You are not required to accept this License in order to receive or run
+a copy of the Program.  Ancillary propagation of a covered work
+occurring solely as a consequence of using peer-to-peer transmission
+to receive a copy likewise does not require acceptance.  However,
+nothing other than this License grants you permission to propagate or
+modify any covered work.  These actions infringe copyright if you do
+not accept this License.  Therefore, by modifying or propagating a
+covered work, you indicate your acceptance of this License to do so.
+</p>
+</li><li> Automatic Licensing of Downstream Recipients.
+
+<p>Each time you convey a covered work, the recipient automatically
+receives a license from the original licensors, to run, modify and
+propagate that work, subject to this License.  You are not responsible
+for enforcing compliance by third parties with this License.
+</p>
+<p>An &ldquo;entity transaction&rdquo; is a transaction transferring control of an
+organization, or substantially all assets of one, or subdividing an
+organization, or merging organizations.  If propagation of a covered
+work results from an entity transaction, each party to that
+transaction who receives a copy of the work also receives whatever
+licenses to the work the party&rsquo;s predecessor in interest had or could
+give under the previous paragraph, plus a right to possession of the
+Corresponding Source of the work from the predecessor in interest, if
+the predecessor has it or can get it with reasonable efforts.
+</p>
+<p>You may not impose any further restrictions on the exercise of the
+rights granted or affirmed under this License.  For example, you may
+not impose a license fee, royalty, or other charge for exercise of
+rights granted under this License, and you may not initiate litigation
+(including a cross-claim or counterclaim in a lawsuit) alleging that
+any patent claim is infringed by making, using, selling, offering for
+sale, or importing the Program or any portion of it.
+</p>
+</li><li> Patents.
+
+<p>A &ldquo;contributor&rdquo; is a copyright holder who authorizes use under this
+License of the Program or a work on which the Program is based.  The
+work thus licensed is called the contributor&rsquo;s &ldquo;contributor version&rdquo;.
+</p>
+<p>A contributor&rsquo;s &ldquo;essential patent claims&rdquo; are all patent claims owned
+or controlled by the contributor, whether already acquired or
+hereafter acquired, that would be infringed by some manner, permitted
+by this License, of making, using, or selling its contributor version,
+but do not include claims that would be infringed only as a
+consequence of further modification of the contributor version.  For
+purposes of this definition, &ldquo;control&rdquo; includes the right to grant
+patent sublicenses in a manner consistent with the requirements of
+this License.
+</p>
+<p>Each contributor grants you a non-exclusive, worldwide, royalty-free
+patent license under the contributor&rsquo;s essential patent claims, to
+make, use, sell, offer for sale, import and otherwise run, modify and
+propagate the contents of its contributor version.
+</p>
+<p>In the following three paragraphs, a &ldquo;patent license&rdquo; is any express
+agreement or commitment, however denominated, not to enforce a patent
+(such as an express permission to practice a patent or covenant not to
+sue for patent infringement).  To &ldquo;grant&rdquo; such a patent license to a
+party means to make such an agreement or commitment not to enforce a
+patent against the party.
+</p>
+<p>If you convey a covered work, knowingly relying on a patent license,
+and the Corresponding Source of the work is not available for anyone
+to copy, free of charge and under the terms of this License, through a
+publicly available network server or other readily accessible means,
+then you must either (1) cause the Corresponding Source to be so
+available, or (2) arrange to deprive yourself of the benefit of the
+patent license for this particular work, or (3) arrange, in a manner
+consistent with the requirements of this License, to extend the patent
+license to downstream recipients.  &ldquo;Knowingly relying&rdquo; means you have
+actual knowledge that, but for the patent license, your conveying the
+covered work in a country, or your recipient&rsquo;s use of the covered work
+in a country, would infringe one or more identifiable patents in that
+country that you have reason to believe are valid.
+</p>
+<p>If, pursuant to or in connection with a single transaction or
+arrangement, you convey, or propagate by procuring conveyance of, a
+covered work, and grant a patent license to some of the parties
+receiving the covered work authorizing them to use, propagate, modify
+or convey a specific copy of the covered work, then the patent license
+you grant is automatically extended to all recipients of the covered
+work and works based on it.
+</p>
+<p>A patent license is &ldquo;discriminatory&rdquo; if it does not include within the
+scope of its coverage, prohibits the exercise of, or is conditioned on
+the non-exercise of one or more of the rights that are specifically
+granted under this License.  You may not convey a covered work if you
+are a party to an arrangement with a third party that is in the
+business of distributing software, under which you make payment to the
+third party based on the extent of your activity of conveying the
+work, and under which the third party grants, to any of the parties
+who would receive the covered work from you, a discriminatory patent
+license (a) in connection with copies of the covered work conveyed by
+you (or copies made from those copies), or (b) primarily for and in
+connection with specific products or compilations that contain the
+covered work, unless you entered into that arrangement, or that patent
+license was granted, prior to 28 March 2007.
+</p>
+<p>Nothing in this License shall be construed as excluding or limiting
+any implied license or other defenses to infringement that may
+otherwise be available to you under applicable patent law.
+</p>
+</li><li> No Surrender of Others&rsquo; Freedom.
+
+<p>If conditions are imposed on you (whether by court order, agreement or
+otherwise) that contradict the conditions of this License, they do not
+excuse you from the conditions of this License.  If you cannot convey
+a covered work so as to satisfy simultaneously your obligations under
+this License and any other pertinent obligations, then as a
+consequence you may not convey it at all.  For example, if you agree
+to terms that obligate you to collect a royalty for further conveying
+from those to whom you convey the Program, the only way you could
+satisfy both those terms and this License would be to refrain entirely
+from conveying the Program.
+</p>
+</li><li> Use with the GNU Affero General Public License.
+
+<p>Notwithstanding any other provision of this License, you have
+permission to link or combine any covered work with a work licensed
+under version 3 of the GNU Affero General Public License into a single
+combined work, and to convey the resulting work.  The terms of this
+License will continue to apply to the part which is the covered work,
+but the special requirements of the GNU Affero General Public License,
+section 13, concerning interaction through a network will apply to the
+combination as such.
+</p>
+</li><li> Revised Versions of this License.
+
+<p>The Free Software Foundation may publish revised and/or new versions
+of the GNU General Public License from time to time.  Such new
+versions will be similar in spirit to the present version, but may
+differ in detail to address new problems or concerns.
+</p>
+<p>Each version is given a distinguishing version number.  If the Program
+specifies that a certain numbered version of the GNU General Public
+License &ldquo;or any later version&rdquo; applies to it, you have the option of
+following the terms and conditions either of that numbered version or
+of any later version published by the Free Software Foundation.  If
+the Program does not specify a version number of the GNU General
+Public License, you may choose any version ever published by the Free
+Software Foundation.
+</p>
+<p>If the Program specifies that a proxy can decide which future versions
+of the GNU General Public License can be used, that proxy&rsquo;s public
+statement of acceptance of a version permanently authorizes you to
+choose that version for the Program.
+</p>
+<p>Later license versions may give you additional or different
+permissions.  However, no additional obligations are imposed on any
+author or copyright holder as a result of your choosing to follow a
+later version.
+</p>
+</li><li> Disclaimer of Warranty.
+
+<p>THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY
+APPLICABLE LAW.  EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT
+HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM &ldquo;AS IS&rdquo; WITHOUT
+WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND
+PERFORMANCE OF THE PROGRAM IS WITH YOU.  SHOULD THE PROGRAM PROVE
+DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR
+CORRECTION.
+</p>
+</li><li> Limitation of Liability.
+
+<p>IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
+WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR
+CONVEYS THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES,
+INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES
+ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT
+NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR
+LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM
+TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER
+PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+</p>
+</li><li> Interpretation of Sections 15 and 16.
+
+<p>If the disclaimer of warranty and limitation of liability provided
+above cannot be given local legal effect according to their terms,
+reviewing courts shall apply local law that most closely approximates
+an absolute waiver of all civil liability in connection with the
+Program, unless a warranty or assumption of liability accompanies a
+copy of the Program in return for a fee.
+</p>
+</li></ol>
+
+<span id="END-OF-TERMS-AND-CONDITIONS"></span><h3 class="heading">END OF TERMS AND CONDITIONS</h3>
+
+<span id="How-to-Apply-These-Terms-to-Your-New-Programs"></span><h3 class="heading">How to Apply These Terms to Your New Programs</h3>
+
+<p>If you develop a new program, and you want it to be of the greatest
+possible use to the public, the best way to achieve this is to make it
+free software which everyone can redistribute and change under these
+terms.
+</p>
+<p>To do so, attach the following notices to the program.  It is safest
+to attach them to the start of each source file to most effectively
+state the exclusion of warranty; and each file should have at least
+the &ldquo;copyright&rdquo; line and a pointer to where the full notice is found.
+</p>
+<div class="example">
+<pre class="example"><var>one line to give the program's name and a brief idea of what it does.</var>
+Copyright (C) <var>year</var> <var>name of author</var>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or (at
+your option) any later version.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.
+</pre></div>
+
+<p>Also add information on how to contact you by electronic and paper mail.
+</p>
+<p>If the program does terminal interaction, make it output a short
+notice like this when it starts in an interactive mode:
+</p>
+<div class="example">
+<pre class="example"><var>program</var> Copyright (C) <var>year</var> <var>name of author</var>
+This program comes with ABSOLUTELY NO WARRANTY; for details type &lsquo;<samp>show w</samp>&rsquo;.
+This is free software, and you are welcome to redistribute it
+under certain conditions; type &lsquo;<samp>show c</samp>&rsquo; for details.
+</pre></div>
+
+<p>The hypothetical commands &lsquo;<samp>show w</samp>&rsquo; and &lsquo;<samp>show c</samp>&rsquo; should show
+the appropriate parts of the General Public License.  Of course, your
+program&rsquo;s commands might be different; for a GUI interface, you would
+use an &ldquo;about box&rdquo;.
+</p>
+<p>You should also get your employer (if you work as a programmer) or school,
+if any, to sign a &ldquo;copyright disclaimer&rdquo; for the program, if necessary.
+For more information on this, and how to apply and follow the GNU GPL, see
+<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.
+</p>
+<p>The GNU General Public License does not permit incorporating your
+program into proprietary programs.  If your program is a subroutine
+library, you may consider it more useful to permit linking proprietary
+applications with the library.  If this is what you want to do, use
+the GNU Lesser General Public License instead of this License.  But
+first, please read <a href="http://www.gnu.org/philosophy/why-not-lgpl.html">http://www.gnu.org/philosophy/why-not-lgpl.html</a>.
+</p>
+<hr>
+<span id="Introduccion"></span><span id="Introduccion-1"></span><h2 class="chapter">1 Introducción</h2>
+
+<p>GNU Typist es un programa tutor interactivo de mecanografiado.  Emplea
+un fichero de entrada para crear una serie de tutorías de
+mecanografiado, ejercicios y pruebas de velocidad.  Está pensado para
+su uso en terminales sin gráficos.  Ha sido compilado y usado en
+GNU/Linux y Unix (OpenBSD, AIX, Solaris) y también en DOS/Windows (DOS
+6.22, Windows 95, 98, NT y XP).
+</p>
+<p>El programa lee lecciones escritas en un lenguaje de script de fácil
+aprendizaje.  Se distribuye con unas cuantas lecciones completas y de
+calidad.  Se pueden usar como están, modificarlas o crear lecciones
+nuevas (véase <a href="#Lecciones-nuevas">Lecciones nuevas</a> y véase <a href="#Sintaxis-de-las-lecciones">Sintaxis de las lecciones</a>).
+</p>
+<p>Si no se especifica un fichero de script en la línea de comandos, se
+usará uno predeterminado <samp>gtypist.typ</samp>.  (Véanse los detalles
+acerca de la ruta en la sección véase <a href="#Variables-de-entorno">Variables de entorno</a>).
+</p>
+<p>La línea superior de la pantalla muestra una leyenda.  La línea
+inferior muestra una línea de mensaje, consultas y otra información de
+estado.  Las líneas intermedias se usan para las tutorías, los
+ejercicios y las pruebas de velocidad.
+</p>
+<p>Existen dos tipos de ejercicios de tecleado: <em>entrenamientos</em> y
+<em>pruebas de velocidad</em>.
+</p>
+<p>En un <em>entrenamiento</em>, gtypist muestra texto cada dos líneas de la
+pantalla y espera que el usuario teclee correctamente el mismo texto
+exacto en las líneas intermedias.
+Los errores de mecanografiado se indican con un &lsquo;<samp>^</samp>&rsquo; inverso, o
+&lsquo;<samp>&gt;</samp>&rsquo; si el carácter es un salto de línea y al final del ejercicio
+calcula la tasa real y efectiva de palabras por minuto
+(<acronym>WPM</acronym>).  Si hubiera demasiados errores, se re-ejecutará el
+entrenamiento.
+</p>
+<p>No se permite la corrección de errores cometidos.
+</p>
+<p>En las pruebas de velocidad, gtypist muestra texto en la pantalla, y
+espera a que el usuario sobre-escriba correctamente el mismo texto
+exacto.  Indica los errores mecanográficos y al final de la prueba
+calcula la tasa real y efectiva en <acronym>WPM</acronym>.
+Si hubiera demasiados errores, se re-ejecuta la prueba de velocidad.
+Se permite la corrección de errores cometidos, pero aún así se
+acumulan.
+</p>
+<p>Si ya se han cometido demasiadas equivocaciones, se puede usar
+<tt class="key">ESC</tt> para salir y comenzar de nuevo.  La manera de saltarse una
+lección es presionar dos veces <tt class="key">ESC</tt>.  Cuando se completa una
+lección, se le pregunta al usuario si quiere repetirla.
+</p>
+<p>También hay unos ejercicios de &ldquo;sólo prácticas&rdquo; (tanto
+entrenamientos como pruebas de velocidad) que no se querrán repetir.
+Pero no decimos cuándo se presentan, así que habrá que seguir
+intentando superarse ;-)
+</p>
+<p>En los informes de velocidad de escritura, se considera que una
+<em>palabra</em> tiene cinco caracteres, así que las <acronym>WPM</acronym> son el
+número de caracteres del pasaje de la prueba dividido por cinco y
+nuevamente dividido por la cantidad de minutos transcurridos en su
+escritura.  Cada error se cuenta como una palabra mal escrita.
+</p>
+<p>Si se prefiere, la velocidad se puede mostrar en Pulsaciones por
+Minuto (<acronym>CPM</acronym>) (caracteres por minuto, en inglés).  Esto se
+puede especificar con &ldquo;&ndash;scoring=cpm&rdquo; en la línea de comandos.
+</p>
+<p>[NdT: en España nunca he oído hablar de &ldquo;palabras por minuto&rdquo;,
+siempre de &ldquo;pulsaciones por minuto&rdquo;.  La obligación de especificar
+esa opción en la línea de comandos es engorrosa para aquellos que sólo
+cuentan ppm.  Lo propio es que hubiera un fichero de configuración o
+alguna otra vía para elegir de manera permanente.]
+</p>
+
+<hr>
+<span id="Invocacion"></span><span id="Invocacion-1"></span><h2 class="chapter">2 Invocación</h2>
+
+<p>La sintaxis para invocar GNU Typist es:
+</p>
+<p><code>gtypist [ Opciones... ] [ fichero ]</code>
+</p>
+<p>A continuación se dan las opciones existentes (su forma larga no se
+admite en DOS):
+</p>
+<dl compact="compact">
+<dt><code>-e, --max-error</code></dt>
+<dd><p>Especifica el porcentaje de error máximo.  El valor predeterminado es
+3.0 y debe estar entre 0.0 y 100.0.  Existe un comando de fichero de
+script (véase <a href="#Sintaxis-de-las-lecciones">Sintaxis de las lecciones</a>) que sólo sobre-escribe esto si
+es <em>estrictamente</em> (menor).  Este valor se ignora en los
+ejercicios de &ldquo;sólo práctica&rdquo;.
+</p>
+</dd>
+<dt><code>-n, --notimer</code></dt>
+<dd><p>Gtypist muestra la velocidad de escritura en <acronym>WPM</acronym> después de
+los tests de prácticas y de velocidad.  Sin embargo, las lecciones
+parecen haber sido escritas para un programa que sólo hace esto para
+tests de velocidad.  Para hacer que gtypist se comporte de manera que
+concuerde con las lecciones, esto es, para suprimir los informes de
+<acronym>WPM</acronym> en las prácticas, se usa <samp>-n</samp> o
+<samp>--notimer</samp>.
+</p>
+</dd>
+<dt><code>-t, --term-cursor</code></dt>
+<dd><p>Gtypist crea su propio cursor parpadeante de bloque en la pantalla,
+para ayudar a distinguir entre el cursor y las indicaciones de error
+de vídeo inverso.  Si se establece <samp>-t</samp> o
+<samp>--term-cursor</samp> se suprime esto y fuerza al programa a usar el
+cursor de la terminal.
+</p>
+</dd>
+<dt><code>-f, --curs-flash</code></dt>
+<dd><p>Establece el periodo de parpadeo del cursor de bloque en décimas de
+segundo.  El valor 0 indica que no haya parpadeo.  El predeterminado
+es 10 y el máximo 512.  Esta opción queda ignorada si se han
+establecido <samp>-t</samp> o <samp>--term-cursor</samp>.
+</p>
+</dd>
+<dt><code>-c, --colo[u]rs</code></dt>
+<dd><p>En su estado normal, gtypist sólo usa atributos de vídeo normal e
+inverso en modo monocromo.  Esta opción se puede usar para especificar
+en este orden los colores delantero y de fondo en terminales que
+admitan colores.  Estos se especifican como dos enteros, en el
+intervalo entre 0 y 7, separados por comas.  Los códigos de color del
+0 al 7 indican negro, rojo, verde, amarillo, azul, magenta, cian y
+blanco, respectivamente.  La cadena de colores predeterminada es 7,0
+(blanco sobre negro).  Se ignora esta opción si la terminal no admite
+colores.
+</p>
+</dd>
+<dt><code>-s, --silent</code></dt>
+<dd><p>Cuando gtypist detecta un error mecanográfico, sonará la terminal.
+Esta opción se usa para silenciarla.
+</p>
+</dd>
+<dt><code>-q, --quiet</code></dt>
+<dd><p>Lo mismo que <samp>-s</samp> o <samp>--silent</samp>.
+</p>
+</dd>
+<dt><code>-l, --start-label</code></dt>
+<dd><p>Especifica la etiqueta del fichero de script en la que gtypist
+comienza la ejecución (hay información acerca de las etiquetas más
+abajo, donde se habla de los ficheros de script y de los comandos).
+Si esta opción no se usa, gtypist comienza la ejecución en la primera
+línea del fichero.
+</p>
+</dd>
+<dt><code>-w, --word-processor</code></dt>
+<dd><p>Con esta opción, gtypist procura imitar a los procesadores de texto en
+ciertas maneras cuando ejecuta un ejercicio.  Tratará el espacio al
+final de una línea como un carácter tecleado correctamente y con
+ajuste de párrafo.  Tratará la tecla Retorno al final de una línea
+como señal de que se mueva al comienzo del siguiente párrafo si fuera
+de aplicación.  Comprimirá los espacios múltiples en uno solo.  Y se
+saltará sobre los guiones que encuentre al final de línea.
+</p>
+</dd>
+<dt><code>-k, --no-skip</code></dt>
+<dd><p>Prohíbe al usuario saltarse las lecciones o salir de ellas por medio
+de <tt class="key">ESC ESC</tt>.
+</p>
+</dd>
+<dt><code>-i, --show-errors</code></dt>
+<dd><p>Resalta los errores con vídeo inverso.
+</p>
+</dd>
+<dt><code>-S, --always-sure</code></dt>
+<dd><p>Salta las preguntas de confirmación.
+</p>
+</dd>
+<dt><code>--banner-colo[u]rs</code></dt>
+<dd><p>Cambia el color de las leyendas situadas en la parte superior de la
+pantalla.  Los valores de color son los mismos que los del comando
+&ndash;colo[u]rs.  El predeterminado es 0,6,5,1; delantero en negro, fondo
+en cian, nombre de programa en magenta y nombre de la versión en rojo.
+</p>
+</dd>
+<dt><code>--scoring</code></dt>
+<dd><p>Cambia la manera de medición.  Puede ser <acronym>WPM</acronym> y
+<acronym>CPM</acronym>, siendo la predeterminada la <acronym>WPM</acronym>.
+</p>
+</dd>
+</dl>
+
+<p>También se puede establecer la variable de entorno <code>LANG</code> si se
+desea ejecutar gtypist en el idioma nativo. Véase <a href="#Variables-de-entorno">Variables de entorno</a>.
+</p>
+<p>En algunos idiomas como el español, los mensajes de la interfaz suelen
+ser más largos que en inglés.  Por tanto, quizás sea necesario
+agrandar la terminal antes de invocar el programa.  De lo contrario,
+el texto de abajo a la izquierda puede solaparse con la cadena de
+abajo a la derecha.
+</p>
+<p><strong>Ejemplos:</strong>
+</p>
+<p>Para ejecutar las lecciones predeterminadas <samp>gtypist.typ</samp>:<br>
+<code>gtypist</code>
+</p>
+<p>Para ejecutar la lección en español: <br>
+<code>gtypist esp.typ</code>
+</p>
+<p>Para indicarle a gtypist que busque una lección  bar.typ en un
+directorio no estándar <samp>/home/foo</samp>: <br>
+<code>export GTYPIST_PATH=&quot;/home/foo&quot;</code>
+<code>gtypist bar.typ</code>
+</p>
+<p>Para ejecutar las lecciones del fichero <samp>test.typ</samp> del directorio
+<samp>/tmp</samp>, comenzando con la etiqueta <code>TEST1</code> y empleando el
+cursor de la terminal de manera silenciosa:<br>
+<code>gtypist -t -q -l TEST1 /tmp/test.typ</code>
+</p>
+<hr>
+<span id="Lecciones-suministradas"></span><span id="Lecciones-suministradas-1"></span><h2 class="chapter">3 Lecciones suministradas</h2>
+
+<p>GNU Typist viene con las siguientes lecciones:
+</p><dl compact="compact">
+<dt><samp>q.typ</samp></dt>
+<dd><p>Curso rápido de QWERTY en inglés.
+</p></dd>
+<dt><samp>r.typ</samp></dt>
+<dd><p>Curso largo de QWERTY en inglés.
+</p></dd>
+<dt><samp>t.typ</samp></dt>
+<dd><p>Mecanografía al tacto QWERTY en inglés.
+</p></dd>
+<dt><samp>v.typ</samp></dt>
+<dd><p>Otro QWERTY en inglés.
+</p></dd>
+<dt><samp>w.typ</samp></dt>
+<dd><p>Repaso de QWERTY en inglés.
+</p></dd>
+<dt><samp>d.typ</samp></dt>
+<dd><p>Mecanografía al tacto Dvorak en inglés.
+</p></dd>
+<dt><samp>m.typ</samp></dt>
+<dd><p>Entrenamiento mecanográfico en inglés.
+</p></dd>
+<dt><samp>s.typ</samp></dt>
+<dd><p>Entrenamiento de velocidad en inglés.
+</p></dd>
+<dt><samp>n.typ</samp></dt>
+<dd><p>Teclado numérico en inglés.
+</p></dd>
+<dt><samp>gtypist.typ</samp></dt>
+<dd><p>Compendio de todas las lecciones anteriores en inglés.
+</p></dd>
+<dt><samp>esp.typ</samp></dt>
+<dd><p>Curso QWERTY en español.
+</p></dd>
+<dt><samp>cs.typ</samp></dt>
+<dd><p>Lecciones en checo.
+</p></dd>
+<dt><samp>ru.typ</samp></dt>
+<dd><p>Lecciones en ruso.
+</p></dd>
+<dt><samp>kt*.typ</samp></dt>
+<dd><p>Estas lecciones son las estándares de
+<a href="https://invent.kde.org/education/ktouch">KTouch 24.05.2</a>, convertidas
+a formato de fichero gtypist mediante <samp>tools/ktouch2typ.pl</samp>.
+</p>
+<p>Los ficheros se llaman:
+<samp>ktbg.typ</samp> (<samp>bulgarian.ktouch.xml</samp>),
+<samp>ktbr.typ</samp> (<samp>blazilian.ktouch.xml</samp>),
+<samp>ktcz.typ</samp> (<samp>czech.ktouch.xml</samp>),
+<samp>ktde.typ</samp> (<samp>german.ktouch.xml</samp>),
+<samp>ktdvorak.typ</samp> (<samp>dvorak.ktouch.xml</samp>),
+<samp>kten_gb.typ</samp> (<samp>british_english.ktouch.xml</samp>),
+<samp>kten_us.typ</samp> (<samp>us_english.ktouch.xml</samp>),
+<samp>ktes1.typ</samp> (<samp>spanish1.ktouch.xml</samp>),
+<samp>ktes2.typ</samp> (<samp>spanish2.ktouch.xml</samp>),
+<samp>ktes3.typ</samp> (<samp>spanish3.ktouch.xml</samp>),
+<samp>ktes_cat.typ</samp> (<samp>catalan.ktouch.xml</samp>),
+<samp>ktfi.typ</samp> (<samp>finnish.ktouch.xml</samp>),
+<samp>ktfr.typ</samp> (<samp>french.ktouch.xml</samp>),
+<samp>ktgr.typ</samp> (<samp>greek.ktouch.xml</samp>),
+<samp>ktit.typ</samp> (<samp>italian.ktouch.xml</samp>),
+<samp>ktnl.typ</samp> (<samp>nederlands.ktouch.xml</samp>),
+<samp>ktnl_junior.typ</samp> (<samp>nederlands_junior.ktouch.xml</samp>),
+<samp>ktno.typ</samp> (<samp>norwegian.ktouch.xml</samp>),
+<samp>ktru.typ</samp> (<samp>russian.ktouch.xml</samp>),
+<samp>ktru_long.typ</samp> (<samp>russian_long.ktouch.xml</samp>),
+<samp>kttr.typ</samp> (<samp>turkish.ktouch.xml</samp>),
+</p></dd>
+</dl>
+
+<p>De encontrarse errores en estas lecciones, o si se corrigen de algún
+modo o se escriben lecciones nuevas, rogamos que se publiquen con una
+licencia libre y nos lo comuniquen a <a href="mailto:bug-gtypist@gnu.org">bug-gtypist@gnu.org</a>.
+</p>
+<hr>
+<span id="Uso-de-typefortune"></span><span id="Uso-de-typefortune-1"></span><h2 class="chapter">4 Uso de <code>typefortune</code></h2>
+
+<p><code>typefortune</code> permite practicar con textos del programa
+<code>fortune</code>.
+</p>
+<p><code>SYNTAX: typefortune [-dslh] [-n count] [-o &lt;gtypist_opts&gt;]</code>
+</p>
+<dl compact="compact">
+<dt><code>-d</code></dt>
+<dd><p>Usa <code>D:</code> en vez de <code>S:</code>.
+</p>
+</dd>
+<dt><code>-s</code></dt>
+<dd><p>Ejecuta <code>fortune</code> con <code>-s</code>.
+</p>
+</dd>
+<dt><code>-l</code></dt>
+<dd><p>Ejecuta <code>fortune</code> con <code>-l</code>.
+</p>
+</dd>
+<dt><code>-n <var>cantidad</var></code></dt>
+<dd><p>Practica esa <var>cantidad</var> de fortunas.
+</p>
+</dd>
+<dt><code>-o <var>opción</var></code></dt>
+<dd><p>Pasa opciones a <code>gtypist</code>, en la forma <var>opción</var> (opción
+booleana, e.d. <code>-o word-processor</code>), <var>opción,valor</var> (opción
+con valor, e.d. <code>-o e,1.0</code>) donde la <var>opción</var> es el nombre de
+la opción (corta o larga) removidos todos los guiones antepuestos.
+Hace falta entrecomillar el argumento de <samp>-o</samp> si se va a
+especificar más de uno: <code>typefortune -n 3 -o 'silent e,5
+word-processor'</code>.
+</p>
+</dd>
+</dl>
+
+<hr>
+<span id="Sintaxis-de-las-lecciones"></span><span id="Comandos-del-fichero-de-script"></span><h2 class="chapter">5 Comandos del fichero de script</h2>
+
+<p>GNU Typist lee los datos de sus lecciones de mecanografía desde un
+fichero.  Con la excepción de los comentarios y de las líneas en
+blanco, cada línea del fichero está en el formato
+</p>
+<p><code>carácter_del_comando : datos_del_comando</code>
+</p>
+<p>Aquí, <code>carácter_del_comando</code> es un código de carácter único que
+define una acción que ha de hacer gtypist, y <code>datos_del_comando</code>
+son los datos para ese comando.  Si <code>carácter_del_comando</code> es un
+carácter de espacio, eso indica que la línea es continuación del
+comando precedente que no sea un espacio.  El separador &lsquo;<samp>:</samp>&rsquo; debe
+estar en la columna dos de la línea.
+</p>
+<p>Las líneas de comentarios son aquellas que comienzan con un carácter
+&lsquo;<samp>#</samp>&rsquo; y se ignoran, como se hace igualmente con las líneas en
+blanco.  Las líneas de comentario pueden tener cualquier formato
+siempre que comiencen con &lsquo;<samp>#</samp>&rsquo;; las líneas restantes deben tener
+el formato de arriba.
+</p>
+<p>Será conveniente leer la introducción para familiarizarse con los
+fundamentos: Véase <a href="#Introduccion">Introduccion</a>.
+</p>
+<p>La siguiente es la lista de valores <code>carácter_del_comando</code>
+válidos:
+</p>
+<dl compact="compact">
+<dt><code>B</code></dt>
+<dd><p>Este comando limpia la pantalla entera.  Si hay presente algún
+<code>datos_del_comando</code>, se muestra en la leyenda de una línea que
+hay en la parte superior de la pantalla y permanece ahí hasta el
+siguiente comando <code>B</code>.  Este comando no se puede continuar en la
+línea siguiente; es un comando de una sola línea.
+</p>
+</dd>
+<dt><code>T</code></dt>
+<dd><p>Presenta una tutoría y se trata de un comando multi-línea, hasta el
+límite de la longitud de la pantalla.  Cada línea del comando
+simplemente se imprime en la pantalla.  Este comando limpia toda la
+pantalla por debajo de la línea de la leyenda superior.  Después de
+producirse la visualización, el programa espera antes de proceder.
+</p>
+</dd>
+<dt><code>*</code></dt>
+<dd><p>Esto indica una etiqueta en el fichero.  La etiqueta puede ser el
+destino de un comando <code>G</code>, <code>Y</code>, <code>N</code> o <code>F</code>.  Las
+etiquetas pueden contener cualesquier caracteres, incluso espacios, y
+son comandos de una sola línea.  Han de ser únicas dentro de los
+ficheros de lecciones.  Se ignora el espacio en blanco al final de las
+etiquetas.
+</p>
+</dd>
+<dt><code>I</code></dt>
+<dd><p>El comando <code>I</code> puede mostrar algunas breves instrucciones por
+encima de un entrenamiento o prueba de velocidad.  Sólo se permite
+como máximo dos líneas.  A diferencia del comando <code>T</code>, no espera
+por ninguna otra pulsación de tecla antes de proceder.  Así que
+realmente siempre le debería seguir un ejercicio.  Limpia el área
+entera de ejercicios de la pantalla, así que en este sentido es como
+un <code>T</code> de dos líneas.
+</p>
+</dd>
+<dt><code>M</code></dt>
+<dd><p>Este comando es la nueva vía para crear menús (desde gtypist 2.7).
+Esta es la sintaxis:
+</p>
+<div class="example">
+<pre class="example">M: [UP=ETIQUETA_DE-RETORNO|_EXIT] &quot;título&quot;
+ :ETIQUETA1 &quot;elemento1&quot;
+ :ETIQUETA2 &quot;elemento2&quot;
+ ...
+</pre></div>
+
+<p>Esto muestra un menú conveniente compuesto por los elementos
+especificados y deja que el usuario elija uno de ellos.  Si se
+selecciona un elemento, gtypist continúa la ejecución del script a
+partir de la etiqueta correspondiente.  Si se presionó la tecla Escape
+y la etiqueta <code>UP</code> está definida, gtypist va igualmente a la
+etiqueta <code>UP</code>, o sale de allí, si hay un <code>``_EXIT''</code> en
+lugar de la etiqueta.  Si la etiqueta <code>UP</code> no está definida,
+gtypist intenta regresar al menú anterior y salta a la última etiqueta
+encontrada en el script anterior al comando <code>M</code> previo.  Si no
+hubiera tal etiqueta y se mostró algún menú antes del actual, gtypist
+se limitará a ir al comienzo del script.  Si no se cumple ninguna de
+las condiciones anteriores, gtypist sale del script.
+</p>
+<p>Los detalles de arriba hacen natural la creación de jerarquías de
+menús sin tener que usar etiquetas <code>UP</code>.
+</p>
+<p>El título y todas las descripciones deben encerrarse entre comillas
+(&quot;&quot;).  Además debe haber como mínimo un espacio entre <code>UP=XXX</code> y
+&quot;título&quot; y entre las etiquetas y las descripciones correspondientes.
+</p>
+<p>Este comando se introdujo como una vía para disponer fácilmente
+diversas partes de los ficheros de lecciones en una única jerarquía de
+menú, así como reemplazo para los antiguos menús de la tecla <code>F</code>.
+Hay ejemplos en los ficheros de lecciones.
+</p>
+</dd>
+<dt><code>D,d</code></dt>
+<dd><p>Este comando se llama <em>entrenamiento</em> y es uno de los dos tipos de
+ejercicios mecanográficos.
+</p>
+<p>Es un comando multi-línea.  El texto se muestra en cada línea alterna,
+y el usuario escribe en las intermedias.  Debido a ello, no se puede
+usar más de 11 líneas de contenido.
+</p>
+<p>Este tipo de ejercicio se supone que está para el entrenamiento de los
+dedos (e.d. jfjfjjf), pero también puede contener palabras y frases
+completas
+si se usan para practicar algo (e.d. una letra/sílaba/&quot;grip&quot;) y no son
+textos reales.
+</p>
+<p>La versión en minúscula <code>d</code> es un entrenamiento de &ldquo;sólo
+práctica&rdquo;; el usuario no tiene que repetirlo si tiene demasiadas
+equivocaciones.
+</p>
+</dd>
+<dt><code>S,s</code></dt>
+<dd><p>Este es el segundo tipo de ejercicio de mecanografía: la <em>prueba
+de velocidad</em>.
+</p>
+<p>Es un comando multi-línea.  Muestra su texto en pantalla y le pide al
+usuario que escriba sobre él.  Es el motivo por lo que se puede tener
+hasta 22 líneas de texto en estos ejercicios.  En las pruebas de
+velocidad se pueden corregir los fallos, pero con ello no se disminuye
+la cuenta de errores.
+</p>
+<p>Las pruebas de velocidad se deberían usar para mecanografiar
+(principalmente) frases completas, textos o ficheros (e.d. cartas,
+ficheros texinfo/html/tex).
+</p>
+<p>La versión en minúscula <code>s</code> es una <em>prueba de velocidad de
+sólo práctica</em>: el usuario no tiene que repetirla en el caso de
+cometer demasiados fallos.
+</p>
+</dd>
+<dt><code>G</code></dt>
+<dd><p>Causa que &lsquo;<samp>gtypist</samp>&rsquo; vaya a la etiqueta que hay en
+<code>datos_del_comando</code> y continúe allí la ejecución del script.
+Consiste en una única línea de comandos.
+</p>
+</dd>
+<dt><code>Q</code></dt>
+<dd><p>Este comando presenta un texto en la línea de mensajes y espera por
+una respuesta de <tt class="key">Y</tt> o <tt class="key">N</tt> antes de proceder.  Se ignora el
+resto de caracteres.
+</p>
+<p>Como efecto colateral, se puede presionar una tecla de función si está
+asociada (una vía ya desaconsejada de crear el indicador de los
+menús).
+</p>
+</dd>
+<dt><code>Y</code></dt>
+<dd><p>Es como <code>G</code>, excepto que el goto se ejecuta sólo si el resultado
+del último comando <code>Q</code> fue <tt class="key">Y</tt>.
+</p>
+</dd>
+<dt><code>N</code></dt>
+<dd><p>Es como <code>G</code>, excepto que el goto se ejecuta sólo si el resultado
+del último comando <code>Q</code> fue <tt class="key">N</tt>.
+</p>
+</dd>
+<dt><code>K</code></dt>
+<dd><p><em>Esta comando está desaconsejado en favor de <kbd>M</kbd>:</em> Este
+comando asocia una tecla de función a una etiqueta.  El formato de la
+línea de datos que sigue a este comando debe ser
+<code>fkey_number:label</code>, donde <code>fkey_number</code> es el número de una
+tecla de función entre 1 y 12, y <code>label</code> es una etiqueta a la que
+ir cuando se presiona este tecla.  Si la etiqueta tiene el valor NULL,
+se elimina cualquier asociación que la tecla tenga con alguna
+etiqueta.
+</p>
+<p>Si las teclas de función no están disponibles en la terminal, se
+pueden usar otras teclas: de <tt class="key">1</tt> a <tt class="key">9</tt> para reemplazar de
+<tt class="key">F1</tt> a <tt class="key">F9</tt>, <tt class="key">0</tt> para reemplazar <tt class="key">F10</tt>, <tt class="key">A</tt> para
+<tt class="key">F11</tt> y <tt class="key">S</tt> para <tt class="key">F12</tt>.
+</p>
+<p>Otras alternativas para las teclas <tt class="key">F1</tt>-<tt class="key">F12</tt> son las
+combinaciones: <tt class="key">Ctrl-Q</tt>, <tt class="key">Ctrl-W</tt>, <tt class="key">Ctrl-E</tt>, <tt class="key">Ctrl-R</tt>,
+<tt class="key">Ctrl-T</tt>, <tt class="key">Ctrl-Z</tt>, <tt class="key">Ctrl-U</tt>, <tt class="key">Ctrl-I</tt>, <tt class="key">Ctrl-O</tt>,
+<tt class="key">Ctrl-P</tt>, <tt class="key">Ctrl-A</tt> y <tt class="key">Ctrl-S</tt>.
+</p>
+<p>Esto también es útil cuando las teclas de función quedan interceptadas
+por otros programas (por ejemplo, algunos gestores de ventanas).
+</p>
+</dd>
+<dt><code>E</code></dt>
+<dd><p>Este comando se usa para establecer la tasa máxima de error permitida
+para el siguiente entrenamiento (<code>E:&lt;value&gt;%</code>) o para todas las
+prácticas posteriores hasta la siguiente <code>E:</code>
+(<code>E:&lt;value&gt;%*</code>).
+</p>
+<p>Si se especifica <samp>--max-error/-e</samp>, entonces este comando sólo
+surte efecto si es &mdash;&mdash;&ndash;&gt; <em>stricter</em> que el valor especificado
+en la línea de comandos.
+</p>
+<p>Los <code>datos_del_comando</code> consisten en el valor (entre 0.0 y 100.0),
+seguido de &lsquo;<samp>%</samp>&rsquo; (se requiere para que los scripts sean más
+legibles).  La palabra <code>default</code> o <code>Default</code> lo re-establece
+en su valor predeterminado.
+</p>
+</dd>
+<dt><code>F</code></dt>
+<dd><p>Este comando (&ldquo;etiqueta de al-fallar&rdquo;) se usa para decidir la
+etiqueta (en <code>datos_del_comando</code>) a donde el usuario habrá de ir
+si falla un ejercicio.
+</p>
+<p>Lo habitual es que este comando sólo sea de aplicación en el ejercicio
+siguiente, pero el usuario puede convertirlo en persistente si pone un
+&lsquo;<samp>*</samp>&rsquo; al final de los <code>datos_del_comando</code>.
+</p>
+<p>Si se pone NULL, esto reinicia la etiqueta.
+</p>
+</dd>
+<dt><code>X</code></dt>
+<dd><p>Este comando causa que Gtypist finalice.  Es de una sola línea.  Se
+ignoran los <code>datos_del_comando</code>.  El programa también finaliza si
+se encuentra el final del fichero (así que también se podría poner una
+etiqueta allí y simplemente hacer <code>G</code> en ella)
+</p>
+</dd>
+</dl>
+
+
+<p>Este es un script de ejemplo para mostrar los comandos disponibles en
+el fichero de lección (<samp>tinydemo.typ</samp>):
+</p>
+<div class="example">
+<pre class="example"># Demostración mínima
+B: Demostración del tutor mecanográfico
+*:LOOP
+K:1:QDONE
+T:Este es un pequeño ejemplo de tutoría. Un ejemplo
+ :mejor se encuentra en el fichero demo.typ que
+ :acompaña a GNU Typist
+I:Este es un ejemplo de un ejercicio:
+D:asdf ghjkl;
+I:Y este lo es de una prueba de velocidad:
+S:qwe rt yu iop
+*:QDONE
+Q:¿Ha visto suficiente? [Y/N]
+N:LOOP
+X:
+</pre></div>
+
+
+<hr>
+<span id="Lecciones-nuevas"></span><span id="Creacion-de-lecciones-nuevas"></span><h2 class="chapter">6 Creación de lecciones nuevas</h2>
+
+<p>Esta sección proporciona indicaciones y sugerencias para la creación
+de lecciones nuevas (o la mejora de las existentes).
+</p>
+
+
+<hr>
+<span id="Lecciones-Ktouch"></span><span id="Lecciones-Ktouch-1"></span><h3 class="section">6.1 Lecciones Ktouch</h3>
+
+<p>Una vía muy fácil de escribir lecciones es hacerlo en el formato que
+emplea <code>ktouch</code> y después convertirlas a lecciones de Gtypist
+usando <code>tools/ktouch2typ.pl</code>.  Este programa se cuida de
+escribir las &ldquo;tablas de saltos&rdquo;, un menú y un poco más.
+</p>
+<p>El formato ktouch consiste sólo en lecciones, que están precedidas por
+sus nombres y separadas por líneas en blanco y/o comentarios (&lsquo;<samp>#</samp>&rsquo;
+al principio de las líneas).  Así que la primera línea del fichero que
+no esté en blanco y no sea un comentario es el nombre de la primera
+lección y esta primera lección consiste en todas las líneas hasta la
+siguiente que sea un comentario o esté en blanco.  Tras el separador
+(comentario o línea en blanco) sigue el nombre de la segunda lección y
+así sucesivamente.
+</p>
+<p>Esta es una muestra de un fichero ktouch con tres lecciones (extraídas
+de las tres primeras lecciones de <samp>german.ktouch</samp>):
+</p>
+<div class="example">
+<pre class="example">#
+# Deutsche Training-Datei für KTouch
+#
+
+Grundstellung
+f f f f f f fff fff fff f f f f f f fff fff fff f f f f f f f fff
+j j j j j j jjj jjj jjj j j j j j j jjj jjj jjj j j j j j j j jjj
+fff jjj fff jjj jjj fff jjj fff fjf fjf fjf jfj jfj jfj fjf jfjfj
+
+Grundstellung
+fff jjj ddd kkk aaa ööö fff jjj ddd kkk aaa ööö fff jjj ddd kkkff
+fda jkö fda jkö fda jkö fda jkö fda jkö fda jkö fda jkö fda jköfd
+s s s s s s sss sss sss s s s s s s sss sss sss s s s s s s s sss
+
+#Zwei wichtige Vokale: e und i
+e und i
+asdf ölkj fdsa jklö asdf ölkj fdsa jklö asdf ölkj fdsa jklö asdfö
+das dass lös fad dass lös als dass las lös fad dass als dass dass
+ded ded ded dej dek del deö ded deö del dek dej ded dej dek delde
+</pre></div>
+
+<p>Una vez que esté hecha, se usa <code>tools/ktouch2typ.pl</code> para
+convertir el fichero : &lsquo;<samp>ktouch2typ.pl lesson.ktouch</samp>&rsquo; convierte
+<samp>lesson.ktouch</samp> en <samp>lesson.typ</samp>.  Es importante que el
+fichero de entrada finalice en &lsquo;<samp>.ktouch</samp>&rsquo;, de lo contrario
+<code>ktouch2typ.pl</code> lo saltará.  Advertencia: esto sobre-escribe
+<samp>lesson.typ</samp> sin comunicarlo.
+</p>
+<p>Se puede personalizar el número de líneas que emplea
+<code>ktouch2typ.pl</code> para cada práctica, modificando la variable
+pertinente en <samp>tools/ktouch2typ.pl</samp>.
+</p>
+<p>Obviamente, la desventaja de este método es que no se pueden
+aprovechar todas las características de Gtypist (pero el fichero de
+salida es muy legible, así que se puede editar para introducirle más
+características del programa).
+</p>
+<hr>
+<span id="Ejercicios-de-fortune"></span><span id="Ejercicios-a-partir-de-fortune"></span><h3 class="section">6.2 Ejercicios a partir de <code>fortune</code></h3>
+
+<p>Con <samp>gtypist-mode.el</samp> se pueden crear rápidamente lecciones con
+texto del programa <code>fortune</code> (o el interno de Emacs
+<code>yow</code> si ni se tiene <code>fortune</code>, lo habitual en
+Windows).
+</p>
+<p>Una vez instalado <samp>gtypist-mode.el</samp> (véase <a href="#Modo-para-Emacs">Modo para Emacs</a>), se
+puede abrir un fichero con la extensión &lsquo;<samp>.typ</samp>&rsquo; y ejecutar
+<kbd>C-c C-f</kbd> para crear una práctica (<code>D:</code> es la predeterminada,
+se usa <kbd>C-u</kbd> o <kbd>C-u C-u</kbd> para cambiarla).
+</p>
+<hr>
+<span id="Patrones-para-lecciones"></span><span id="Diseno-de-patrones-para-lecciones"></span><h3 class="section">6.3 Diseño de patrones para lecciones</h3>
+
+<p>[NdT: aquí se mezcla el contenido normal de un manual de uso del
+programa con asuntos específicos pedagógicos acerca de la
+mecanografía; y se hace de manera pobre.  Sería preferible remitir a
+otro documento.]
+</p>
+<span id="Estructura-de-los-ficheros-de-lecciones"></span><h4 class="subsection">6.3.1 Estructura de los ficheros de lecciones</h4>
+
+<ul>
+<li> Empléese una mezcla de entrenamientos y pruebas de velocidad
+(más divertido para el usuario).
+
+</li><li> Algunos ejercicios de &ldquo;sólo práctica&rdquo; (<code>d:</code>/<code>s:</code>)
+(mezclados posiblemente con algunos ejercicios &ldquo;reales&rdquo;) seguidos
+por un &ldquo;test final&rdquo;.  <samp>esp.typ</samp> emplea este esquema.
+</li></ul>
+
+<span id="Patrones-para-ejercicios"></span><h4 class="subsection">6.3.2 Patrones para ejercicios</h4>
+
+<ul>
+<li> Cuando se introduce una tecla nueva, se comienza mezclando otras
+teclas (ya conocidas) para el mismo dedo.  Este es un ejemplo de
+<samp>t.typ</samp>, línea 237:
+
+<div class="example">
+<pre class="example">I:Emplee el dedo J para la tecla H.
+*:_T_R_L23
+D:jjj jhj jjj jhj jjj jhj
+</pre></div>
+
+</li><li> usar &rsquo;palabra, palabra.&rsquo; de manera repetida para practicar la  ,/.
+</li></ul>
+
+<hr>
+<span id="Findwords"></span><span id="El-script-findwords"></span><h3 class="section">6.4 El script <code>findwords</code></h3>
+
+<p>El script <samp>tools/findwords</samp> que se encuentra en las fuentes de
+GNU Typist está para asistir en la creación de lecciones nuevas.
+</p>
+<span id="Proposito"></span><h4 class="subsection">6.4.1 Propósito</h4>
+
+<p>Al principio se crea un tutor desde cero, no es fácil formar palabras
+ni frases cuando el intervalo de letras que se pueden usar está
+restringido.  A veces se quiere insertar algún párrafo &ldquo;destinado&rdquo; a
+alguna combinación especial de dos o tres letras.  Esto es incluso más
+difícil.
+</p>
+<p>Por este motivo hemos creado <code>findwords</code>.  Este programa
+emplea los diccionarios de <code>aspell</code> (un corrector ortográfico
+multi-lingüe y libre).
+</p>
+<span id="Instalacion"></span><h4 class="subsection">6.4.2 Instalación</h4>
+
+<p>Se necesitan los paquetes <samp>aspell</samp> y <samp>aspell-LG</samp>, donde LG
+es el código de idioma ISO del idioma que se quiere usar.
+</p>
+<p>Tras su correcta instalación habrá que hacer un pequeño cambio en la
+configuración para que el banco de datos maestro de aspell sea el del
+idioma elegido.  Esto se puede hacer por dos vías:
+</p>
+<ol>
+<li> En el directorio personal se crea el fichero
+<samp>.aspell.conf</samp> y se le añade esta línea: <br> <code>master
+LANGUAGE</code>
+
+</li><li> Se crea <samp>/usr/share/pspell/LG-aspell.pwli</samp> y se le añade
+esta línea: <br> <code>/usr/lib/aspell/LG</code> <br> Hay que asegurarse de que
+el ajuste &lsquo;<samp>locale</samp>&rsquo; es &lsquo;<samp>LG</samp>&rsquo;.
+</li></ol>
+
+<p>En lo de arriba, LG significa código de idioma ISO (vg. &lsquo;<samp>en</samp>&rsquo;,
+&lsquo;<samp>fr</samp>&rsquo;, &lsquo;<samp>cs</samp>&rsquo;) y LANGUAGE significa nombre del banco de datos
+que hay en <samp>/usr/lib/aspell</samp> (vg. <samp>english.multi</samp>,
+<samp>french</samp>, <samp>czech</samp>).
+</p>
+<p>Se puede verificar si funciona escribiendo:
+</p>
+<div class="example">
+<pre class="example">aspell dump master | less
+</pre></div>
+
+<span id="Uso-de-findwords"></span><h4 class="subsection">6.4.3 Uso de <code>findwords</code></h4>
+
+<p>La sintaxis es como sigue: <br>
+</p>
+<p><code>./findwords <var>letras</var> [<var>combinación</var>]</code>
+</p>
+<p>En el argumento <var>letras</var>, obligatorio, se deben listar las letras
+que se quieren usar, sin ningún espacio.  Si se pone un punto (&lsquo;.&rsquo;)
+nos referimos a &lsquo;todas las letras&rsquo;.  El segundo argumento,
+<var>combinación</var>, es optativo y con él se especifican las
+combinaciones de teclas que se están buscando.
+</p>
+<p>Algunos ejemplos:
+</p><ul>
+<li> <code>./findwords asdfjkleruio</code> <br>
+Buscamos todas las palabras compuestas con las letras listadas.
+
+</li><li> <code>./findwords asdfjkleruio sa</code> <br>
+Buscamos palabras que contengan la combinación &lsquo;<samp>sa</samp>&rsquo;, pero sólo
+aquellas compuestas con las letras especificadas.
+
+</li><li> <code>./findwords . col</code> <br>
+Palabras que contengan todas las letras, pero que tengan &lsquo;<samp>col</samp>&rsquo; en
+alguna parte dentro de ellas.
+</li></ul>
+
+<hr>
+<span id="Modo-para-Emacs"></span><span id="El-modo-para-Emacs"></span><h2 class="chapter">7 El modo para Emacs</h2>
+
+<p>gtypist viene ahora con un modo mayor para Emacs que hace resaltado de
+sintaxis, sangrado y posee algunos comandos convenientes para contar
+etiquetas, ir a ellas, insertar leyendas centradas adecuadamente,
+comentarios especiales y un poco más.
+</p>
+<p>Se copia el fichero <samp>tools/gtypist-mode.el</samp> a donde sea que se
+tengan los ficheros elisp locales (v.g.  <samp>~/elisp</samp>) y se pone
+esto en al <samp>~/.emacs</samp> (adáptese la ruta):
+</p>
+<div class="lisp">
+<pre class="lisp">(autoload 'gtypist-mode &quot;~/elisp/gtypist-mode&quot;)
+</pre></div>
+
+<p>o se pone en la <code>load-path</code> (&lsquo;<samp>make install</samp>&rsquo; en las fuentes o
+el paquete Debian, que ya lo hace solo) y se usa esto:
+</p>
+<div class="lisp">
+<pre class="lisp">(autoload 'gtypist-mode &quot;gtypist-mode&quot;)
+</pre></div>
+
+<p><strong>y</strong> se añade esto al <samp>~/.emacs</samp>:
+</p>
+<div class="lisp">
+<pre class="lisp">(setq auto-mode-alist
+      (cons '(&quot;\\.typ\\'&quot; . gtypist-mode) auto-mode-alist))
+</pre></div>
+
+
+<p>Todo esto también se menciona en la sección README del fichero
+<samp>tools/gtypist-mode.el</samp>.
+</p>
+<p>Estos son los comandos junto con sus asociaciones de teclas:
+</p>
+<dl compact="compact">
+<dt><kbd>C-c C-i, M-x gtypist-mode-info</kbd></dt>
+<dd><p>Con esto se muestra la documentación de gtypist, comenzando en el nodo
+&ldquo;Sintaxis de las lecciones&rdquo; (véase <a href="#Sintaxis-de-las-lecciones">Sintaxis de las lecciones</a>).
+Con prefijo, comienza en el nodo superior.
+</p>
+</dd>
+<dt><kbd>C-c M-g, M-x gtypist-mode-goto-label</kbd></dt>
+<dd><p>Pide una etiqueta a la que ir (con completado).
+</p>
+</dd>
+<dt><kbd>C-c C-l, M-x gtypist-mode-next-label</kbd></dt>
+<dd><p>Este comando inserta la siguiente etiqueta en una secuencia numerada.
+Por ejemplo, si se inserta
+</p>
+<div class="example">
+<pre class="example">*:SERIES1_L1
+</pre></div>
+
+<p>y se presiona <kbd>C-c C-l</kbd>, entonces el modo gtypist insertará
+</p>
+<div class="example">
+<pre class="example">*:SERIES1_L2
+</pre></div>
+
+</dd>
+<dt><kbd>C-c C-b, M-x gtypist-mode-insert-banner</kbd></dt>
+<dd><p>Este comando inserta un comando <code>B:</code> centrado.  Se centra en 66
+columnas porque &ldquo;gtypist &lt;version&gt;&rdquo; está en la esquema derecha (pide
+el contenido).
+</p>
+</dd>
+<dt><kbd>C-c C-r, M-x gtypist-mode-insert-hrule</kbd></dt>
+<dd><p>Inserta una línea horizontal (comentario) consistente en guiones.
+</p>
+</dd>
+<dt><kbd>C-c C-n, M-x gtypist-mode-new-lesson</kbd></dt>
+<dd><p>Inserta los comentarios (cabecera) y una etiqueta para empezar una
+lección nueva (pide el nombre).
+</p>
+</dd>
+<dt><kbd>C-c C-f, M-x gtypist-mode-fortune-to-drill</kbd></dt>
+<dd><p>Inserta un entrenamiento (<code>D:</code>) con texto de <code>fortune</code> (o
+<code>yow</code> si <code>fortune</code> no está disponible).  Se usa el
+prefijo <kbd>C-u</kbd> para obtener <code>S:</code>, y <kbd>C-u C-u</kbd> para obtener
+<code>d:</code>.
+</p>
+</dd>
+</dl>
+
+<p>Ejecutando <kbd>C-h m</kbd> se consigue la lista completa de comandos y sus
+asociaciones de teclas.
+</p>
+<p>Quien localice fallos o piense que hay alguna otra cosa que podría
+introducirse, puede escribir a <a href="mailto:bug-gtypist@gnu.org">bug-gtypist@gnu.org</a>.
+</p>
+<hr>
+<span id="Variables-de-entorno"></span><span id="Variables-de-entorno-1"></span><h2 class="chapter">8 Variables de entorno</h2>
+
+<p>GNU Typist emplea las siguientes variables de entorno:
+</p>
+<dl compact="compact">
+<dt><code>LANG</code></dt>
+<dd>
+<p>GNU Typist ofrece soporte en idioma nativo (Native Language Support,
+NLS) mediante la biblioteca &lsquo;<samp>gettext</samp>&rsquo;, esto significa que si el
+sistema lo admite, se puede elegir el idioma en que se muestren los
+mensajes.  Por ahora <code>gtypist</code> se distribuye con mensajes en
+alemán, checo, español, francés, inglés y suomi.  Para usar un NLS
+particular se emplea la variable de entorno LANG y se pone en la
+combinación apropiada de &lsquo;<samp>LL_CC</samp>&rsquo;, donde &lsquo;<samp>LL</samp>&rsquo; es un código de
+idioma ISO 639 de dos letras y &lsquo;<samp>CC</samp>&rsquo; es un código de país ISO 3166
+de dos letras (v.g. &lsquo;<samp>es_ES</samp>&rsquo; para España y <code>de_DE</code> para
+Alemania).  En algunos sistemas también será necesario poner la
+variable de entorno LANGUAGE en el mismo valor.
+</p>
+<p>Quien desee traducir los mensajes a otros idiomas (o corregir los ya
+traducidos), se puede comunicar con <a href="mailto:bug-gtypist@gnu.org">bug-gtypist@gnu.org</a>.
+</p>
+
+</dd>
+<dt><code>GTYPIST_PATH</code></dt>
+<dd><p>Lista los directorios en donde buscará el programa los ficheros.
+Tiene el formato estándar de las rutas, esto es, una lista de
+directorios separados por &lsquo;<samp>:</samp>&rsquo;.  Para visitar un fichero, gtypist
+lo intentará como sigue: (1) usar sólo el nombre del fichero (2)
+agregará cada uno de los directorios especificados en a variable
+<code>GTYPIST_PATH</code> y (3) agregará el directorio usado durante el
+proceso de instalación (v.g.  <samp>/usr/local/share/gtypist</samp> o
+<samp>/usr/share/gtypist</samp>).
+</p>
+</dd>
+<dt><code>TERM</code></dt>
+<dd><p>Lo emplea curses para manejarse con la terminal.
+</p>
+</dd>
+<dt><code>TERMINFO</code></dt>
+<dd><p>Es posible que esto tenga que establecerse si la ruta al banco de
+datos <code>terminfo</code> es diferente entre el sistema en el que se
+compiló el binario y aquel en que se ejecuta.  Por ejemplo, en los
+sistemas Slackware antiguos, el banco de datos terminfo reside en
+<samp>/usr/lib/terminfo</samp>.  En RedHat Linux, está en
+<samp>/usr/share/terminfo</samp>.  Si el programa se queja acerca del tipo
+de terminal y el valor de <code>TERM</code> es correcto, hay que revisar
+esta variable.
+</p>
+</dd>
+</dl>
+
+<hr>
+<span id="Errores-y-omisiones"></span><span id="Errores-y-omisiones-1"></span><h2 class="chapter">9 Errores y omisiones</h2>
+
+<p>GNU Typist aún no admite codificación de caracteres multi-byte (como
+UTF-8).  Para ver todos los caracteres de algunas de las lecciones,
+hay que asegurarse de que la terminal se ejecute en un entorno en
+donde la variable LANG no esté puesta en UTF-8.  Los usuarios más
+perezosos pueden probar a ejecutar GNU Typist en otro tipo de
+terminal.  A veces funciona.
+</p>
+<p>GNU Typist no hace muchos esfuerzos en minimizar la salida de la
+terminal.  En particular, el cursor de bloque que hace flash puede
+causar un montón de movimiento de cursor.  El uso del cursor de la
+propia terminal puede ser de ayuda si esto se convierte en un
+problema.
+</p>
+<p>En las pruebas de velocidad, el programa no permite el retroceso o
+eliminación más allá del comienzo de la línea de pantalla o regresar a
+través de caracteres de tabulación.  Esto se debe puramente al deseo
+de simplificar la actualización de la pantalla.
+</p>
+<p>Los modos de color de curses no parecen funcionar bien con UnixWare.
+En particular, el vídeo inverso no siempre se procesa correctamente en
+algunos tipos de terminales ni en xterms.
+</p>
+<hr>
+<span id="Historia"></span><span id="Historia-de-GNU-Typist"></span><h2 class="appendix">Apéndice A Historia de GNU Typist</h2>
+
+<ul>
+<li> El programa inicial se escribió para VAX/VMS BASIC por alguien de
+Harris Corp (Ft. Lauderdale, FL).
+
+</li><li> <a href="mailto:penneyj@slc.com">D. Jason Penney</a> lo re-escribió para
+Microsoft BASICA
+
+</li><li> <a href="mailto:penneyj@slc.com">D. Jason Penney</a> lo re-escribió en C con la
+biblioteca curses
+
+</li><li> <a href="mailto:simonb@sco.com">Simon Baldwin</a> re-escribió la versión de
+D. Jason Penney, con aportaciones descritas en el fichero NEWS
+(versiones 2.2 a 2.2b).  Fue el derecho-habiente del copyright de GNU
+Typist (que se distribuía bajo la GPL).  Simon también escribió una
+versión de Typist en Java que se llamó inicialmente JTypist y
+posteriormente volvió a llamarse de nuevo Typist:
+
+<p>[se ofrece una dirección en geocities que ya no existe]
+</p></li><li> A partir de 1997, <a href="mailto:synrg@sanctuary.nslug.ns.ca">Ben Armstrong</a>
+ayudó a corregir fallos y a mantener el
+<a href="http://packages.debian.org/gtypist/">paquete Debian</a>.
+
+</li><li> En 2000, <a href="mailto:vtamara@users.sourceforge.net">Vladimir Támara</a> y
+<a href="mailto:ikks@users.sourceforge.net">Igor Támara</a> fueron los
+mantenedores de la versión en C.  Antes de Noviembre de 2000, GNU
+Typist se mantenía como parte del proyecto Structio.
+
+</li><li> ¡En Noviembre de 2000 se aceptó como paquete GNU!  Se renombró a GNU
+Typist (o gtypist).
+
+</li><li> En Mayo de 2001, <a href="mailto:michaelo@gnu.org">Michael Opdenacker</a>,
+que aprendió a mecanografiar con GNU Typist, se hizo el nuevo
+mantenedor.  El desarrollo del proyecto pasa a alojarse en
+<a href="http://savannah.gnu.org/projects/gtypist/">http://savannah.gnu.org/projects/gtypist/</a>.
+
+</li><li> En Junio de 2001, <a href="mailto:fnatter@gmx.net">Felix Natter</a> se unió y
+realizó contribuciones importantes al proyecto: importación de
+lecciones de otros tutores, mejoras en las herramientas, nuevas
+capacidades de tutoría, el modo para Emacs, la interfaz basada en
+teclas de flechas y mucho más.
+
+</li><li> En 2003, <a href="mailto:rutsky@school.ioffe.rssi.ru">Dmitry Rutsky</a> se unió
+al equipo de desarrollo y difundió un número importante de ideas,
+hacks y mejoras.
+
+</li><li> En Abril de 2008, <a href="mailto:general@vultaire.net">Paul Goins</a> se hizo
+cargo del mantenimiento de GNU Typist, al que le añadió unas cuantas
+mejoras (especialmente la construcción bajo Windows con MinGW),
+actualizó algo la documentación y cambió la licencia a la versión 3 de
+la GPL.
+</li></ul>
+
+<hr>
+<span id="Copia-del-manual"></span><span id="Licencia-de-Documentacion-Publica-de-GNU"></span><h2 class="appendix">Apéndice B Licencia de Documentación Pública de GNU</h2>
+<div align="center">Version 1.2, November 2002
+</div>
+
+<div class="display">
+<pre class="display">Copyright &copy; 2000,2001,2002 Free Software Foundation, Inc.
+51 Franklin St, Fifth Floor, Boston, MA  02110-1301, USA
+
+Everyone is permitted to copy and distribute verbatim copies
+of this license document, but changing it is not allowed.
+</pre></div>
+
+<ol start="0">
+<li> PREAMBLE
+
+<p>The purpose of this License is to make a manual, textbook, or other
+functional and useful document <em>free</em> in the sense of freedom: to
+assure everyone the effective freedom to copy and redistribute it,
+with or without modifying it, either commercially or noncommercially.
+Secondarily, this License preserves for the author and publisher a way
+to get credit for their work, while not being considered responsible
+for modifications made by others.
+</p>
+<p>This License is a kind of &ldquo;copyleft&rdquo;, which means that derivative
+works of the document must themselves be free in the same sense.  It
+complements the GNU General Public License, which is a copyleft
+license designed for free software.
+</p>
+<p>We have designed this License in order to use it for manuals for free
+software, because free software needs free documentation: a free
+program should come with manuals providing the same freedoms that the
+software does.  But this License is not limited to software manuals;
+it can be used for any textual work, regardless of subject matter or
+whether it is published as a printed book.  We recommend this License
+principally for works whose purpose is instruction or reference.
+</p>
+</li><li> APPLICABILITY AND DEFINITIONS
+
+<p>This License applies to any manual or other work, in any medium, that
+contains a notice placed by the copyright holder saying it can be
+distributed under the terms of this License.  Such a notice grants a
+world-wide, royalty-free license, unlimited in duration, to use that
+work under the conditions stated herein.  The &ldquo;Document&rdquo;, below,
+refers to any such manual or work.  Any member of the public is a
+licensee, and is addressed as &ldquo;you&rdquo;.  You accept the license if you
+copy, modify or distribute the work in a way requiring permission
+under copyright law.
+</p>
+<p>A &ldquo;Modified Version&rdquo; of the Document means any work containing the
+Document or a portion of it, either copied verbatim, or with
+modifications and/or translated into another language.
+</p>
+<p>A &ldquo;Secondary Section&rdquo; is a named appendix or a front-matter section
+of the Document that deals exclusively with the relationship of the
+publishers or authors of the Document to the Document&rsquo;s overall
+subject (or to related matters) and contains nothing that could fall
+directly within that overall subject.  (Thus, if the Document is in
+part a textbook of mathematics, a Secondary Section may not explain
+any mathematics.)  The relationship could be a matter of historical
+connection with the subject or with related matters, or of legal,
+commercial, philosophical, ethical or political position regarding
+them.
+</p>
+<p>The &ldquo;Invariant Sections&rdquo; are certain Secondary Sections whose titles
+are designated, as being those of Invariant Sections, in the notice
+that says that the Document is released under this License.  If a
+section does not fit the above definition of Secondary then it is not
+allowed to be designated as Invariant.  The Document may contain zero
+Invariant Sections.  If the Document does not identify any Invariant
+Sections then there are none.
+</p>
+<p>The &ldquo;Cover Texts&rdquo; are certain short passages of text that are listed,
+as Front-Cover Texts or Back-Cover Texts, in the notice that says that
+the Document is released under this License.  A Front-Cover Text may
+be at most 5 words, and a Back-Cover Text may be at most 25 words.
+</p>
+<p>A &ldquo;Transparent&rdquo; copy of the Document means a machine-readable copy,
+represented in a format whose specification is available to the
+general public, that is suitable for revising the document
+straightforwardly with generic text editors or (for images composed of
+pixels) generic paint programs or (for drawings) some widely available
+drawing editor, and that is suitable for input to text formatters or
+for automatic translation to a variety of formats suitable for input
+to text formatters.  A copy made in an otherwise Transparent file
+format whose markup, or absence of markup, has been arranged to thwart
+or discourage subsequent modification by readers is not Transparent.
+An image format is not Transparent if used for any substantial amount
+of text.  A copy that is not &ldquo;Transparent&rdquo; is called &ldquo;Opaque&rdquo;.
+</p>
+<p>Examples of suitable formats for Transparent copies include plain
+<small>ASCII</small> without markup, Texinfo input format, LaTeX input
+format, <acronym>SGML</acronym> or <acronym>XML</acronym> using a publicly available
+<acronym>DTD</acronym>, and standard-conforming simple <acronym>HTML</acronym>,
+PostScript or <acronym>PDF</acronym> designed for human modification.  Examples
+of transparent image formats include <acronym>PNG</acronym>, <acronym>XCF</acronym> and
+<acronym>JPG</acronym>.  Opaque formats include proprietary formats that can be
+read and edited only by proprietary word processors, <acronym>SGML</acronym> or
+<acronym>XML</acronym> for which the <acronym>DTD</acronym> and/or processing tools are
+not generally available, and the machine-generated <acronym>HTML</acronym>,
+PostScript or <acronym>PDF</acronym> produced by some word processors for
+output purposes only.
+</p>
+<p>The &ldquo;Title Page&rdquo; means, for a printed book, the title page itself,
+plus such following pages as are needed to hold, legibly, the material
+this License requires to appear in the title page.  For works in
+formats which do not have any title page as such, &ldquo;Title Page&rdquo; means
+the text near the most prominent appearance of the work&rsquo;s title,
+preceding the beginning of the body of the text.
+</p>
+<p>A section &ldquo;Entitled XYZ&rdquo; means a named subunit of the Document whose
+title either is precisely XYZ or contains XYZ in parentheses following
+text that translates XYZ in another language.  (Here XYZ stands for a
+specific section name mentioned below, such as &ldquo;Acknowledgements&rdquo;,
+&ldquo;Dedications&rdquo;, &ldquo;Endorsements&rdquo;, or &ldquo;History&rdquo;.)  To &ldquo;Preserve the Title&rdquo;
+of such a section when you modify the Document means that it remains a
+section &ldquo;Entitled XYZ&rdquo; according to this definition.
+</p>
+<p>The Document may include Warranty Disclaimers next to the notice which
+states that this License applies to the Document.  These Warranty
+Disclaimers are considered to be included by reference in this
+License, but only as regards disclaiming warranties: any other
+implication that these Warranty Disclaimers may have is void and has
+no effect on the meaning of this License.
+</p>
+</li><li> VERBATIM COPYING
+
+<p>You may copy and distribute the Document in any medium, either
+commercially or noncommercially, provided that this License, the
+copyright notices, and the license notice saying this License applies
+to the Document are reproduced in all copies, and that you add no other
+conditions whatsoever to those of this License.  You may not use
+technical measures to obstruct or control the reading or further
+copying of the copies you make or distribute.  However, you may accept
+compensation in exchange for copies.  If you distribute a large enough
+number of copies you must also follow the conditions in section 3.
+</p>
+<p>You may also lend copies, under the same conditions stated above, and
+you may publicly display copies.
+</p>
+</li><li> COPYING IN QUANTITY
+
+<p>If you publish printed copies (or copies in media that commonly have
+printed covers) of the Document, numbering more than 100, and the
+Document&rsquo;s license notice requires Cover Texts, you must enclose the
+copies in covers that carry, clearly and legibly, all these Cover
+Texts: Front-Cover Texts on the front cover, and Back-Cover Texts on
+the back cover.  Both covers must also clearly and legibly identify
+you as the publisher of these copies.  The front cover must present
+the full title with all words of the title equally prominent and
+visible.  You may add other material on the covers in addition.
+Copying with changes limited to the covers, as long as they preserve
+the title of the Document and satisfy these conditions, can be treated
+as verbatim copying in other respects.
+</p>
+<p>If the required texts for either cover are too voluminous to fit
+legibly, you should put the first ones listed (as many as fit
+reasonably) on the actual cover, and continue the rest onto adjacent
+pages.
+</p>
+<p>If you publish or distribute Opaque copies of the Document numbering
+more than 100, you must either include a machine-readable Transparent
+copy along with each Opaque copy, or state in or with each Opaque copy
+a computer-network location from which the general network-using
+public has access to download using public-standard network protocols
+a complete Transparent copy of the Document, free of added material.
+If you use the latter option, you must take reasonably prudent steps,
+when you begin distribution of Opaque copies in quantity, to ensure
+that this Transparent copy will remain thus accessible at the stated
+location until at least one year after the last time you distribute an
+Opaque copy (directly or through your agents or retailers) of that
+edition to the public.
+</p>
+<p>It is requested, but not required, that you contact the authors of the
+Document well before redistributing any large number of copies, to give
+them a chance to provide you with an updated version of the Document.
+</p>
+</li><li> MODIFICATIONS
+
+<p>You may copy and distribute a Modified Version of the Document under
+the conditions of sections 2 and 3 above, provided that you release
+the Modified Version under precisely this License, with the Modified
+Version filling the role of the Document, thus licensing distribution
+and modification of the Modified Version to whoever possesses a copy
+of it.  In addition, you must do these things in the Modified Version:
+</p>
+<ol type="A" start="1">
+<li> Use in the Title Page (and on the covers, if any) a title distinct
+from that of the Document, and from those of previous versions
+(which should, if there were any, be listed in the History section
+of the Document).  You may use the same title as a previous version
+if the original publisher of that version gives permission.
+
+</li><li> List on the Title Page, as authors, one or more persons or entities
+responsible for authorship of the modifications in the Modified
+Version, together with at least five of the principal authors of the
+Document (all of its principal authors, if it has fewer than five),
+unless they release you from this requirement.
+
+</li><li> State on the Title page the name of the publisher of the
+Modified Version, as the publisher.
+
+</li><li> Preserve all the copyright notices of the Document.
+
+</li><li> Add an appropriate copyright notice for your modifications
+adjacent to the other copyright notices.
+
+</li><li> Include, immediately after the copyright notices, a license notice
+giving the public permission to use the Modified Version under the
+terms of this License, in the form shown in the Addendum below.
+
+</li><li> Preserve in that license notice the full lists of Invariant Sections
+and required Cover Texts given in the Document&rsquo;s license notice.
+
+</li><li> Include an unaltered copy of this License.
+
+</li><li> Preserve the section Entitled &ldquo;History&rdquo;, Preserve its Title, and add
+to it an item stating at least the title, year, new authors, and
+publisher of the Modified Version as given on the Title Page.  If
+there is no section Entitled &ldquo;History&rdquo; in the Document, create one
+stating the title, year, authors, and publisher of the Document as
+given on its Title Page, then add an item describing the Modified
+Version as stated in the previous sentence.
+
+</li><li> Preserve the network location, if any, given in the Document for
+public access to a Transparent copy of the Document, and likewise
+the network locations given in the Document for previous versions
+it was based on.  These may be placed in the &ldquo;History&rdquo; section.
+You may omit a network location for a work that was published at
+least four years before the Document itself, or if the original
+publisher of the version it refers to gives permission.
+
+</li><li> For any section Entitled &ldquo;Acknowledgements&rdquo; or &ldquo;Dedications&rdquo;, Preserve
+the Title of the section, and preserve in the section all the
+substance and tone of each of the contributor acknowledgements and/or
+dedications given therein.
+
+</li><li> Preserve all the Invariant Sections of the Document,
+unaltered in their text and in their titles.  Section numbers
+or the equivalent are not considered part of the section titles.
+
+</li><li> Delete any section Entitled &ldquo;Endorsements&rdquo;.  Such a section
+may not be included in the Modified Version.
+
+</li><li> Do not retitle any existing section to be Entitled &ldquo;Endorsements&rdquo; or
+to conflict in title with any Invariant Section.
+
+</li><li> Preserve any Warranty Disclaimers.
+</li></ol>
+
+<p>If the Modified Version includes new front-matter sections or
+appendices that qualify as Secondary Sections and contain no material
+copied from the Document, you may at your option designate some or all
+of these sections as invariant.  To do this, add their titles to the
+list of Invariant Sections in the Modified Version&rsquo;s license notice.
+These titles must be distinct from any other section titles.
+</p>
+<p>You may add a section Entitled &ldquo;Endorsements&rdquo;, provided it contains
+nothing but endorsements of your Modified Version by various
+parties&mdash;for example, statements of peer review or that the text has
+been approved by an organization as the authoritative definition of a
+standard.
+</p>
+<p>You may add a passage of up to five words as a Front-Cover Text, and a
+passage of up to 25 words as a Back-Cover Text, to the end of the list
+of Cover Texts in the Modified Version.  Only one passage of
+Front-Cover Text and one of Back-Cover Text may be added by (or
+through arrangements made by) any one entity.  If the Document already
+includes a cover text for the same cover, previously added by you or
+by arrangement made by the same entity you are acting on behalf of,
+you may not add another; but you may replace the old one, on explicit
+permission from the previous publisher that added the old one.
+</p>
+<p>The author(s) and publisher(s) of the Document do not by this License
+give permission to use their names for publicity for or to assert or
+imply endorsement of any Modified Version.
+</p>
+</li><li> COMBINING DOCUMENTS
+
+<p>You may combine the Document with other documents released under this
+License, under the terms defined in section 4 above for modified
+versions, provided that you include in the combination all of the
+Invariant Sections of all of the original documents, unmodified, and
+list them all as Invariant Sections of your combined work in its
+license notice, and that you preserve all their Warranty Disclaimers.
+</p>
+<p>The combined work need only contain one copy of this License, and
+multiple identical Invariant Sections may be replaced with a single
+copy.  If there are multiple Invariant Sections with the same name but
+different contents, make the title of each such section unique by
+adding at the end of it, in parentheses, the name of the original
+author or publisher of that section if known, or else a unique number.
+Make the same adjustment to the section titles in the list of
+Invariant Sections in the license notice of the combined work.
+</p>
+<p>In the combination, you must combine any sections Entitled &ldquo;History&rdquo;
+in the various original documents, forming one section Entitled
+&ldquo;History&rdquo;; likewise combine any sections Entitled &ldquo;Acknowledgements&rdquo;,
+and any sections Entitled &ldquo;Dedications&rdquo;.  You must delete all
+sections Entitled &ldquo;Endorsements.&rdquo;
+</p>
+</li><li> COLLECTIONS OF DOCUMENTS
+
+<p>You may make a collection consisting of the Document and other documents
+released under this License, and replace the individual copies of this
+License in the various documents with a single copy that is included in
+the collection, provided that you follow the rules of this License for
+verbatim copying of each of the documents in all other respects.
+</p>
+<p>You may extract a single document from such a collection, and distribute
+it individually under this License, provided you insert a copy of this
+License into the extracted document, and follow this License in all
+other respects regarding verbatim copying of that document.
+</p>
+</li><li> AGGREGATION WITH INDEPENDENT WORKS
+
+<p>A compilation of the Document or its derivatives with other separate
+and independent documents or works, in or on a volume of a storage or
+distribution medium, is called an &ldquo;aggregate&rdquo; if the copyright
+resulting from the compilation is not used to limit the legal rights
+of the compilation&rsquo;s users beyond what the individual works permit.
+When the Document is included in an aggregate, this License does not
+apply to the other works in the aggregate which are not themselves
+derivative works of the Document.
+</p>
+<p>If the Cover Text requirement of section 3 is applicable to these
+copies of the Document, then if the Document is less than one half of
+the entire aggregate, the Document&rsquo;s Cover Texts may be placed on
+covers that bracket the Document within the aggregate, or the
+electronic equivalent of covers if the Document is in electronic form.
+Otherwise they must appear on printed covers that bracket the whole
+aggregate.
+</p>
+</li><li> TRANSLATION
+
+<p>Translation is considered a kind of modification, so you may
+distribute translations of the Document under the terms of section 4.
+Replacing Invariant Sections with translations requires special
+permission from their copyright holders, but you may include
+translations of some or all Invariant Sections in addition to the
+original versions of these Invariant Sections.  You may include a
+translation of this License, and all the license notices in the
+Document, and any Warranty Disclaimers, provided that you also include
+the original English version of this License and the original versions
+of those notices and disclaimers.  In case of a disagreement between
+the translation and the original version of this License or a notice
+or disclaimer, the original version will prevail.
+</p>
+<p>If a section in the Document is Entitled &ldquo;Acknowledgements&rdquo;,
+&ldquo;Dedications&rdquo;, or &ldquo;History&rdquo;, the requirement (section 4) to Preserve
+its Title (section 1) will typically require changing the actual
+title.
+</p>
+</li><li> TERMINATION
+
+<p>You may not copy, modify, sublicense, or distribute the Document except
+as expressly provided for under this License.  Any other attempt to
+copy, modify, sublicense or distribute the Document is void, and will
+automatically terminate your rights under this License.  However,
+parties who have received copies, or rights, from you under this
+License will not have their licenses terminated so long as such
+parties remain in full compliance.
+</p>
+</li><li> FUTURE REVISIONS OF THIS LICENSE
+
+<p>The Free Software Foundation may publish new, revised versions
+of the GNU Free Documentation License from time to time.  Such new
+versions will be similar in spirit to the present version, but may
+differ in detail to address new problems or concerns.  See
+<a href="http://www.gnu.org/copyleft/">http://www.gnu.org/copyleft/</a>.
+</p>
+<p>Each version of the License is given a distinguishing version number.
+If the Document specifies that a particular numbered version of this
+License &ldquo;or any later version&rdquo; applies to it, you have the option of
+following the terms and conditions either of that specified version or
+of any later version that has been published (not as a draft) by the
+Free Software Foundation.  If the Document does not specify a version
+number of this License, you may choose any version ever published (not
+as a draft) by the Free Software Foundation.
+</p></li></ol>
+
+<span id="ADDENDUM_003a-How-to-use-this-License-for-your-documents"></span><h3 class="heading">ADDENDUM: How to use this License for your documents</h3>
+
+<p>To use this License in a document you have written, include a copy of
+the License in the document and put the following copyright and
+license notices just after the title page:
+</p>
+<div class="example">
+<pre class="example">  Copyright (C)  <var>year</var>  <var>your name</var>.
+  Permission is granted to copy, distribute and/or modify this document
+  under the terms of the GNU Free Documentation License, Version 1.2
+  or any later version published by the Free Software Foundation;
+  with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+  Texts.  A copy of the license is included in the section entitled ``GNU
+  Free Documentation License''.
+</pre></div>
+
+<p>If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts,
+replace the &ldquo;with&hellip;Texts.&rdquo; line with this:
+</p>
+<div class="example">
+<pre class="example">    with the Invariant Sections being <var>list their titles</var>, with
+    the Front-Cover Texts being <var>list</var>, and with the Back-Cover Texts
+    being <var>list</var>.
+</pre></div>
+
+<p>If you have Invariant Sections without Cover Texts, or some other
+combination of the three, merge those two alternatives to suit the
+situation.
+</p>
+<p>If your document contains nontrivial examples of program code, we
+recommend releasing these examples in parallel under your choice of
+free software license, such as the GNU General Public License,
+to permit their use in free software.
+</p>
+
+<hr>
+
+
+
+</body>
+</html>

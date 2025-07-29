@@ -1,0 +1,319 @@
+2025-01-30  Mihai Gătejescu <gus666xe@gmail.com>
+
+	* cmdline.c, cmdline.h, cmdline.ggo: Completely remove the gengetopt
+	generated files from the project and update the copyright message
+	in the generating script
+
+2024-08-11  Felix Natter <fnatter@gmx.net>
+
+	* infoview.c: Fix typo in welcome screen and remove "X11-based"
+	from sentence with "terminal emulators" in order to account for
+	Wayland
+
+2024-05-15 Mihai Gătejescu <gus666xe@gmail.com>
+
+    * gtypist.c: Update a few comments
+
+2024-05-08 Mihai Gătejescu <gus666xe@gmail.com>
+
+    * gtypist.c: Update indentation
+
+2024-05-06 Mihai Gătejescu <gus666xe@gmail.com>
+
+    * gtypist.c: Fix a typo in a comment
+
+2024-04-29 Mihai Gătejescu <gus666xe@gmail.com>
+
+    * script.h: Add the external keyword to function declaration
+
+2023-01-11 Mihai Gătejescu <gus666xe@gmail.com>
+
+    * all files: Update copyright years
+
+2022-01-19 Mihai Gătejescu <gus666xe@gmail.com>
+
+    * cursmenu.c, infoview.c: Add an error checks for get_widech
+
+2021-08-16 Mihai Gătejescu <gus666xe@gmail.com>
+
+    * script.c, script.h: Solve a compiler warning by user the value
+    returned by fget
+
+2021-06-30 Mihai Gătejescu <gus666xe@gmail.com>
+
+    * gtypist.c: Rename wait_user to wait_user_input
+
+2021-05-01 Mihai Gătejescu <gus666xe@gmail.com>
+
+    * cmdline.c: Update copyright in version string
+
+2021-03-29 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* banner.c, banner.h, cursmenu.c, cursmenu.h, error.c, error.h,
+	gtypist.c, gtypist.h, infoview.c, infoview.h, script.c, script.h,
+	speedbox.c, speedbox.h, utf8.c, utf8.h, Makefile.am:
+	Update years in notices
+
+2020-01-21 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* banner.c, banner.h, cursmenu.c, cursmenu.h, error.c, error.h,
+	gtypist.c, gtypist.h, infoview.c, infoview.h, script.c, script.h,
+	speedbox.c, speedbox.h, utf8.c, utf8.h: Update years in notices
+
+2019-10-27 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* banner.c, banner.h, cursmenu.c, cursmenu.h, error.c, error.h,
+	infoview.c, infoview.h, script.c, script.h, speedbox.c, speedbox.h,
+	utf8.c, utf8.h: Update the notices
+
+2019-10-24 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* gtypist.h: Update the notices
+
+2019-10-23 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* gtyipst.c: Update the copyright and license notices
+	by replacing "GNU Typist Development Team" with the names
+	of the developers and replacing "this program" with "GNU
+	Typist".
+
+2019-09-28 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* gtypist.c: Fix the exit action from a menu; now exiting
+	the menu or jumping to a label provided work properly.
+	This was done by setting the line pointer with the
+	get_script_line() function after the user leaves the menu.
+
+2019-07-02 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* banner.c, banner.h, cursmenu.c, cursmenu.h, error.c,
+	error.h, gtypist.c, gtypist.h, infoview.c, infoview.h,
+	script.c, script.h, speedbox.c, speedbox.h, utf8.c,
+	utf8.h: Update copyright notice years
+
+2019-05-24 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* gtypist.c: Jumping over whitespaces at the begining of lines
+	Improv readability and switch to pre-increment operator in
+	the do_speedtest() and do_drill functions
+
+2019-02-03 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* gtypist.c: Fix window resize bug (#55338)
+	by making a check for the KEY_RESIZE value, which is
+	read on terminal resize event
+
+2018-09-17 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* cursmenu.c, script.c: Indentation changes
+
+2018-09-16 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* banner.c, cursmenu.c, gtypist.c, infoview.c, script.c,
+	script.h, utf8.c: Fix implicit declaration errors
+
+2018-09-15 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* error.c, error.h, gtypist.c, gtypist.h: Fix indentation
+
+2016-05-22 clutton <clutton@zoho.com>
+
+	* gtypist.c: allow --disable-nls while still using (UTF-8-)locale
+	  (run setlocale even if !defined(ENABLE_NLS))
+
+2014-09-11 Alain Ducoulombier <alain.ducoulombier@gmail.com>
+
+	* gtypist.c: take corrections into account when computing speedtest
+	error rate
+
+2014-08-12  Tim Marston  <tim@ed.am>
+
+	* gtypist.c: #include sys/time.h (for gettimeofday() and timeval)
+
+2014-06-24  Tim Marston  <tim@ed.am>
+
+	* gtypist.c: added get_bestlog_filename(); get_config_filename()
+	now works on windows; fetch HOME dir once, at startup; don't
+	create config file if it doesn't exist
+	* infoview.c: removed attempt to parse the config file (since we
+	don't actually need to)
+
+2014-06-22  Tim Marston  <tim@ed.am>
+
+	* gtypist.c: lesson timing in do_drill() and do_speedtest() is now
+	done to millisecond (not second) resolution
+
+2013-06-01  Felix Natter <fnatter@gmx.net>
+
+	* utf8.c: Avoid that Alt+<anything> is treated as ESC, which could
+	  lead to accidentally aborting a lesson reported by Chris Jones
+	  <cjns1989@gmail.com>.
+
+2012-08-03  Felix Natter <fnatter@gmx.net>
+
+	* rename --expert to --no-welcome-screen
+
+2012-07-21  Felix Natter <fnatter@gmx.net>
+
+	* gtypist.[ch], infoview.c: don't show beginner screen when --expert is given,
+	when the user presses 'D'/'d' in beginner screen: write option "expert"
+	into config file.
+
+2012-07-08  Felix Natter <fnatter@gmx.net>
+
+	* gtypist.c, utf8.[ch]: Avoid collision between 0x107 unicode char
+	  (c with accent) and KEY_BACKSPACE by honoring the return value
+	  of get_wch() (Reported by Kalthor <kalthor@interia.pl>)
+
+2012-02-11  Felix Natter <fnatter@gmx.net>
+
+	* infoview.c: reduce flicker by clearing lines incrementally on a
+	  scrolling event
+
+2012-02-10  Tim Marston <tim@ed.am>
+
+	* speedbox.c: rewrote code to display end-of-lesson speed and
+	  information and pulled it out in to a new file.
+
+2012-02-10  Felix Natter <fnatter@gmx.net>
+
+	* banner.c/h: put banner() in its own file so that it can be used
+	  in infoview.c
+	* infoview.c: display banner at top, use banner colors for scrollbar
+
+2011-11-05  Felix Natter <fnatter@gmx.net>
+
+	* utf8.c use MultiByteToWideChar() also in utf8len() on minGW
+	  (this fixes problems with ru.typ on minGW)
+
+2011-11-04  Felix Natter <fnatter@gmx.net>
+
+	* utf8.c: use MultiByteToWideChar() in widen() on Windows. This will
+	  convert to two-byte wchar_t which is what minGW + PDCurses support
+
+2011-10-30  Tim Marston <edam@waxworlds.org>
+
+	* gtypist.c, utf8.c/h, cursmenu.c: get_widech() uses ints to avoid
+	  using wint_t, which is broken on Windows. Also, simplified reading
+	  characters so that get_widech() is always used. It also now
+	  handles windows newline characters for us.
+
+2011-10-26  Felix Natter <fnatter@gmx.net>
+
+	* gtypist.c, utf8.c/h: add get_widech() wrapper which
+	  calls getch() or get_wch() depending on whether it's a UTF8
+          console or not => fixes input problems with KOI8-R terminals
+	* script.c, gtypist.c: try to read (convertFromUTF8()) the whole
+	  lesson at the very beginning, in order to terminate at the very
+          beginning in the case of conversion errors (and not in the middle
+	  of typing)
+
+2011-10-24  Felix Natter <fnatter@gmx.net>
+
+	* gtypist.c, utf8.c/h: use convertFromUTF8() instead of widen()
+	  for Y/N and R/N/E. add towideupper() and iswideupper() helper
+	  functions that do they right thing depending on whether it's
+	  a UTF8 terminal or an 8bit-terminal
+
+2011-10-22  Felix Natter <fnatter@gmx.net>
+
+	* *.c, *.h: make gtypist run on non-utf8 locales with
+	  international lessons
+	* gtypist.c: add RETURN_CHARACTER (unicode symbol to designate
+	  newlines that must be typed)
+
+2011-10-14  Tim Marston <edam@waxworlds.org>
+
+	* gtypist.c, cursmenu.c, script.h: minor fixes to get gtypist to
+	  build under MinGW
+	* gtypist.c: removed call to MessageBeep() on windows, since it just
+	  corrupts the stack! Currently we don't beep on error on windows, as
+	  sending ASCII_BELL to the terminal just pauses and does no "bell".
+
+2011-08-07  Felix Natter <fnatter@gmx.net>
+
+	* utf8.c: new wchar_t* widen(char*) helper function
+	* gtypist.c: widen the YN and RNE strings, but their usage isn't yet
+	  fixed
+
+2011-07-08  Felix Natter <fnatter@gmx.net>
+
+	* utf8.c, utf8.h: use proper #define before #include for cchar_t
+	  (needed for wide character output)
+
+2011-02-28  Tim Marston <edam@waxworlds.org>
+
+	* gtypist.c: rewrote the code to open a script file and check for the
+	  presence of HOME environment variable (required for the bestlog) so
+	  that it should work on Windows platforms when HOME is not present.
+
+2011-02-26  Tim Marston <edam@waxworlds.org>
+
+	* gtypist.c: added best-score tracking feature and re-wrote some of the
+	  speed calculation/display code to always work with CPM (which are
+	  saved in the bestlog) and convert to WPM only at display-time.
+
+2011-01-03  Tim Marston <edam@waxworlds.org>
+
+	* gtypist.c: fixed a bug where pressing escape during wait_user()
+	  caused seek_label() to be called, but get_script_line() was never re-
+	  called. This meant that the previously buffered next script line
+	  (from before the seek) would still get executed. wait_user_input() now
+	  treats escape as a "continue" character for all but tutorial prompts,
+	  which now handle the seek properly by calling get_script_line().
+
+2009-02-19  Paul Goins  <general@vultaire.net>
+
+	* gtypist.c: Re-fixed the rounding bug by adding a function which
+	  compares floats using sprintf-based rounding.  (Bug re-reported by
+	  Jakub Gedeon.)
+
+2009-02-04  Paul Goins  <general@vultaire.net>
+
+	* gtypist.c: (display_speed): Fixed long-standing bug where gtypist
+	  would display that an error rate of =< 3.0% is needed, but the
+	  displayed error rate would sometimes be 3.0% due to rounding.  (Now
+	  we use floor() to always round down and avoid this.)
+	  (Error reported by Ali Gundaz)
+
+2008-05-17  Paul Goins  <general@vultaire.net>
+
+	* gtypist.c (display_speed): Changed maximum speed to 9999.99.  CPM
+	  mode could go into 4 digits for really, really fast typists.
+
+2008-05-12  Paul Goins  <general@vultaire.net>
+
+	* cursmenu.c, gtypist.c, script.h: Updated copyright notices.
+	* gtypist.c: Bug fix: --banner-colour, the alternate option for
+	  --banner-colours, changed to --banner-colors.
+
+2008-05-07  Paul Goins  <general@vultaire.net>
+
+	* gtypist.c: Bug fix: added "break;" for "--scoring" case
+
+2008-05-06  Paul Goins  <general@vultaire.net>
+
+	* gtypist.c: Added switch for "characters-per-minute" mode.  This
+	  is pretty much cosmetic since "words" are standardized to 5
+	  characters, but some countries tend to use CPM instead of WPM.
+	  However, speeds will top out at 999.99 CPM (200 WPM).
+
+  Copyright (C) 2008, 2009, 2011, 2012, 2013, 2014, 2016,
+                2017, 2018, 2019, 2020
+                Felix Natter, Paul Goins, Tim Marston, Mihai Gătejescu
+  Copyright (C) 2021, 2022 Felix Natter, Mihai Gătejescu
+
+  This file is a part of GNU Typist
+
+  GNU Typist is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  GNU Typist is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with GNU Typist.  If not, see <http://www.gnu.org/licenses/>.

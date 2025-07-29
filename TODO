@@ -1,0 +1,185 @@
+Copyright (C) 2001, 2002, 2003 Simon Baldwin (simonb@sco.com)
+Copyright (C) 2003, 2004, 2008, 2009, 2011, 2012, 2013, 2014, 2016,
+              2017, 2018, 2019, 2020
+              Felix Natter, Michael Opdenacker, Dmitry Rutsky,
+              Paul Goins, Tim Marston, Mihai Gătejescu
+Copyright (C) 2021, 2022, 2023, 2024 Felix Natter, Mihai Gătejescu
+
+See the end of the file for license conditions
+
+-------------------------------------------------------------------------
+
+THINGS TO DO for GNU Typist
+
+See our latest TODO file at
+http://git.savannah.gnu.org/gitweb/?p=gtypist.git;a=blob_plain;f=TODO;hb=master
+
+If you are interested in helping for some of the below items, we will
+be glad to have you in the development team!
+
+You can contact us by writing to bug-gtypist@gnu.org. Your suggestions
+are welcome too!
+
+-------------------------------------------------------------------------
+
+NEW FEATURE REQUESTS:
+
+* Provide the means to randomize lesson from a script
+
+* Provide support for Arch distros
+    Patch provided:
+    https://aur.archlinux.org/cgit/aur.git/tree/ncurses.patch?h=gtypist
+
+FOR 2.10 RELEASE
+
+* Show correct line numbers when nonexistent label was hit in the M command.
+
+* Add gengetopt config file parsing
+
+* Save 'expert' to config file.
+   When ESCAPE is used to dismiss the beginner tutorial dialog, add 'expert'
+   option to user config file if ESCAPE is used to exit beginner tutorial.
+
+* Mac OS X Package? => there is already macports or similar!
+
+* Implement a `word processor' option to make GNU Typist accept
+   [SPACE] instead of [RETURN] for new lines.
+   (Suggested by gherald@myway.com) => use this by default in beginner
+   mode?
+
+* implement option that shows enter/space characters + use it by default
+  only in beginner mode?
+
+SHORT TERM
+
+* switch to a different lesson at runtime.
+   This would allow to select a lesson directly in the "more lessons..." view.
+
+* Show the label of the last exercise on exit.
+   So that the user can easily return to it using -l. Currently, restarting at
+   one of these labels won't set the banner, though.
+
+* Show a warning when caps lock is active
+
+* I'd like an option that only enabled wordwrapping.
+   The -w option does enable wordwrapping, but it also changes how paragraph
+   breaks and spaces after periods are handled, which I don't want. Requested
+   by Adam Olsen <rhamph@d2dc.net>
+
+* Another idea is to generate our lessons files directly in our format from
+   spelling dictionaries, as they do in KTouch.
+
+* Reuse lessons from dvorak7min and possibly other typing tutors.
+
+* Improve the French translation of "lesson file"
+   which includes both Drills (translated by "Exercice") and Speed tests
+   ("Tests de vitesse").
+
+* Make a separate package for lessons
+   so that lessons compatible with a given gtypist version can be released
+   without having to release the tool again.  This is already done by other
+   packages: gimp plug-ins or TeTeX fonts are released separately.
+
+   This is definitely need for this tool, for which tutorial files are at least
+   as valuable as the raw program itself.
+
+- Provide a variant of the `n.typ' calculator keypad lesson, in which the `.'
+   character is replaced by `,'. Useful for some european keyboards.
+
+* allow strings from a .typ file to be translated (things like "lesson: ")
+
+* Test wpemu option in combination with multibyte lessons
+
+MEDIUM TERM
+
+* support multibyte encodings other than UTF8??
+
+* Windows installer, shortcuts for different lessons and manual?
+
+* Abstract gtypist front-ends, so that multiple interfaces can be written.
+- move the existing ncurses code to an interface implementation.
+
+* Add new interface: Graphical interface (GTK)
+   The benefits we can expect from a GTK interface are:
+
+   - Much attractive than the `ncurses' interface.
+   - Not using `ncurses' should avoid problems supporting different
+      terminal types.
+   - We could have a graphical control panel, to change settings
+      that are so far only available in the command line (keyboard
+      type, silent mode...)
+   - Easy access to help and manual
+   - Could still be compiled on Win32 on which GTK has been ported.
+
+* Add new interface: Audio interface
+   Could use a system like Speech Dispatcher to read the lessons for visually
+   impaired people or people living in very dense fog.
+
+   We could also support audio typing exercises.  Users would type
+   from a text read by a speaker.  Several audio files would be
+   need, according to the language and the targeted typing speeded.
+   That would be useful for people like secretaries and
+   journalists.
+
+   All this could be implemented in a clean way by implementing an
+   event based mechanism. The core application could send interface
+   messages to a generic interface manager, which could according
+   to user settings, ask the graphical, text or audio interface to
+   send it to the user.
+
+   Specifications are on going.
+
+* Save lesson prgress.
+   Add support for saving the last lesson (or part of a lesson) the user was
+   working on, so the user can easily pick up where s/he left off. (idea by
+   Enrique Pedroso)
+
+* Improve the documentation of course files
+
+* Broaden our lesson database:
+- Create new lessons for other languages and keyboard types.
+- Translate lessons in other languages for languages that share the same
+   keyboard, you can reuse instructions and drills)
+- We can also look for teachers who are ready to contribute lessons or let us
+   reuse theirs...
+- Reuse lessons from old typing teaching books which copyrights have expired
+   (how much time does it take?).
+- This will most likely require UTF-8 support
+
+* Better typing statistics.
+   Speed and accuracy for individual keys, and individual fingers. This helps
+   to indicate where extra practice may be useful to the user (see Jtypist
+   which displays this as graphical bars, using color to indicate areas that
+   need work).  A measure of typing rhythm would also be useful.
+
+* Emulate other keyboard types.
+   For example, Jtypist can pretend that you have a French, German, or Dvorak
+   keyboard on the system even if you don't.  It will translate keypresses
+   between keyboard types before checking them for correctness, and registering
+   timings.  This work requires that the program should have keyboard layout
+   maps available to it, and arises as a result of maintaining typing
+   statistics by key and by finger (the program needs to know what key is
+   operated by which finger).
+
+LONG TERM
+
+* While typing, graphically show the finger that is supposed to be used.
+
+* Read lessons in the file formats of other free typing tutors
+   (such as Jtypist)
+
+
+  This file is a part of GNU Typist
+
+  GNU Typist is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  GNU Typist is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with GNU Typist.  If not, see <http://www.gnu.org/licenses/>.

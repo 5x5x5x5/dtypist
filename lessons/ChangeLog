@@ -1,0 +1,428 @@
+2024-08-09 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* symq.typ, symt.typ, Makefile.am: Add the lessons
+	using the symmetric system
+
+2024-08-04 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* Makefile.am: Update the lessons list
+
+2024-08-04 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* ktde.typ, ktno.typ: Add two updated lessons
+
+2024-08-04 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* ktbg_long.typ, ktfi_kids.typ, kthu.typ,
+	kthu_expert.typ, ktno.typ: Remove old lessons
+
+2024-07-15 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* kt*.typ: Remove and replace KTouch lessons
+
+2024-07-15 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* ttde.typ: Remove lesson due to copyright reasons
+
+2024-04-15 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* r.typ, t.typ: Fix a few spelling errors and
+	update copyright. Patch from Debian
+
+2024-01-14 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* s.typ: Tag and count the Shakespeare lessons
+
+2024-01-14 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* s.typ: Add a passage from Hamlet
+
+2023-01-27 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* all files except ktouch: Update copyright
+
+2022-12-21 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* ro_special.typ: Fix a typo
+
+2022-08-23 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* esp.typ: Fix two typos
+
+2021-04-11 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* c.typ, cs.typ, d.typ, demo.typ, esp.typ, m.typ,
+	Makefile.am, n.typ, q.typ, r.typ, ru.typ, t.typ,
+	tinydemo.typ, ttde.typ, u.typ, v.typ: Update copyright
+
+2021-04-11 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* s.typ: Add a quote about from E. Joseph Crossman
+	and update copyright
+
+2021-03-27 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* ro_special: Add common words lesson. Fix links
+	names and spacing. Add new copyright year. Use banner
+	as workaround for the nested menu.
+
+2021-03-25 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* p.typ: Update formatting. Break down lesson into
+	smaller pieces. Remove empty lines and extra spaces
+
+2020-10-07 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* u.typ: Fix a typo
+
+2020-09-08 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* ro_special.typ: Fix a character in a lesson title
+
+2020-08-30 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* esp.typ: Give the copyright to the developers
+
+2020-08-22 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* ktbg.typ, ktbg_long.typ, ktde.typ, ktde2.typ, ktde_new.typ,
+	ktde_number.typ, ktdk.typ, ktde2.typ, ktdvorak.typ,
+	ktdvorak_abcd.typ, ktdvorak_es.typ, kten.typ, ktes.typ,
+	ktes_cat.typ, ktfi.typ, ktfi_kids.typ, ktfr.typ, ktfr2.typ,
+	kthu.typ, kthu_expect.typ, ktit.typ, ktnl.typ,
+	ktnl_junior.typ, ktno.typ, ktpl.typ, ktru.typ,
+	ktru_long.typ, ktru_slava.typ, ktsi.typ, kttr.typ:
+	Add copyright notice
+
+2020-06-24 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* ro_special.tpy: Change the jump link to avoid a crash
+
+2020-06-08 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* kthu.typ: Remove Linux reference and fix the menu.
+	Unfortunately I was not able to find the citation, so I
+	decided to remove the whole lesson
+
+2020-06-08 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* ktpl.typ: Remove linux reference
+
+2020-05-25 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* ktes.typ, ktfr2.typ: Fix inapproppriate Linux references
+
+2020-01-30 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* c.typ, cs.typ, d.typ, demo.typ, m.typ, n.typ, p.typ,
+	q.typ, r.typ, ro_special.typ, ru.typ, s.typ, t.typ,
+	tinydemo.typ, u.typ, v.typ:
+	Update copyright years
+
+2019-12-03 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* ttde.typ: Fix inapproppriate Linux references
+
+2019-10-20 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* r.typ: Update the notices
+	* ro_special.typ: Update the notices
+	* ru.typ: Update the notices
+	* s.typ: Update the notices
+	* t.typ: Update the notices
+	* tinydemo.typ: Add copyright and license notice
+	* u.typ: Update the notices
+	* v.typ: Update the notices
+
+2019-10-19 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* q.typ: Update the notices
+
+2019-10-18 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* p.typ: Update the notices
+
+2019-10-17 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* n.typ: Update the notices
+
+2019-10-16 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* m.typ: Update the notices
+
+2019-10-15 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* esp.typ: Update the notices
+
+2019-10-14 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* d.typ: Update the notices
+	* demo.typ: Update the notices
+
+2019-10-13 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* c.typ, cs.typ: Update the notices
+	* Makefile.am: Add copyright and license notices
+
+2019-09-11 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* ro_special.typ: Move INFORMATION tag after the LABEL tag
+
+2019-09-06 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* ro_special.typ: Add new Romanian diacritic characters lesson
+
+2019-08-12 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* s.typ: Add passages from Shakespeare's The Tempest from
+	Project Gutenberg
+
+2019-06-05 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* p.typ: Change the title of the practice lessons to mention
+	the programming languages the lessons use
+
+2019-06-04 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* p.typ: Replace tabs with spaces in menu, to display it consistently
+
+2019-04-21 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* p.typ:  "Hello, World!" message consistent
+
+2018-11-14 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* ktdt.typ: Fix spelling mistakes, thanks to
+	Malte Lau Petersen <maltelau@protonmail.com>
+
+2018-11-13 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* p.typ: Add special character lesson for programmers,
+	thanks to Danial Long Sockwell <daniel@codesections.com>
+
+2018-09-17 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* u.typ: implemented a workaround for bug #45116, no submitter
+
+2018-09-07 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* ktdk.typ: fix a word, thanks to
+	Malte Lau Petersen <maltelau@protonmail.com>
+
+2017-03-18 Felix Natter <fnatter@gmx.net>
+	* ktde.typ: fix typo, thanks to
+	Sebastian Hoffmann <null.s.hoffmann@googlemail.com>
+
+2017-03-18 Felix Natter <fnatter@gmx.net>
+	* t.typ: Do not use 0 key before it is introduced, thanks to
+        Daniil Zhilin <just4steam778@gmail.com>
+
+2014-09-03  Tim Marston  <tim@ed.am>
+
+	* c.typ: changed the order of V and M letters in the lesson title
+	to the order they appear on the keyboard, for consistency
+
+2014-07-20  Tim Marston  <tim@ed.am>
+
+	* c.typ: (re)generated words in the top 1000 most frequently used
+	that can be typed using the home row, as it previously included
+	non-home row keys.
+
+2014-07-19  Tim Marston  <tim@ed.am>
+
+	* q.typ: fixed errant r before it was introduced, thanks to Olu
+	Niyi-Awosusi <o.niyiawosusi@gmail.com>.
+
+2014-06-10  Tim Marston  <tim@ed.am>
+
+	* c.typ: typo, reported by Ashley Whetter <ashley@awhetter.co.uk>
+
+2013-10-20  Tim Marston  <tim@ed.am>
+
+	* c.typ: fixed header for F+U Colemak lesson, thanks to patch
+	supplied by Ashley Whetter <ashley@awhetter.co.uk>
+
+2013-06-01  Felix Natter <fnatter@gmx.net>
+
+	* update kt*.typ with new ktouch2typ.pl as reported by
+	  Alexei Matveev <alexei.matveev@gmail.com>
+	  (see ../ChangeLog for script changes)
+
+2013-04-30  Tim Marston <tim@ed.am>
+
+	* c.typ, q.typ, v.typ: corrected various typos, thanks to Chris
+	Jones <cjns1989@gmail.com> for reporting.
+
+2013-03-30 Rob Day <rkd@rkd.me.uk>
+
+	* q.typ: Q1: introduces e,i and not g,h; fix space issue
+
+2011-10-27 Gökçen Eraslan <gokcen@pardus.org.tr>
+
+	* kttr.typ: new turkish lesson converted from ktouch
+
+2011-09-30  Tim Marston <edam@waxworlds.org>
+
+	* c.typ: added Colemak typing lessons.
+
+2011-09-07  Tim Marston <edam@waxworlds.org>
+
+	* esp.typ: fixed some typos ("tr àèìòù áéíóú"), thanks to MAbeeTT
+	  <MAbeeTT@gmail.com> for reporting.
+
+2011-08-14  Felix Natter <fnatter@gmx.net>
+
+	* ktde.typ: remove "Grundstellung" from drill text (from
+	  german.ktouch.xml)
+	* ktde2.typ: remove because it was generated from the same source
+	  source as ttde.typ (tipptrainer 0.6.0), and ttde.typ includes more
+	  explanations => ktde2.typ is not generated from
+	  german3.ktouch.xml!!
+
+2011-08-07  Felix Natter <fnatter@gmx.net>
+
+	* kt*.typ: convert and rename lessons from ktouch 1.6
+	* ttde.typ: converted from tipptrainer 0.6.0
+
+2011-07-03  Felix Natter <fnatter@gmx.net>
+
+	* lessons/cs.typ: convert cs.typ (Czech) from iso8859-2 to utf-8
+	* lessons/esp.typ: convert esp.typ (Spanish) from iso8859-1 to utf-8
+	* lessons/ru.typ: convert ru.typ (Russian) from KOI8-R to utf-8
+
+2011-03-03  Tim Marston <edam@waxworlds.org>
+
+	* t.typ: punctuation error, reported to Debian by Percival Tiglao
+	  <dragontamer5788@yahoo.com>
+
+2010-12-21  Tim Marston <edam@waxworlds.org>
+
+	* lessons/u.typ, lessons/t.typ: fixed minor typos (thanks to Elmar
+	  Zander <elmar@zandere.de> for reporting)
+
+2008-05-12  Paul Goins  <general@vultaire.net>
+
+	* ChangeLog: Minor formatting updates.
+
+2008-05-04  Paul Goins  <general@vultaire.net>
+
+	* esp.typ: A mistake involving a not-yet-introduced key was corrected.
+	  This was submitted by igor@tamarapatino.org, and credited to
+	  Laura Victoria Quishpe <sekhmetnightmare@hotmail.com>.
+
+2004-09-30  Dmitry Rutsky <balto@bk.ru>
+
+	* ru.typ:	minor improvements.
+
+2004-07-31  Dmitry Rutsky <rutsky@school.ioffe.rssi.ru>
+
+	* q.typ:  some missing key fingering directions were added by
+	  Iain Cunningham <iain.cunningham@ntlworld.com>.
+
+2004-05-07  Dmitry Rutsky <rutsky@school.ioffe.rssi.ru>
+
+	* ru.typ: corrected unlearned-key bug in IF_Ib lesson last exercise.
+	  Thanks to Renat Sabitov <srr@stacksoft.ru> who has reported this!
+	  He has also reported some spelling error on 18th February, which I've
+	  fixed but somehow this change was lost.
+
+2003-12-28  Michael Opdenacker <michaelo@gnu.org>
+
+	* r.typ: corrected "may" by "many" on line 1198
+	  (Reported by Sayan <Sebastien.Li-thiao-te@crans.org>)
+
+2003-11-23  Dmitry Rutsky <rutsky@school.ioffe.rssi.ru>
+
+	* kten.typ:  fixed several too long lines.
+
+2003-08-31  Rob Leslie <rob@mars.org>
+
+	* cs.typ, m.typ: Fixed a few small typos.
+
+2003-08-28  Michael Opdenacker <michaelo@gnu.org>
+
+	* d.typ: Fixed 2 small typos, reported by Rob Leslie <rob@mars.org>
+
+2003-04-14  Hynek Hanke	<hanke@volny.cz>
+
+	* cs.typ: Removed unnecessary K: commands.
+
+2003-04-14  Felix Natter <fnatter@gmx.net>
+
+	* v.typ, u.typ, t.typ, s.typ, r.typ, q.typ, n.typ, m.typ, f.typ:
+	remove useless K:12:.*
+
+2003-04-06  Felix Natter <fnatter@gmx.net>
+
+	* esp.typ: use M: everywhere
+	* demo.typ: add a menu
+
+2003-04-05  Felix Natter <fnatter@gmx.net>
+
+	* v.typ, u.typ, t.typ, s.typ, r.typ, q.typ, n.typ, m.typ, f.typ:
+	move to M:
+
+2002-10-22  Michael Opdenacker <michaelo@gnu.org>
+
+	* Minor fixes in esp.typ from Manuel García <caronte@eresmas.net>
+
+2002-08-09  Michael Opdenacker <michaelo@gnu.org>
+
+        * lessons/Makefile.am: replaced $(wildcard *.typ) by real
+          file names (supported by any variant of `make').
+
+2002-04-07  Michael Opdenacker <michaelo@gnu.org>
+
+        * cz.typ: includes a new Czech lesson
+	from Hynek Hanke <hanke@volny.cz>.
+	* Makefile.am: pkgdata_DATA = $(wildcard *.typ)
+	This is simpler and doesn't have to change with new lessons.
+
+2001-12-02  Michael Opdenacker <michaelo@gnu.org>
+
+	* esp.typ: added missing `K' on line 109,
+	as suggested by José Pelegrín <josepl@acm.org>.
+
+2001-12-01  Felix Natter  <fnatter@gmx.net>
+
+	* d.typ, r.typ, v.typ, esp.typ: remove more occurrences of "Q:
+	Press Y to continue, ..."  following an exercise (because this is
+	builtin since 2.4)
+	* d.typ, v.typ, r.typ: remove all occurrences of "Q: Press Y to
+	cont..." following T: : It doesn't make sense to repeat a T:, the
+	standard message "Press Enter to continue." is better
+	(the exception is esp.typ, where this is used to navigate through
+	multipage T:'s)
+	* d.typ: There was this I: command: "I:Juvenile zest for excitement
+	whetted interest in parking by the quay." and a D: command was missing
+	in the paragraph). changed this to D:.
+	* esp.typ: fix a typo (reported by José Pelegrín <josepl@acm.org>)
+
+2001-09-02  Felix Natter  <fnatter@gmx.net>
+
+	* ?.typ: adapt lessons to new 2.4 syntax
+	* demo.typ: rewrite for 2.4
+	* gtypist.typ: now generated in autogen.sh
+
+
+  Copyright (C) 2001, 2002, 2003 Simon Baldwin (simonb@sco.com)
+  Copyright (C) 2003, 2004, 2008, 2009, 2011, 2012, 2013, 2014, 2016,
+                2017, 2018, 2019, 2020
+                Felix Natter, Michael Opdenacker, Hynek Hanke, Dmitry Rutsky,
+                Rob Leslie, Paul Goins, Tim Marston, Mihai Gătejescu
+  Copyright (C) 2021, 2022, 2023 Felix Natter, Mihai Gătejescu
+
+  This file is a part of GNU Typist
+
+  GNU Typist is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  GNU Typist is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with GNU Typist.  If not, see <http://www.gnu.org/licenses/>.

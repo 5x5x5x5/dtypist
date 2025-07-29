@@ -1,0 +1,1157 @@
+\input texinfo @c -*-mode:texinfo; compile-command: "makeinfo gtypist.texi"-*-
+@setfilename gtypist.info
+@settitle GNU Typist Manual
+@documentlanguage en
+@documentencoding UTF-8
+@include version.texi
+
+@copying
+This manual is for GNU Typist (version @value{VERSION}, @value{UPDATED}),
+a program to learn typing in several languages and for different
+keyboard layouts.
+
+Copyright @copyright{} 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2008,
+2011, 2012 Free Software Foundation, Inc.
+
+@quotation
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.  A copy of the license is included in the section entitled
+``GNU Free Documentation License''.
+@end quotation
+@end copying
+
+@dircategory Education
+@direntry Education
+* GNU Typist: (gtypist). Documentation of the typing tutor gtypist.
+@end direntry
+
+@titlepage
+@title GNU Typist Manual
+@subtitle Version @value{VERSION}
+@author Latest update: @value{UPDATED}
+@page
+@vskip 0pt plus 1filll
+@insertcopying
+Published by the Free Software Foundation @*
+51 Franklin Street, Fifth Floor @*
+Boston, MA 02110-1301 @*
+USA @*
+@end titlepage
+
+@contents
+
+@page
+
+@ifnottex
+@node Top
+@top GNU Typist - Typing Tutor
+@insertcopying
+
+GNU Typist is an interactive typing tutor that can help you to type
+correctly. It has several lessons for different keyboard layouts and in
+different languages. The lessons for gtypist are described in a easy-to-learn
+scripting language that the user can use to modify the existing lessons
+or create new ones.
+
+@end ifnottex
+
+@menu
+* Distribution::            Where to find gtypist: source, packages etc.
+* Copying::                 The GNU General Public License says how you can
+                            copy and share gtypist
+* Introduction::            Important concepts you need to know as a user
+* Invoking::                How to invoke gtypist
+* Configuration file::      Use the config file for saving command line options
+* Resize GTypist window::   How to resize the terminal window
+* Supplied lessons::        Overview of the lessons in the gtypist distribution
+* Using typefortune::       Practising with text from `fortune' (requires perl)
+* Script file commands::    Information about the syntax of gtypist lessons
+* Create new lessons::      How to contribute new lessons
+* Emacs mode::              Emacs mode for editing gtypist scripts
+* VIM Syntax highlighting:: VIM Syntax highlighting for gtypist scripts
+* Environment Variables::   Environment variables which affect gtypist
+* Errors and omissions::    Known problems
+* History::                 History of GNU Typist
+* Copying this manual::     The GNU Free Documentation License
+@end menu
+
+@node Distribution, Copying, Top, Top
+@unnumbered Distribution
+
+GNU Typist (or gtypist) is @dfn{free software}; this means that everyone
+is free to use it and free to redistribute it on certain conditions.
+The precise conditions are found in the GNU General Public License that
+comes with this program and also follows this section.
+
+@noindent
+You can obtain GNU Typist from a friend or from the Internet:
+
+@table @asis
+
+@item Official distribution site
+@uref{ftp://ftp.gnu.org/gnu/gtypist/}
+
+@item Official home page
+@uref{http://www.gnu.org/software/gtypist/}
+
+@item On-line manual (updates between program releases)
+@uref{http://www.gnu.org/software/gtypist/doc/}
+
+@item Developers' home page (Git repository, tasks, support...)
+@uref{http://savannah.gnu.org/projects/gtypist/}
+@end table
+
+@node Copying, Introduction, Distribution, Top
+@unnumbered GNU GENERAL PUBLIC LICENSE
+@include gpl.texi
+
+@node Introduction, Invoking, Copying, Top
+@chapter Introduction
+
+GNU Typist is an interactive typing tutor program. It uses an input
+file to create a series of typing tutorials, drills, and speed
+tests. It is intended to be used on raw terminals without graphics. It
+has been compiled and used on GNU/Linux and Unix (OpenBSD, AIX,
+Solaris) and also on Windows.
+
+The program reads lessons written in an easy-to-learn scripting
+language. It is distributed with several complete and good
+lessons. You can use them, modify them or create new lessons
+(@pxref{Create new lessons} and @pxref{Script file commands}).
+
+If a script file is not specified on the command line, a default file
+@file{gtypist.typ} will be used. (See details about the path in the
+section @pxref{Environment Variables}).
+
+The top line of the screen displays a banner. The bottom line of the
+screen displays a message line, queries, and other status information.
+The lines in between are used for the tutorials, drills, and speed
+tests.
+
+There are two types of typing exercises: @dfn{drills} and @dfn{speed
+tests}.
+
+In a @dfn{drill}, gtypist displays text in every other line on the
+screen, and waits for the user to correctly type the exact same text
+in the intermediate lines.
+@c TODO: intention is ``Griff-Übung'' (finger exercise)
+Typing errors are indicated with an inverse @samp{^}, or @samp{>} if
+the character is a newline and at the end of the exercise it
+calculates the real and effective rate in Words Per Minute
+(@acronym{WPM}). If there were too many errors, it will re-run the
+drill.
+
+@c TODO: make this less formal
+Backward deleting of previously typed characters to correct errors is
+not allowed.
+
+In a speed test, gtypist displays text on the screen, and waits for
+the user to correctly over-type the exact same text. It indicates
+typing errors, and at the end of the test it calculates the real and
+effective rate in @acronym{WPM}.
+@c TODO: what is it used for ?
+If there were too many errors, it will re-run the speed test.
+Backward deleting of previously typed characters to correct errors is
+permitted, but errors still accumulate.
+
+If you already made too many mistakes, then you can use @key{ESC} to
+give up and start again. You can also skip a lesson by pressing
+@key{ESC} twice. Once you complete a lesson, you will be asked whether
+you want to repeat it.
+
+@c TODO: indicate ``practice only'' exercises in modeline ?
+There are also ``practice only'' exercises (of both drills and speed
+tests) which you won't have to repeat at all. But we won't tell you
+when this is the case, so you'll have to give your best anyway ;-)
+
+In typing speed reports, a @dfn{word} is deemed to be five characters,
+so the raw (gross) @acronym{WPM} is the number of characters in the
+test passage, divided by five, then divided again by the number of
+minutes elapsed in typing the passage. The adjusted @acronym{WPM}
+factors in the errors; each error is counted as a mistyped word.
+
+If preferred, speeds can be displayed in Characters Per Minute
+(@acronym{CPM}).  This can be done by specifying ``--scoring=cpm'' at
+the command line.
+
+@node Invoking, Configuration file, Introduction, Top
+@chapter Invoking
+
+The syntax to invoke GNU Typist is:
+
+@code{gtypist [ Options... ] [ script_file ]}
+
+@table @code
+
+@item -b, --personal-best
+gtypist will keep track of your personal best typing speeds and tell
+you when you've beaten them. Best typing speeds are saved in a
+``bestlog'' in the user's home directory.
+
+@item -e, --max-error
+Specifies the default maximum error percentage.  The default value is
+3.0 and it must be between 0.0 and 100.0. There is a corresponding
+script file command (@pxref{Script file commands}) which only
+overrides this if it is @emph{stricter} (smaller). This value is
+ignored for ``practice only'' drills.
+
+@item -n, --notimer
+gtypist will display the typing speeds in @acronym{WPM} after both
+drills and speed tests. However, the lessons appear to be written for
+a program that only does this for speed tests. To make gtypist behave
+in a manner that matches the lessons, that is, to sup @acronym{WPM}
+reports on drills, use @option{-n} or @option{--notimer}.
+
+@item -t, --term-cursor
+gtypist creates its own flashing block cursor on the screen, to help
+distinguish between the cursor and reverse video error indications.
+Setting @option{-t} or @option{--term-cursor} suppresses this, and
+forces the program to use the terminal's cursor instead.
+
+@item -f, --curs-flash
+Sets the block cursor flash period in tenths of a second. A value of 0
+indicates no cursor flashing. The default is 10, and the maximum is
+512. This option is ignored if @option{-t} or @option{--term-cursor}
+has been set.
+
+@item -c, --colo[u]rs
+In normal operation, gtypist uses only normal and reverse video
+attributes in monochrome mode. This option may be used to specify the
+foreground and background colours on terminals that support colours.
+The colours are specified as two integers, in the range 0 to 7,
+separated by commas, setting the foreground and background
+colours. The colour codes 0 to 7 indicate black, red, green, yellow,
+blue, magenta, cyan, and white respectively. The default colours
+string is 7,0 - white on black. The option is ignored if the terminal
+does not support colours.
+
+@item -s, --silent
+When gtypist detects a typing error, it will beep the terminal. Use
+this option to silence the beep.
+
+@item -q, --quiet
+Same as @option{-s} or @option{--silent}.
+
+@item -l, --start-label
+Specifies the label in the script file at which gtypist begins
+executing (see script files and commands below for information on
+labels). If this option is not used, gtypist begins execution at the
+first line of the file.
+
+@item -w, --word-processor
+With this option, gtypist will try to mimic a word processor in
+certain ways when executing an exercise. It will treat space at the
+end of a line as a correctly typed character, and word wrap. It will
+treat return at the end of a line as a signal to move to the start of
+the next paragraph if applicable. It will compress multiple spaces
+into a single space. And it will skip over hyphens found at the end of
+a line.
+
+@item -k, --no-skip
+Prohibit the user from skipping lessons or exiting from lessons via
+@key{ESC ESC}.
+
+@item -i, --show-errors
+Highlight errors with reverse video.
+
+@item -S, --always-sure
+Skips confirmation questions.
+
+@item --banner-colo[u]rs
+Change the color of the banner at the top of the screen.  Color values
+are the same as for the --colo[u]rs command.  The default value is
+0,6,5,1 - black foreground, cyan background, magenta program name and
+red version name.
+
+@item --scoring
+Change the scoring mode.  @acronym{WPM} and @acronym{CPM} modes are
+available, with the default being @acronym{WPM}.
+
+@end table
+
+@noindent
+You also have to set the environment variable @env{LANG} if you want
+to run gtypist in your native language. @xref{Environment Variables}.
+
+@noindent
+In some languages like French, some interface messages are longer than
+in English. Therefore, you may need to make your terminal larger
+before invoking the tool. Otherwise, the text on the lower left may
+overlap with the string on the lower right.
+
+@strong{Examples:}
+
+@noindent
+To run the default lessons of lesson @file{gtypist.typ}:@*
+@code{gtypist}
+
+
+@noindent
+To run the lesson in Spanish: @*
+@code{gtypist esp.typ}
+
+
+@noindent
+To instruct gtypist to look for lesson bar.typ in a non
+standard directory @file{/home/foo}: @*
+@code{export GTYPIST_PATH="/home/foo"}
+@code{gtypist bar.typ}
+
+
+@noindent
+To run the lessons in the file @file{test.typ} of directory
+@file{/tmp}, starting at label @code{TEST1}, using the terminal's
+cursor, and running silently:@* @code{gtypist -t -q -l TEST1
+/tmp/test.typ}
+
+@node Configuration file, Resize GTypist window, Invoking, Top
+@chapter Configuration file
+
+The GTypist configuration file @code{.gtypistrc}, which can be found
+in your home directory ($HOME) on UNIX, is used to remember common
+command line options (@pxref{Invoking}). Its format is simply one line
+per option, referenced by the short or long option name, but without
+the @code{-} or @code{--}.  Comment syntax starts with a @code{#}.
+
+Here is an example:
+@example
+# for beginners:
+max-error=10
+word-processor
+@end example
+
+@node Resize GTypist window, Supplied lessons, Configuration file, Top
+@chapter Resize GTypist window
+
+Resizing the GTypist window is a matter of resizing the terminal
+window that GTypist was started in. Depending on the platform,
+this can be achieved by:
+
+@table @code
+
+@item GNU/Linux and UNIX (GNOME/KDE/...)
+Hit @kbd{@key{Ctrl} -} (reduce) or @kbd{@key{Ctrl} +} (extend).
+
+@item Mac OS X
+Hit @kbd{@key{Command} -} (reduce) or @kbd{@key{Command} +} (extend).
+The @key{Command} key might be labeled @key{Cmd}.
+
+@item Microsoft Windows
+Click on the upper left corner of the terminal window and choose
+@code{Properties}. Change settings in the @code{Layout} tab of the
+window that appears.
+
+@end table
+
+@node Supplied lessons, Using typefortune, Resize GTypist window, Top
+@chapter Supplied lessons
+
+The following lessons are supplied with GNU Typist :
+@table @file
+@item q.typ
+Quick QWERTY course in English
+@item r.typ
+Long QWERTY course in English
+@item t.typ
+QWERTY touch typing in English
+@item v.typ
+Yet Another QWERTY in English
+@item u.typ
+QWERTY Review in English
+@item d.typ
+Dvorak touch typing in English
+@item c.typ
+Colemak touch typing in English
+@item m.typ
+Typing drills in English
+@item s.typ
+Speed drills in English
+@item n.typ
+Calculator keypad in English
+@item gtypist.typ
+Compendium of all previous lessons in English
+@item cs.typ
+Lessons in Czech
+@item esp.typ
+QWERTY course in Spanish
+@item p.typ
+Special characters course for programmers
+@item ro_special.typ
+Romanian lesson focusing on the diacritic characters
+@item ru.typ
+Lessons in Russian
+@item sym*.typ
+Lessons base on Q and T series using a symmetric system.
+For more info please see @uref{https://kennetchaz.github.io/symmetric-typing/}
+@item kt*.typ
+These lessons are the standard lessons from
+@uref{https://invent.kde.org/education/ktouch, KTouch 24.05.2}, which have been
+converted to gtypist's file format with the included script,
+@file{tools/ktouch2typ.pl}.
+
+The files are:
+@file{ktbg.typ} (@file{bulgarian.ktouch.xml}),
+@file{ktbr.typ} (@file{blazilian.ktouch.xml}),
+@file{ktcz.typ} (@file{czech.ktouch.xml}),
+@file{ktde.typ} (@file{german.ktouch.xml}),
+@file{ktdvorak.typ} (@file{dvorak.ktouch.xml}),
+@file{kten_gb.typ} (@file{british_english.ktouch.xml}),
+@file{kten_us.typ} (@file{us_english.ktouch.xml}),
+@file{ktes1.typ} (@file{spanish1.ktouch.xml}),
+@file{ktes2.typ} (@file{spanish2.ktouch.xml}),
+@file{ktes3.typ} (@file{spanish3.ktouch.xml}),
+@file{ktes_cat.typ} (@file{catalan.ktouch.xml}),
+@file{ktfi.typ} (@file{finnish.ktouch.xml}),
+@file{ktfr.typ} (@file{french.ktouch.xml}),
+@file{ktgr.typ} (@file{greek.ktouch.xml}),
+@file{ktit.typ} (@file{italian.ktouch.xml}),
+@file{ktnl.typ} (@file{nederlands.ktouch.xml}),
+@file{ktnl_junior.typ} (@file{nederlands_junior.ktouch.xml}),
+@file{ktno.typ} (@file{norwegian.ktouch.xml}),
+@file{ktru.typ} (@file{russian.ktouch.xml}),
+@file{ktru_long.typ} (@file{russian_long.ktouch.xml}),
+@file{kttr.typ} (@file{turkish.ktouch.xml}),
+@end table
+
+@noindent
+If you find errors in these lessons, if you modify any of them or if
+you write a new lesson, please release it with a free license and tell
+us about it, by writing an email to @email{bug-gtypist@@gnu.org}.
+
+@node Using typefortune, Script file commands, Supplied lessons, Top
+@chapter Using typefortune
+
+@command{typefortune} lets you practice with text from
+@command{fortune}.
+
+@code{SYNTAX: typefortune [-dslh] [-n count] [-o <gtypist_opts>]}
+
+@table @code
+
+@item -d
+Use @code{D:} instead of @code{S:}.
+
+@item -s
+Run fortune with @code{-s}.
+
+@item -l
+Run fortune with @code{-l}.
+
+@item -n <count>
+Practice <count> fortunes.
+
+@item -o <gtypist_options>
+Pass options to gtypist, in the form @option{option} (boolean option,
+i.e. @code{-o word-processor}), @option{option,value} (option with
+value, i.e. @code{-o e,1.0}) where @code{option} is the name of the
+option (short or long) with all leading dashes removed.  You need to
+quote the argument to @option{-o} if you are specifying more than one
+argument: @code{typefortune -n 3 -o 'silent e,5 word-processor'}.
+
+@end table
+
+@node Script file commands, Create new lessons, Using typefortune, Top
+@chapter Script file commands
+
+GNU Typist reads in the data for its typing lessons from a script
+file.  With the exception of comments and blank lines, each line in
+the file is of the format
+
+@code{command_char : command_data}
+
+@noindent
+Here, @code{command_char} is a single character code that defines an
+action for gtypist to take, and @code{command_data} is data for that
+command. If @code{command_char} is a space character, this indicates
+that the line is a continuation of the preceding non-space
+command. The @samp{:} separator must be in column two of the line.
+
+Comment lines are lines beginning with a @samp{#} character, and are
+ignored, as are blank lines. Comment lines may have any format
+provided that they begin with @samp{#}; other lines must have the
+above format.
+
+You should read the introduction so that you are familiar with the
+basics: @xref{Introduction}.
+
+The following is a list of valid @code{command_char} values:
+
+@table @code
+@item B
+This command clears the complete screen. If any @code{command_data} is
+present, it is displayed in the one-line banner at the top of the
+screen, and remains in place until the next @code{B} command. This
+command may not be continued on the following line; it is a single
+line command.
+
+@item T
+This presents a tutorial, and is a multi-line command, up to the limit
+of the screen length. Each line in the command is simply printed to
+the screen. This command clears the screen beneath the top banner
+line. After the display is done, the program waits before proceeding.
+
+@item *
+This indicates a label in the file. The label may be the target of a
+@code{G}, @code{Y}, @code{N} or @code{F} command. Labels may contain
+any character except space (this restriction was added in gtypist
+2.9), and are a single line command. Labels must be unique within
+lesson files. White-space at the end of labels is ignored.
+
+@item I
+The @code{I} command can display some brief instructions above a drill
+or a speed test.  Only two lines or less are permitted.  Unlike the
+@code{T} command, it does not wait for any further key-presses before
+proceeding.  So it should really always be followed by an exercise.
+It clears the whole screen exercise area, so in this respect it's just
+like a two-line @code{T}.
+
+@item M
+This command is the new way to create menus (since gtypist 2.7).  Here
+is the syntax:
+@example
+M: [UP=RETURN_LABEL|_EXIT] "title"
+ :LABEL1 "item1"
+ :LABEL2 "item2"
+ ...
+@end example
+
+This will display a convenient menu made from the specified items and
+let the user to choose from them.  If an item was selected, gtypist
+will continue script execution from the corresponding label.  If the
+Escape key was pressed and @code{UP} label is defined, gtypist will go
+to the @code{UP} label likewise, or quit from, if there is
+@code{``_EXIT''} in the place of the label.  If the @code{UP} label is
+not defined, gtypist will try to return to the previous menu and jump
+to the last label met in the script before previous @code{M} command.
+If there is no such label and some menu was displayed before the
+current one, gtypist will just go to the beginning of the script.  If
+none of the previous conditions were met, gtypist will just exit from
+the script.
+
+The above details make it natural to create menu hierarchies without
+using @code{UP} labels.
+
+The title and all descriptions must be wrapped in quotes ("").
+Additionally, there must be at least one space between @code{UP=XXX}
+and "title" and between the labels and the corresponding descriptions.
+
+This command was introduced as an easy way to arrange various parts of
+lesson files into single menu hierarchy which can be easily navigated,
+as well as a replacement for ancient @code{F}-key menus.  See the
+existing lesson-files for examples.
+
+@c TODO: more information about ``should be used for''...
+@item D,d
+This command is called @dfn{drill}, and it is one of two types of
+typing exercises.
+
+It is a multi-line command. The text is displayed in every second
+line, and you type in the intermediate lines. Because of this, you
+cannot use more than 11 lines of drill content.
+
+This type of exercise is supposed to be used for finger training
+(i.e. jfjfjjf), but may also contain complete words and sentences
+@c TODO: grip
+if they are used to practice something (i.e. a
+letter/syllable/"grip"), and aren't real texts.
+
+The lowercase version @code{d} is a ``practice only'' drill - the user
+will not have not repeat this drill if he/she made too many mistakes.
+
+@c TODO: more information about ``should be used for''...
+@item S,s
+This is the second type of typing exercise: the @dfn{speed test}.
+
+It is a multi-line command.  It displays its text on the screen, and
+prompts the user to type on top of it.  That's why you can use up to
+22 lines of text for one speed test.  In a speed test you can correct
+your mistakes, but this will not decrease the error-count.
+
+Speed tests should be used for typing (mostly) complete sentences,
+texts or files (i.e. a letter, texinfo/html/tex files).
+
+The lowercase version @code{s} is a @dfn{practice only speed test}:
+the user will not have not repeat this drill if (s)he made too many
+mistakes.
+
+@item G
+This causes gtypist to go to the label in @code{command_data}, and
+continue execution of the script there. This is a single line command.
+
+@item Q
+This command command prompts its text on the message line, and waits
+for a @key{Y} or an @key{N} before proceeding. Other characters are
+ignored.
+
+As a side effect, you can hit an F-key if it is bound (a deprecated way
+to create the prompt for menus).
+
+@item Y
+This is like @code{G}, except that the goto is executed only if the
+result of the last @code{Q} command was @key{Y}.
+
+@item N
+This is like @code{G}, except that the goto is executed only if the
+result of the last @code{Q} command was @key{N}.
+
+@item K
+@emph{This command is deprecated in favor of M:} This binds a function
+key to a label. The format of the data line following this command
+must be @code{fkey_number:label}, where @code{fkey_number} is a
+function key number in the range 1 to 12, and @code{label} is a label
+to go to when this key is pressed. A value of NULL for label removes
+any label binding from the key.
+
+If function keys are not available on the terminal other keys can be
+used: @key{1} to @key{9} to replace @key{F1} to @key{F9}, @key{0} to
+replace @key{F10}, @key{A} for @key{F11} and @key{S} for @key{F12}.
+
+Other alternatives for the keys @key{F1} to @key{F12} are the
+combinations: @key{Ctrl-Q}, @key{Ctrl-W}, @key{Ctrl-E}, @key{Ctrl-R},
+@key{Ctrl-T}, @key{Ctrl-Z}, @key{Ctrl-U}, @key{Ctrl-I}, @key{Ctrl-O},
+@key{Ctrl-P}, @key{Ctrl-A} and @key{Ctrl-S}.
+
+This is also useful where function keys are intercepted by other
+programs (for example by a window manager).
+
+@item E
+This command is used to set the highest error-rate permitted for the
+next drill (@code{E:<value>%}) or for all following drills until the
+next @code{E:} (@code{E:<value>%*}).
+
+If @option{--max-error/-e} is specified then this command will only
+have an effect if it is @emph{stricter} than the value specified on
+the command-line.
+
+@code{command_data} consists of the value (between 0.0 and 100.0),
+followed by @samp{%} (this is required so that scripts are more
+readable).  A special value of @code{default} or @code{Default} sets
+the error-max value back to the default.
+
+@item F
+This command (``set on-failure label'') is used to set the label (in
+@code{command_data}) where the user will have to go to if (s)he fails
+an exercise.
+
+Usually, this command only applies to the next exercise, but you can
+make it persistent by putting a @samp{*} at the end of
+@code{command_data}.
+
+If label is NULL then this resets the label.
+
+@item X
+This command causes gtypist to exit. It is a single line command. Any
+@code{command_data} is ignored. The program also exits if the end of
+the file is found (so you could also place a label there and just
+@code{G} to it)
+
+@end table
+
+@c TODO: more examples (i.e. one example for E:/F:, one for a menu, ...)
+
+Here is a tiny example script to demonstrate the available commands
+(@file{tinydemo.typ} lesson file):
+
+@example
+# Minimal demonstration
+B: Typing tutor demonstration
+*:LOOP
+K:1:QDONE
+T:This is a small example tutor script. A better
+ :example may be found in the demo.typ file that
+ :accompanies GNU Typist
+I:Here is an example of a drill:
+D:asdf ghjkl;
+I:And here is an example of a speed test:
+S:qwe rt yu iop
+*:QDONE
+Q:Seen enough yet? [Y/N]
+N:LOOP
+X:
+@end example
+
+
+@node Create new lessons, Emacs mode, Script file commands, Top
+@chapter Create new lessons
+
+This section provides guidelines and hints for creating new lessons
+(or improving existing ones).
+
+@c TODO: better name for ``Design patterns'' ??
+
+@menu
+* Ktouch lessons::              Generate lessons from a set of drills
+* Exercises from fortune::      Create drills/speed-tests with text from fortune
+* Design patterns for lessons:: Hints/Design patterns for lessons
+* Findwords script::		Simple script designed to help you
+                    		find words with certain letters
+
+@end menu
+
+@node Ktouch lessons, , Exercises from fortune, Create new lessons
+@section Ktouch lessons
+
+A very easy way to write lessons is to write them in the format that
+@command{ktouch} @strong{1.0} uses, and then convert it to a gtypist
+lesson using @command{tools/ktouchOLD2typ.pl}. This will take care of
+writing ``jump-tables'', a menu and a bit more.
+
+The ktouch-1.0-format consists only of lessons, which are preceded by
+their names, and separated by blank lines and/or comments (@samp{#} at
+the beginning of the line). So the first non-blank, non-comment line
+in the file is the name of the first lesson, and the first lesson
+consists of all the lines up to the next comment or blank line. After
+the separator (comment or blank line) the name of the second lesson
+follows and so on.
+
+This is an example of a three-lesson ktouch file (excerpts from the
+first three lessons of @file{german.ktouch}):
+@example
+#
+# Deutsche Training-Datei für KTouch
+#
+
+Grundstellung
+f f f f f f fff fff fff f f f f f f fff fff fff f f f f f f f fff
+j j j j j j jjj jjj jjj j j j j j j jjj jjj jjj j j j j j j j jjj
+fff jjj fff jjj jjj fff jjj fff fjf fjf fjf jfj jfj jfj fjf jfjfj
+
+Grundstellung
+fff jjj ddd kkk aaa ööö fff jjj ddd kkk aaa ööö fff jjj ddd kkkff
+fda jkö fda jkö fda jkö fda jkö fda jkö fda jkö fda jkö fda jköfd
+s s s s s s sss sss sss s s s s s s sss sss sss s s s s s s s sss
+
+#Zwei wichtige Vokale: e und i
+e und i
+asdf ölkj fdsa jklö asdf ölkj fdsa jklö asdf ölkj fdsa jklö asdfö
+das dass lös fad dass lös als dass las lös fad dass als dass dass
+ded ded ded dej dek del deö ded deö del dek dej ded dej dek delde
+@end example
+
+Once you are done, use @command{tools/ktouchOLD2typ.pl} to convert the
+file: @samp{ktouchOLD2typ.pl lesson.ktouch} converts
+@file{lesson.ktouch} to @file{lesson.typ}. It is important that the
+input file ends in @samp{.ktouch}, otherwise
+@command{ktouchOLD2typ.pl} will skip it. Warning: this will overwrite
+@file{lesson.typ} without asking you !
+
+You can customize the number of lines that @command{ktouchOLD2typ.pl}
+uses for each drill by modifying the relevant variable in
+@file{tools/ktouchOLD2typ.pl}.
+
+Obviously, the disadvantage of this is that you cannot make use of all
+of gtypist's features (but the output file is very readable, so you
+can edit it to use more of gtypist's features).
+
+If you prefer, you can use the new ktouch 1.6 XML file format, which
+looks like this (from @file{english.ktouch.xml}:
+@example
+<KTouchLecture>
+ <Title>SAMPLE TITLE</Title>
+ <Comment>SAMPLE COMMENT</Comment>
+ <Levels>
+  <Level>
+   <NewCharacters>jf</NewCharacters>
+   <Line>ff jjj jf jfj j jff fjjf ff jfj j jff ff jjj fjj fjj fjf jfj jjj</Line>
+   <Line>f fjjf jjj fjjf jfj fjjf f j fjj jff j fjj jf jjj fjjf f f fjf</Line>
+   <Line>fjjf jff jjj ff jf fjjf fjjf f fjj fjj jf fjf j jj f j fjj jj jjj</Line>
+   <Line>...</Line>
+  </Level>
+  <Level>
+   <NewCharacters>kd</NewCharacters>
+   <Line>jjd fdfj rd djd jk jd k dd fjk fd fk k jfkd dkkf fk dkd dd jk k</Line>
+   <Line>dfj djd fkkk fk dff d dkkf fd fk fdfj fk k dkkf djd dff dkd dff</Line>
+   <Line>dkd kdk k dkkf k jk fkkk jd k jfkd fk fk jd k d dkd jd k dd rd dffd</Line>
+   <Line>...</Line>
+  </Level>
+ </Levels>
+</KTouchLecture>
+@end example
+In this format, the content of the <NewCharacters> tag acts as a title
+for the following drill. You can convert @file{*.ktouch.xml} to
+@file{*.typ} with @samp{ktouch2typ.pl lesson.ktouch.xml}, which will
+create @file{lesson.ktouch.typ} (again, this may overwrite without asking you).
+
+@node Exercises from fortune, Ktouch lessons, Design patterns for lessons, Create new lessons
+@section Exercises from fortune
+
+Using @file{gtypist-mode.el} you can quickly create lessons with text
+from the program @command{fortune} (or the Emacs-internal
+@command{yow} if @command{fortune} isn't available, as is usually the
+case on Windows).
+
+Once you installed @file{gtypist-mode.el} (@pxref{Emacs mode}), you
+can open a file with the @samp{.typ} extension and run @kbd{C-c C-f}
+to create a drill (@code{D:} by default, use @kbd{C-u} or @kbd{C-u
+C-u} prefix to change).
+
+@node Design patterns for lessons, Exercises from fortune, Findwords script, Create new lessons
+@section Design patterns for lessons
+
+@subsection Structure of lesson files
+
+@itemize @bullet
+@item Use mixture of drills and speed tests (this is more fun for the user)
+@item Use some ``practice-only'' exercises (@code{d:}/@code{s:})
+(possibly mixed with ``real'' exercises) followed by a ``final test''.
+@file{esp.typ} uses this scheme.
+
+@end itemize
+
+@subsection Patterns for exercises
+
+@itemize @bullet
+@item When introducing a new key, start out by mixing other (known) keys
+of the same finger in with the new key in the first drill(s).  Here is
+an example (from @file{t.typ}, line 237):
+@example
+I:Use your J-finger for the H key.
+*:_T_R_L23
+D:jjj jhj jjj jhj jjj jhj
+@end example
+@item use 'word, word.' repeatedly to practice ,/.
+@end itemize
+
+@node Findwords script, Design patterns for lessons, , Create new lessons
+@section Findwords script
+
+The @file{tools/findwords} script in the GNU Typist sources is there
+to assist you in creating new lessons.
+
+@subsection Purpose
+
+In the beginning when you are creating a new tutorial from scratch,
+it's not very easy to form words and even sentences while the range of
+letters you can use is restricted. Sometimes you want to insert some
+paragraph ``targeted'' at some special combination of two or three
+letters.  This is even harder.
+
+For this purpose we created findwords. It uses the dictionaries from
+the aspell database (free multilingual spellchecker).
+
+@subsection Installing
+
+You will need the @file{aspell} and @file{aspell-LG} packages, where
+LG is the ISO language code for the language you want to use.
+
+After a successful installation, you will have to make a little change
+in your configuration so that aspell's master database is the one of
+your language. This can be done two different ways:
+
+@enumerate
+        @item In your home directory create the file @*
+ .aspell.conf and add this line: @*
+            @code{master LANGUAGE}
+	@item Create /usr/share/pspell/LG-aspell.pwli @*
+ and add this line: @*
+            @code{/usr/lib/aspell/LG} @*
+ Make sure your locale setting is LG.
+@end enumerate
+
+In the above, LG means ISO language code (eg. `en', `fr', `cs') and
+LANGUAGE means name of the database in /usr/lib/aspell
+(eg. `english.multi', `french', `czech').
+
+You can try if it works by typing:
+@example
+        aspell dump master | less
+@end example
+
+@subsection Using findwords
+
+The syntax is as follows: @*
+        @code{./findwords letters [combination]}
+
+In the mandatory @option{letters} argument you must list the letters
+that you want use without any spaces. You may use the dot (`.') to say
+`all letters'. The second argument combination is optional and you can
+specify there what combination of letters are you searching for.
+
+Some examples:
+@itemize
+	@item @code{./findwords asdfjkleruio} @*
+We are looking for all words composed from the
+listed letters.
+	@item @code{./findwords asdfjkleruio sa} @*
+We search words containing the combination
+`sa', but only these composed from specified
+letters.
+	@item @code{./findwords . col} @*
+Words can contain all letters, but must have
+`col' somewhere inside.
+@end itemize
+
+@node Emacs mode, VIM Syntax highlighting, Create new lessons, Top
+@chapter Emacs mode
+
+gtypist now comes with an Emacs major-mode which does
+syntax-highlighting, indentation and has some convenient commands for
+counting labels, a goto-label-command, inserting properly centered
+banners, special comments and a bit more.
+
+Copy this file from @file{tools/gtypist-mode.el} to wherever you put
+your local elisp files (e.g.  @file{~/elisp}) and put this in your
+@file{~/.emacs} (adapt path!):
+
+@lisp
+(autoload 'gtypist-mode "~/elisp/gtypist-mode")
+@end lisp
+
+or put it in @code{load-path} (@samp{make install} in the sources
+should take care of this for GNU Emacs, or if you are using the Debian
+package, it installs it here for you) and use this instead:
+
+@lisp
+(autoload 'gtypist-mode "gtypist-mode")
+@end lisp
+
+@strong{and} add this to your @file{~/.emacs}:
+
+@lisp
+(setq auto-mode-alist
+      (cons '("\\.typ\\'" . gtypist-mode) auto-mode-alist))
+@end lisp
+
+@c If you want to, you can then byte-compile the file using
+@c @kbd{M-x byte-compile-file} (but @samp{make install} takes care of
+@c this).
+
+@noindent
+All this is also mentioned in the README-section of
+@file{tools/gtypist-mode.el}.
+
+@noindent
+Here are the commands along with the keybindings:
+
+@table @kbd
+
+@item C-c C-i, M-x gtypist-mode-info
+This shows gtypist's texinfo-documentation, starting at node ``Script
+file commands'' (@pxref{Script file commands}). With prefix, start at
+the top-node.
+
+@item C-c M-g, M-x gtypist-mode-goto-label
+Query for a label to go to (with completion).
+
+@item C-c C-l, M-x gtypist-mode-next-label
+This command inserts the next label in a numbered sequence of labels.
+For example, if you insert
+@example
+*:SERIES1_L1
+@end example
+and hit @kbd{C-c C-l} then gtypist-mode will insert
+@example
+*:SERIES1_L2
+@end example
+
+@item C-c C-b, M-x gtypist-mode-insert-banner
+This command inserts a centered @code{B:} command. It's centered on 66
+columns because ``gtypist <version>'' is in the right corner (prompts
+for content).
+
+@item C-c C-r, M-x gtypist-mode-insert-hrule
+Inserts a horizontal rule (comment) consisting of dashes.
+
+@item C-c C-n, M-x gtypist-mode-new-lesson
+Insert the comments (header) and a label to start a new lesson
+(prompts for name).
+
+@item C-c C-f, M-x gtypist-mode-fortune-to-drill
+Insert a drill (@code{D:}) with text from @command{fortune} (or
+@command{yow} if @command{fortune} isn't available). Use @kbd{C-u}
+prefix to get @code{S:}, and @kbd{C-u C-u} to get @code{d:}.
+
+@end table
+
+@noindent
+Run @kbd{C-h m} for a complete list of commands and their keybindings.
+
+If you find bugs or if you think there's something else this mode
+could do, please write to @email{bug-gtypist@@gnu.org}.
+
+@node VIM Syntax highlighting, Environment Variables, Emacs mode, Top
+@chapter VIM Syntax highlighting
+
+@noindent
+File @file{tools/gtypist.vim} provides vim syntax highlighting for
+gtypist lesson files (vim 5.x, 6.x and 7.x (and higher)).
+
+To install it for version 5.x (or any version on Windows), copy the
+file to where the syntax-files go (for example
+@file{/usr/share/vim/vim56/syntax/} for Vim 5.6; if everything else
+fails you can search for e.g. @file{xml.vim}) and add this to
+@file{~/.vimrc} (@file{$HOME/_vimrc} on Windows):
+@example
+autocmd BufNewFile,BufRead *.typ set ft=gtypist
+@end example
+
+Installation for Vim >= 6.x is simpler: first create @file{~/.vim/syntax/}:
+@code{mkdir -p ~/.vim/syntax} and put @file{tools/gtypist.vim} in there.
+Finally add this to @file{~/.vimrc}:
+
+@example
+autocmd BufNewFile,BufRead *.typ setf gtypist
+@end example
+
+In case you are using the debian package, @file{gtypist.vim} will already
+be installed for you, but you need to enable it explicitly:
+@example
+sudo apt-get install vim-addon-manager
+vim-addons install gtypist
+@end example
+
+In any case, make sure that the @file{vimrc} file has the following
+command at the top ahead of all other @code{autocmd}-commands:
+
+@example
+autocmd!  " Remove ALL autocommands for the current group
+@end example
+
+(which avoids problems if @file{vimrc} is sourced more than once).
+And if you haven\'t done it already, you need to enable syntax
+highlighting (this may need to be @emph{before} the autocmd ... gtypist).
+
+@example
+syntax on " turn on syntax highlighting
+@end example
+
+You can verify that @file{tools/gtypist.vim} is active by running
+@code{:set ft?} in vim, which should return @emph{filetype=gtypist}.
+
+@noindent
+All of this is also mentioned in the README-section of @file{tools/gtypist.vim}.
+
+@node Environment Variables, Errors and omissions, VIM Syntax highlighting, Top
+@chapter Environment Variables
+GNU Typist uses the following environment variables:
+
+@table @code
+
+@item LANG
+
+GNU Typist offers Native Language Support (NLS) with support of the
+gettext library, this means that if your system supports it, the
+language of the messages shown by gtypist can be chosen. By now
+gtypist is distributed with messages in English, Czech, Finnish,
+French, German and Spanish.  To use a particular NLS use the
+environment variable LANG and set it to the appropriate @samp{LL_CC}
+combination where @samp{LL} is an ISO 639 two-letter language code and
+@samp{CC} is an ISO 3166 two-letter country code (e.g. @samp{es_ES}
+for Spain and @code{de_DE} for Germany). In some systems it will be
+also necessary to set the environment variable LANGUAGE to the same
+value.
+
+If you want to translate messages to a different language (or if you
+want to correct a message), please communicate it to
+@email{bug-gtypist@@gnu.org}.
+
+
+@item GTYPIST_PATH
+Lists the directories that the program will look in for script files.
+It has the standard format for paths, that is, a list of directories
+separated by @samp{:}s. To open a script, gtypist will try the
+following paths: (1) to use the script name alone (2) it will append
+each one of the directories specified in the variable
+@code{GTYPIST_PATH} and (3) it will append the directory used during
+the installation process (e.g.  @file{/usr/local/share/gtypist} or
+@file{/usr/share/gtypist}).
+
+@item TERM
+Used by curses to manage the display.
+
+@item TERMINFO
+This may need to be set if the path to the @code{terminfo} database is
+different between the system the binary was compiled on and the one it
+is being run on. For example, in older Slackware systems, the terminfo
+database resides in @file{/usr/lib/terminfo}. On RedHat Linux, it is
+in @file{/usr/share/terminfo}. If the program complains about the
+terminal type, and the value of @code{TERM} is correct, check into
+this.
+
+@end table
+
+@node Errors and omissions, History, Environment Variables, Top
+@chapter Errors and omissions
+
+GNU Typist does not go to much effort to minimize terminal output. In
+particular, the flashing block cursor can cause a lot of cursor
+movement. Using the terminal's own cursor will help if this becomes a
+problem.
+
+In speed tests, the program does not allow backspacing or deletion
+past the beginning of the screen line, or back through Tab
+characters. This is purely to simplify screen updating.
+
+Colour curses modes do not seem to work well with UnixWare. In
+particular, reverse video is not always rendered correctly on some
+terminal types, and xterms.
+
+Please see the TODO file in the source distribution for more things
+that need to be fixed.
+
+@node History, Copying this manual, Errors and omissions, Top
+@appendix History of GNU Typist
+
+@itemize @bullet
+@item
+The initial program was written for VAX/VMS BASIC by someone at Harris
+Corp (Ft. Lauderdale, FL).
+@item
+@email{penneyj@@slc.com, D. Jason Penney} rewrote it for Microsoft BASICA
+@item
+@email{penneyj@@slc.com, D. Jason Penney} rewrote it in C and the curses
+library
+@item
+@email{simonb@@sco.com, Simon Baldwin} rewrote the version of D. Jason
+Penney, his innovations are described in the NEWS file (versions 2.2
+to 2.2b).  He is the holder of the copyright for GNU Typist (that is
+distributed under the GPL).  Simon also wrote a version of Typist in
+Java that initially he called JTypist but that now is called Typist
+again:
+
+@uref{http://www.geocities.com/simon_baldwin/typist/}
+@item
+Since 1997, @email{synrg@@sanctuary.nslug.ns.ca, Ben Armstrong} has
+helped by fixing bugs and maintaining a
+@uref{http://packages.debian.org/gtypist/, Debian package}.
+@item
+In 2000, @email{vtamara@@users.sourceforge.net, Vladimir Támara} and
+@email{ikks@@users.sourceforge.net, Igor Támara} became the
+maintainers of the C version. Before November 2000, GNU Typist was
+maintained as part of the Structio project.
+@item
+November 2000, accepted as a GNU package! Renamed to GNU Typist (or
+gtypist).
+@item In May 2001, @email{michaelo@@gnu.org, Michael Opdenacker},
+who learned touch typing with GNU Typist, became the new
+maintainer. Project development is now hosted on
+@uref{http://savannah.gnu.org/projects/gtypist/}.
+@item
+In June 2001, @email{fnatter@@gmx.net, Felix Natter} joined and made
+major contributions to the project: lesson imports from other tutors,
+tool enhancements, new tutorial capabilities, , Emacs mode, arrow key
+based interface, and many more!
+@item
+In 2003, @email{rutsky@@school.ioffe.rssi.ru, Dmitry Rutsky} joined
+joined the development team and brought in a dramatic number ideas,
+hacks and improvements, and he's not done yet!
+@item
+In April 2008, @email{general@@vultaire.net, Paul Goins} took over as
+maintainer of GNU Typist, adding a few enhancements (especially
+building under Windows with MinGW), making some documentation updates
+and changing the license to GPL version 3.
+@item
+In December 2010, @email{edam@@waxworlds.org, Tim Marston} took over
+as maintainer of GNU Typist, adding some enhancements and support for
+the Colemak keyboard layout.
+@end itemize
+
+@node Copying this manual
+@appendix GNU Free Documentation License
+@include fdl.texi
+@bye
+
+@c  LocalWords:  xref QWERTY kt

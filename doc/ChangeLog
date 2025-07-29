@@ -1,0 +1,324 @@
+2024-08-09 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* gtypist.text: Add the Romanian lesson to the doc
+
+2024-08-09 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* gtypist.text: Add the lessons using the symmetric system
+
+2024-08-08 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* gtypist.text, gtypist.cs.texi, gtpist.es.text: Update the
+	KTouch lesson list
+
+2023-01-26 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* all files: Update copyright year
+
+2021-04-07 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* Makefile.am, Changelog: Update copyright year
+
+2020-05-26 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* gtypist.texi: Fix inapproppriate Linux reference
+
+2018-11-16 Mihai Gătejescu <gus666xe@gmail.com>
+
+	* gtypist.texi, gtypist.cs.texi, gtypist.es.texi: Change
+	--error-max to --max-error (#43911), reported by
+	Rastus Vernon <rastus.vernon@gmail.com>
+
+2013-06-04  Tim Marston <tim@ed.am>
+
+	* gtypist.es.text: fixed warning about unknown FASE value.
+
+2012-12-17  Tim Marston <tim@ed.am>
+
+	* gtypist.texi, gtypist.cs.text, gtypist.es.texi: Changed the
+	licensing so that there are no invarient sections.
+
+2012-07-24 Felix Natter <fnatter@gmx.net>
+
+	* doc/gtypist.texi: Add node about config file
+
+2011-08-19  Felix Natter <fnatter@gmx.net>
+
+	* gtypist.texi: Update node "Supplied lessons" for new lessons
+	* gtypist.texi: Update node "Ktouch lessons" for distinction
+	between old 1.0 format and new 1.6 XML format
+	* gtypist.texi: convert to UTF-8
+
+2011-06-28  Tim Marston <edam@waxworlds.org>
+
+	* gtypist.es.texi: added, thanks to smc <smc@manticore.es> for the good
+	  work.
+
+2011-03-24  Tim Marston <edam@waxworlds.org>
+
+	* gtypist.cs.texi: (renamed from gtypist-cs.texi) specified the wrong
+	  filename for it's .info which prevented make install from running
+	  (reported by Fredrik <siriannalisa@gmail.com>).
+
+2008-05-27  Paul Goins  <general@vultaire.net>
+
+	* gtypist*.texi: Updated a couple of remaining FDL 1.1 references to
+	  FDL 1.2.
+
+2008-05-17  Paul Goins  <general@vultaire.net>
+
+	* Makefile.am: Added --no-headers flag to makeinfo invocation.  This
+	  should give us a manual very close to the last published one, and
+	  avoids a "duplicate menu" which appears in the HTML version
+	  otherwise.
+
+2008-05-12  Paul Goins  <general@vultaire.net>
+
+	* gtypist.texi: Updated FSF address, renamed/updated links (and removed
+	  some obsolete ones, added mention of CPM scoring, updated command
+	  line options section, added myself to the history section, and did
+	  some minor reformatting.
+
+	* ChangeLog: Minor formatting update.
+
+2008-05-06  Paul Goins  <general@vultaire.net>
+
+	* gtypist*.texi: Slightly modified so the manuals will correctly import
+	  unaltered texinfo source for GPL and FDL.
+
+2008-05-04  Paul Goins  <general@vultaire.net>
+
+	* gpl.texi: Updated to GNU GPL v3
+	* fdl.texi: Updated to GNU FDL v1.2
+
+2003-10-31  Dmitry Rutsky  <rutsky@school.ioffe.rssi.ru>
+
+	* gtypist.texi:  updated the information about the `M' command.
+
+2003-10-25  Hynek Hanke  <hanke@volny.cz>
+
+	* gtypist-cs.texi: Renamed from gtypist.cs.texi. The reason is not
+	to cause automake errors related to invalid suffix.
+
+	* gtypist.cs.texi: Include version2.texi, not version.texi, so that
+	the auto-tools don't complain. It seems this is some ugly workaround
+	for something, but it is advised in the documentation and it shouldn't
+	break anything as ver*.texi files are generated automatically.
+
+	* Makefile.am: Handle also the HTML target so that we don't have
+	to do it manually in autogen.sh.
+	The target `all' now depends on target `info' AND `html'.
+
+	* gtypist.cs.texi: Build into gtypist.cs.info, not gtypist.info.
+
+2003-10-24  Hynek Hanke  <hanke@volny.cz>
+
+	* gtypist.cs.texi: @documentencoding and @documentlanguage moved to
+	the beginning of the file so that the auto-tools don't complain about
+	it.
+
+2003-09-28  Michael Opdenacker <michaelo@gnu.org>
+
+	* gtypist*.texi: added a table of contents at the beginning
+	* gtypist.texi: mentioned the lessons in Russian.
+	* Makefile.am: now ships the html manuals in the source package.
+
+2003-04-06  Felix Natter  <fnatter@gmx.net>
+
+	* gtypist.texi: added documentation for M: command + mark old menus
+	(K:) as deprecated
+
+2002-06-28  Hynek Hanke  <hanke@volny.cz>
+
+	* gtypist.texi: Added section Findwords script to the
+	chapter Creating lessons.
+
+2002-04-23  Michael Opdenacker  <michaelo@gnu.org>
+
+	* gtypist.cz.texi: fixed to support the original fdl.texi file
+	* gtypist.cz.texi, gtypist.texi: added @documentlanguage
+	and @documentencoding settings. This makes sure that html
+	manuals are automatically generated with the right language
+	and charset settings.
+
+2002-04-21  Michael Opdenacker  <michaelo@gnu.org>
+
+	* gtypist.texi: fixed to include the original fdl.texi file.
+	* gtypist.texi: changes to let makeinfo use the best output
+	in supported formats, as recommended in the texinfo manual:
+	Replaced all @url calls by @uref (@url doesn't create http links
+	in the makeinfo html output; I was using texi2html to create
+	the html manual, but only makeinfo should be used).
+	Replaced 'Name @email{address}' by '@mail{address, Name}.
+	Used @option everywhere for command line options.
+	Used @samp to introduce single characters.
+        Small fixes to use texinfo commands when needed.
+	* gtypist.texi: updated Felix Natter's email address.
+
+2002-04-08  Michael Opdenacker  <michaelo@gnu.org>
+
+	* gtypist.texi: uses the new @copying command provided by texinfo-4.2.
+	The manual is now released under the GNU Free Documentation license
+	(with no Invariant Sections) which is now included in the manual.
+
+2002-04-07  Michael Opdenacker  <michaelo@gnu.org>
+
+	* gtypist.cz.texi: Czech translation of the manual
+	from Hynek Hanke <hanke@volny.cz>
+
+2002-02-23  Felix Natter  <fnatter@gmx.net>
+
+	* gtypist.texi (Emacs mode): do not mention that C-c C-f can be used
+	to quickly create lesson for oneself to practice with (That will
+	be typefortune's purpose)
+	* gtypist.texi: put node Script file commands after Supplied lessons
+	(swap Supplied lessons and Script file commands)
+	to make the order more logical
+
+2002-01-19  Michael Opdenacker <michaelo@gnu.org>
+
+	* gtypist.texi: Added French to the list of interface languages.
+	Recommended to use a wider terminal for languages such as French.
+
+2001-11-03  Felix Natter  <fnatter@gmx.net>
+
+	* gtypist.texi (many nodes): changed the node-names to be shorter
+	and add descriptions in the menus
+	(i.e. Emacs mode for editing gtypist scripts => Emacs mode)
+	* gtypist.texi (Technical Information): remove this node, because
+	it contains two subnodes that are completely unrelated (Environment
+	Variables and Known bugs); put the two subnodes in the toplevel
+	menu instead
+	* gtypist.texi (Distribution): use @asis instead of @emph because
+	@emph results in "_Primary distribution site_"
+
+2001-10-20  Felix Natter  <fnatter@gmx.net>
+
+	* gtypist.texi: fix some TODO's
+	* gtypist.texi: rename node "Emacs mode for editing gtypist lessons" to
+	"Emacs mode for editing gtypist scripts"
+	* gtypist.texi (VIM Syntax highlighting for gtypist scripts):
+	new node which explains how to install tools/gtypist.vim
+
+2001-09-17  Felix Natter  <fnatter@gmx.net>
+
+	* gtypist.texi: new node "Design-patterns for lessons"
+	which has hints about all kinds of things for writing lessons
+
+2001-08-22  Felix Natter  <fnatter@gmx.net>
+
+	* gtypist.texi (Introduction): as Kevin Gallagher <kevingal@onramp.net>
+	(and Eli Zaretskii <eliz@is.elta.co.il>) suggested, do not mention
+	<backspace> and <delete> explicitly (because <delete> leads to
+	confusion). Instead, just mention ("Backward deleting")
+
+2001-08-16  Michael Opdenacker 	<michaelo@gnu.org>
+
+	* Renamed manual sources to `gtypist.texi' (more standard).
+
+2001-08-15  Felix Natter  <fnatter@gmx.net>
+
+	* node Introduction: start of rewrite
+	* some spelling fixes
+
+2001-08-15  Michael Opdenacker 	<michaelo@gnu.org>
+
+	* GPL text now taken from a separate file, gpl.texi,
+	copied from GNU hello. Renamed manual sources to
+	`gtypist.texi' (more standard).
+
+2001-08-12  Felix Natter  <fnatter@gmx.net>
+
+        * node Emacs mode for editing gtypist-lessons: add info
+	about gtypist-mode-help and change the informatin about
+	gtypist-mode-fortune-to-drill
+	* node Script-file commands: mention that Q: accepts fkeys as
+	a side-effect, and that this is used to set the prompt for menus
+	* many nodes: rename "Script files and commands" to
+	"Script-file commands"
+
+2001-07-28  Felix Natter  <fnatter@gmx.net>
+
+	* node Emacs mode for editing gtypist-lessons: mention that
+	"make install" puts gtypist-mode.el in load-path
+
+2001-07-27  Felix Natter  <fnatter@gmx.net>
+
+	* node How to contribute new lessons: add menu with nodes
+	"Ktouch-lessons" and "Create drills from fortune".
+	* node Ktouch-lessons: add example of .ktouch-lesson
+
+2001-07-26  Felix Natter  <fnatter@gmx.net>
+
+	* node Supplied Lessons: mention kt*.typ
+	* node How to contribute new lessons: remove "not yet there" notice,
+	tell user about ktouch-files and ktouch2typ.pl
+	* node Emacs mode for editing gtypist-lessons: improve English
+	* generate gtypist.info
+
+2001-07-21  Felix Natter  <fnatter@gmx.net>
+
+	* node Emacs mode for editing gtypist-lessons:
+	use @strong for and + add note that people should submit
+	feature-suggestions
+	* node Invoking: use '-' as word-separator in long options
+	* node Distribution: add structio.sourceforge.net
+	* node Script files and commands: mention that trailing whitespace
+	is ignored in labels
+
+2001-07-20  Felix Natter  <fnatter@gmx.net>
+
+	* node Introduction: some English fixes
+	* node Invoking: mention $LANG
+	* node Environment Variables: an English fix
+	* generate gtypist.info
+
+2001-07-19  Felix Natter <fnatter@gmx.net>
+
+	* node Script files and commands: correct a few errors
+	* node Environment Variables: use LANG=LL_CC
+	* node Invoking: --wpmode is now disabled by default
+	* new node: Emacs mode for editing gtypist-lessons
+
+2001-06-26  Michael Opdenacker  <michaelo@gnu.org>
+
+	* Fixed errors and improved the manual.
+
+2001-05-24  Michael Opdenacker  <michaelo@gnu.org>
+
+	* Replaced `typist' by `gtypist' in the documentation
+	  (the `typist' executable is no longer built in 2.3.2)
+	* Corrected a few spelling and typing mistakes
+	* Added recent changes to project history
+
+2000-11-29  Vladimir Tamara  <vtamara@gnu.org>
+
+	* New structure and change of name to GNU Typist (gtypist)
+
+2000-10-29  Igor Tamara  <ikks@bigfoot.com>
+
+	* First version of texinfo documentation
+
+
+  Copyright (C) 2001, 2002, 2003 Simon Baldwin (simonb@sco.com)
+
+  Copyright (C) 2003, 2004, 2008, 2009, 2011, 2012, 2013, 2014, 2016,
+                2017, 2018, 2019, 2020
+                Felix Natter, Michael Opdenacker, Hynek Hanke, Dmitry Rutsky,
+                Paul Goins, Tim Marston, Mihai Gătejescu
+  Copyright (C) 2021, 2022 Felix Natter, Mihai Gătejescu
+
+  This file is a part of GNU Typist
+
+  GNU Typist is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  GNU Typist is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with GNU Typist.  If not, see <http://www.gnu.org/licenses/>.

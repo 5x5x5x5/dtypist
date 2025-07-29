@@ -1,0 +1,531 @@
+# FINNISH
+# Copyright (C) 2001,2003 Kimmo Surakka <kusti@iki.fi>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU Typist 2.6\n"
+"Report-Msgid-Bugs-To: bug-gtypist@gnu.org\n"
+"POT-Creation-Date: 2025-02-02 01:30+0200\n"
+"PO-Revision-Date: 2012-02-06 17:17+0000\n"
+"Last-Translator: Kimmo Surakka <kusti@iki.fi>\n"
+"Language-Team: Finnish <fi@li.org>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/gtypist.c:209 src/script.c:61
+msgid "internal error: strdup"
+msgstr "sisäinen virhe: strdup"
+
+#: src/gtypist.c:385
+msgid "invalid key binding"
+msgstr "virheellinen näppäinliitos"
+
+#: src/gtypist.c:387
+msgid "invalid function key number"
+msgstr "virheellinen funktionäppäimen numero"
+
+#: src/gtypist.c:426 src/gtypist.c:536 src/gtypist.c:844
+msgid "data exceeds screen length"
+msgstr "koko teksti ei mahdu ruudulle"
+
+#: src/gtypist.c:469
+msgid "instructions are limited to two lines"
+msgstr "ohjeita saa olla enintään kaksi riviä"
+
+#: src/gtypist.c:743 src/gtypist.c:1051 src/script.c:311
+msgid "internal error: fseek"
+msgstr "sisäinen virhe: fseek"
+
+#: src/gtypist.c:825 src/gtypist.c:1902 src/gtypist.c:1918 src/gtypist.c:1965 src/gtypist.c:2002 src/gtypist.c:2022 src/script.c:145 src/script.c:169 src/script.c:256
+msgid "internal error: malloc"
+msgstr "sisäinen virhe: malloc"
+
+#: src/gtypist.c:1376
+#, no-c-format
+msgid "'*' must immediately follow '%'"
+msgstr "asteriskin ('*') pitää olla välittömästi '%':n jälkeen"
+
+#: src/gtypist.c:1379 src/gtypist.c:1382
+#, no-c-format
+msgid "missing '%'"
+msgstr "puuttuva '%'"
+
+#: src/gtypist.c:1386
+#, no-c-format
+msgid "'%' must immediately follow value"
+msgstr "'%':n pitää olla välittömasti arvon jälkeen"
+
+#: src/gtypist.c:1395
+msgid "overflow in do_error_max_set"
+msgstr "ylivuoto funktiossa do_error_max_set"
+
+#: src/gtypist.c:1415
+msgid "Invalid value for \"E:\" (out of range)"
+msgstr "Virheellinen arvo parametrille \"E:\" (alueen ulkopuolella)"
+
+#: src/gtypist.c:1468 src/script.c:305
+#, c-format
+msgid "label '%s' not found"
+msgstr "tunnistetta '%s' ei löydy"
+
+#: src/gtypist.c:1528
+msgid "unknown command"
+msgstr "tuntematon komento"
+
+#: src/gtypist.c:1562
+#, c-format
+msgid "Try '%s --help' for more information.\n"
+msgstr "Kirjoita '%s --help' saadaksesi lisätietoja.\n"
+
+#: src/gtypist.c:1569
+#, fuzzy, c-format
+msgid "%s: invalid max-error value\n"
+msgstr "%s: virheellinen arvo parametrilla error-max\n"
+
+#: src/gtypist.c:1576
+#, c-format
+msgid "%s: invalid curs-flash value\n"
+msgstr "%s: virheellinen kohdistimen vilkkumisjakson arvo\n"
+
+#: src/gtypist.c:1586
+#, c-format
+msgid "%s: invalid colours value\n"
+msgstr "%s: virheelinen värimääritysparametrin arvo\n"
+
+#: src/gtypist.c:1599
+#, fuzzy, c-format
+msgid "%s: invalid banner-colours value\n"
+msgstr "%s: virheelinen värimääritysparametrin arvo\n"
+
+#: src/gtypist.c:1680
+msgid " Tutorial "
+msgstr " Opastus  "
+
+#: src/gtypist.c:1682
+msgid "  Query   "
+msgstr "  Kysely  "
+
+#: src/gtypist.c:1684
+msgid "  Drill   "
+msgstr "Harjoitus "
+
+#: src/gtypist.c:1686
+msgid "Speed test"
+msgstr "Nopeuskoe "
+
+#: src/gtypist.c:1688
+msgid " Press RETURN or SPACE to continue, ESC to return to the menu "
+msgstr " Paina Return tai välilyönti jatkaaksesi, Esc palataksesi valikkoon "
+
+#: src/gtypist.c:1691
+#, c-format
+msgid " Your error-rate is too high. You have to achieve %.1f%%. "
+msgstr " Virhetiheytesi on liian suuri. Virheitä saa olla enintään %.1f%%. "
+
+#: src/gtypist.c:1695
+#, c-format
+msgid " You failed this test, so you need to go back to %s. "
+msgstr " Et läpäissyt koetta, sinun on palattava kohtaan %s. "
+
+#: src/gtypist.c:1699
+msgid " Press R to repeat, N for next exercise or E to exit "
+msgstr " Paina T toistaaksesi, J jatkaaksesi tai L lopettaaksesi "
+
+#: src/gtypist.c:1703
+msgid " Press R to repeat or E to exit "
+msgstr " Paina T toistaaksesi tai L lopettaaksesi "
+
+#: src/gtypist.c:1706
+msgid " Are you sure you want to exit this lesson? [Y/N] "
+msgstr " Haluatko varmasti lopettaa tämän harjoituksen? [K/E] "
+
+#: src/gtypist.c:1710
+msgid " Sorry, gtypist is configured to forbid skipping exercises. "
+msgstr " Valitan, asetuksissa kielletään harjoitusten ohittaminen. "
+
+#: src/gtypist.c:1715
+msgid "Y/N"
+msgstr "K/E"
+
+#: src/gtypist.c:1725
+msgid "R/N/E"
+msgstr "T/J/L"
+
+#: src/gtypist.c:1746
+#, c-format
+msgid "%s: %s environment variable not set\n"
+msgstr ""
+
+#: src/gtypist.c:1793
+msgid "can't find or open file"
+msgstr "ei löydä tai voi avata tiedostoa"
+
+#: src/gtypist.c:1847
+msgid "Loading the script..."
+msgstr "Lataa skriptitiedostoa..."
+
+#: src/gtypist.c:1957
+msgid "internal error: fopen"
+msgstr "sisäinen virhe: fopen"
+
+#: src/cursmenu.c:326
+msgid "Use arrowed keys to move around, SPACE or RETURN to select and ESCAPE to go back"
+msgstr "Liiku nuolinäppäimillä, valitse välilyönillä tai Returnilla, palaa takaisin Esc:llä"
+
+#: src/error.c:56
+msgid "line"
+msgstr "rivi"
+
+#: src/script.c:161
+msgid "label contains space"
+msgstr ""
+
+#: src/script.c:187
+msgid "label redefinition"
+msgstr "tunnisteen uudelleenmäärittely"
+
+#: src/script.c:212
+msgid "Error while reading file"
+msgstr ""
+
+#: src/script.c:229
+msgid "Invalid multibyte sequence (wrong encoding?)"
+msgstr ""
+
+#: src/script.c:231
+msgid "data shortage"
+msgstr "liian vähän dataa"
+
+#: src/script.c:233
+msgid "missing ':'"
+msgstr "puuttuva ':'"
+
+#: src/script.c:237
+msgid "line too long for screen"
+msgstr "rivi ei mahdu näytölle"
+
+#: src/script.c:327 src/script.c:329
+#, c-format
+msgid ""
+"Happy Typing!\n"
+"\n"
+msgstr ""
+"Iloista kirjoittelua!\n"
+"\n"
+
+#: src/utf8.c:64
+msgid "couldn't convert UTF-8 to wide characters"
+msgstr ""
+
+#: src/utf8.c:175
+msgid "error in setcchar()"
+msgstr ""
+
+#: src/infoview.c:112
+msgid "error writing config file!"
+msgstr ""
+
+#. TRANSLATORS: This message must not exceed 76 characters (UTF-8 code
+#. points, actually) or it will display incorrectly on an 80-character
+#. wide terminal.
+#: src/infoview.c:124
+msgid ""
+"Welcome to GNU Typist!\n"
+"\n"
+"This message is meant to get you started using gtypist. Please read the\n"
+"manual (at http://www.gnu.org/software/gtypist/doc/, or type \"info gtypist\")\n"
+"for more in-depth information!\n"
+"\n"
+"Use the arrow keys or PGUP/PGDN to scroll this window, SPACE/ENTER to start\n"
+"using gtypist, or 'D' to use gtypist and never show this dialog again.\n"
+"\n"
+"There are two types of typing exercises: \"drills\" and \"speed tests\". In a\n"
+"\"drill\", gtypist displays text in every other line on the screen and waits\n"
+"for the user to correctly type the exact same text in the intermediate\n"
+"lines. In a \"speed test\", gtypist displays text on the screen and waits\n"
+"for the user to correctly type the exact same text over the top.\n"
+"\n"
+"In both exercise types, you have to repeat the test if your error percentage\n"
+"is higher than a maximum error percentage. The default is 3%, but if this is\n"
+"too difficult you can change it by running gtypist with the \"-e <maxpct>\"\n"
+"command-line option.\n"
+"\n"
+"On most terminal emulators you can use Ctrl--/Ctrl-+ to resize the\n"
+"terminal window. For Mac OS X, Command--/Command-+ serve this purpose.\n"
+"On Windows, change the properties of the terminal window by clicking on\n"
+"the top left corner of the window and choosing 'Properties'.\n"
+"\n"
+"Several typing courses are available from the main menu. As well as the\n"
+"\"QWERTY\" courses, lessons are also available for other keyboard layouts,\n"
+"such as Dvorak and Colemak, and numeric keypads. There are also other\n"
+"lessons, besides the ones available on the main menu (such as the new\n"
+"lesson for programmers). To see a list of the other lessons, select\n"
+"\"More lessons...\" from the main menu.\n"
+"To use one of these other lessons, run gtypist with the name of the lesson\n"
+"file (including .typ) as a command-line argument. See the comments at the\n"
+"top of each file for more information about the source and the author of\n"
+"the lessons. If you want to write your own lessons, look at gtypist's\n"
+"manual, it's really simple!\n"
+"\n"
+"If you have any questions about GNU Typist, please write to the gtypist\n"
+"mailing list at <bug-gtypist@gnu.org>.\n"
+"\n"
+"Happy Typing!"
+msgstr ""
+
+#: src/infoview.c:217
+msgid "Welcome screen"
+msgstr ""
+
+#: src/infoview.c:273
+msgid "Press SPACE, ENTER or ESCAPE to start gtypist, or 'D' to disable this dialog"
+msgstr ""
+
+#. TRANSLATORS: a '|' character in this message divides it in to two
+#. * halves, which are aligned to the left and right sides of the dialog
+#: src/speedbox.c:72
+#, c-format
+msgid "Raw speed|= %6.2f wpm"
+msgstr "Raakanopeus|= %6.2f s/m"
+
+#. TRANSLATORS: a '|' character in this message divides it in to two
+#. * halves, which are aligned to the left and right sides of the dialog
+#: src/speedbox.c:75
+#, c-format
+msgid "Raw speed|= %7.2f cpm"
+msgstr ""
+
+#. TRANSLATORS: a '|' character in this message divides it in to two
+#. * halves, which are aligned to the left and right sides of the dialog
+#: src/speedbox.c:78
+#, c-format
+msgid "Adjusted speed|= %6.2f wpm"
+msgstr "Korjattu nopeus|= %6.2f s/m"
+
+#. TRANSLATORS: a '|' character in this message divides it in to two
+#. * halves, which are aligned to the left and right sides of the dialog
+#: src/speedbox.c:81
+#, c-format
+msgid "Adjusted speed|= %7.2f cpm"
+msgstr ""
+
+#. TRANSLATORS: a '|' character in this message divides it in to two
+#. * halves, which are aligned to the left and right sides of the dialog
+#: src/speedbox.c:84
+#, c-format
+msgid "|with %.1f%% errors"
+msgstr "|virheitä yhteensä %.1f%%."
+
+#. TRANSLATORS: a '|' character in this message divides it in to two
+#. * halves, which are aligned to the left and right sides of the dialog
+#: src/speedbox.c:87
+#, c-format
+msgid "Personal best|= %6.2f wpm"
+msgstr ""
+
+#. TRANSLATORS: a '|' character in this message divides it in to two
+#. * halves, which are aligned to the left and right sides of the dialog
+#: src/speedbox.c:90
+#, c-format
+msgid "Personal best|= %7.2f cpm"
+msgstr ""
+
+#. TRANSLATORS: a '|' character in this message divides it in to two
+#. * halves, which are aligned to the left and right sides of the dialog
+#: src/speedbox.c:93
+msgid "|new personal best"
+msgstr ""
+
+#, fuzzy
+#~ msgid "Happy Typing!"
+#~ msgstr ""
+#~ "Iloista kirjoittelua!\n"
+#~ "\n"
+
+#~ msgid ""
+#~ "Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003 Simon Baldwin.\n"
+#~ "Copyright (C) 2003, 2004, 2008, 2011, 2012 GNU Typist Development Team.\n"
+#~ "This program comes with ABSOLUTELY NO WARRANTY; for details\n"
+#~ "please see the file 'COPYING' supplied with the source code.\n"
+#~ "This is free software, and you are welcome to redistribute it\n"
+#~ "under certain conditions; again, see 'COPYING' for details.\n"
+#~ "This program is released under the GNU General Public License."
+#~ msgstr ""
+#~ "Tekijänoikeus (C) 1998, 1999, 2000, 2001, 2002, 2003 Simon Baldwin.\n"
+#~ "Tekijänoikeus (C) 2003, 2004, 2008, 2011, 2012 GNU Typist Development Team.\n"
+#~ "Tätä ohjelmaa levitetään ILMAN MITÄÄN TAKUUTA; lisätietoja on\n"
+#~ "lähdekoodin mukana toimitetussa tiedostossa 'COPYING'.\n"
+#~ "Tämä ohjelma on vapaa, ja sitä saa levittää edelleen tiettyjen ehtojen\n"
+#~ "mukaisesti; yksityiskohdat ovat em. tiedostossa 'COPYING'.\n"
+#~ "Tämä ohjelma on julkaistu GNU Yleisen julkisen lisenssin (GPL) alaisena."
+
+#~ msgid "default maximum error percentage (default 3.0); valid values are between 0.0 and 100.0"
+#~ msgstr "virheiden enimmäismäärän oletusarvo prosentteina (oletuksena 3.0); lailliset arvot ovat 0.0:n ja 100.0:n välissä"
+
+#~ msgid "turn off WPM timer in drills"
+#~ msgstr "kytke sanoja minuutissa -laskuri pois käytöstä harjoituksissa"
+
+#~ msgid "use the terminal's hardware cursor"
+#~ msgstr "käytä päätteen laitteistokohdistinta"
+
+#~ msgid "cursor flash period P*.1 sec (default 10); valid  values are between 0 and 512; this is ignored if -t is specified"
+#~ msgstr "kohdistimen vilkkumisjakso kymmenesosasekunteina (oletusarvo 10); lailliset arvot ovat 0:n ja 512:n välissä; tällä ei ole merkitystä, jos on annettu optio -t"
+
+#~ msgid "set initial display colours where available"
+#~ msgstr "aseta näytön alkuvärit, jos mahdollista"
+
+#~ msgid "don't beep on errors"
+#~ msgstr "kytke virhetilanteen merkkiääni pois käytöstä"
+
+#~ msgid "same as -s, --silent"
+#~ msgstr "sama kuin -s, --silent"
+
+#~ msgid "start the lesson at label 'L'"
+#~ msgstr "aloita oppitunti tunnisteesta 'L'"
+
+#~ msgid "try to mimic word processors"
+#~ msgstr "yritä jäljitellä tekstinkäsittelyohjelmia"
+
+#~ msgid "forbid the user to skip exercises"
+#~ msgstr "älä anna käyttäjän ohittaa harjoituksia"
+
+#~ msgid "highlight errors with reverse video"
+#~ msgstr "korosta virheet käänteisvärillä"
+
+#~ msgid "print this message"
+#~ msgstr "tulosta tämä viesti"
+
+#~ msgid "output version information and exit"
+#~ msgstr "näytä versiotiedot ja lopeta"
+
+#~ msgid "do not ask confirmation questions"
+#~ msgstr "älä kysy varmistuskysymyksiä"
+
+#~ msgid "set top banner colours (background, foreground, package and version respectively)"
+#~ msgstr "aseta ylätunnisteen värit (tausta, edusta, pakkaus ja versio tässä järjestyksessä)"
+
+#~ msgid ""
+#~ "`gtypist' is a typing tutor with several lessons for different keyboards and languages.  New lessons can be written by the user easily.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "'gtypist' on konekirjoituksen harjoitteluohjelma, joka tukee useita eri näppäimistöasetteluita ja kieliä. Käyttäjän on helppo lisätä uusia harjoituksia.\n"
+#~ "\n"
+
+#~ msgid "Usage"
+#~ msgstr "Käyttö"
+
+#~ msgid "script-file"
+#~ msgstr "skriptitiedosto"
+
+#~ msgid "Options"
+#~ msgstr "Optiot"
+
+#~ msgid ""
+#~ "\n"
+#~ "If not supplied, script-file defaults to '%s/%s'.\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Jos skriptitiedostoa ei kerrota, oletusarvo on '%s/%s'\n"
+
+#~ msgid ""
+#~ "The path $GTYPIST_PATH is searched for script files.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Skriptitiedostoja etsittäessä käytetään polkua $GTYPIST_PATH.\n"
+#~ "\n"
+
+#~ msgid "Examples"
+#~ msgstr "Esimerkkejä"
+
+#~ msgid "To run the default lesson in english `gtypist.typ'"
+#~ msgstr "Suorittaa englanninkielisen oletusoppitunnin 'gtypist.typ'"
+
+#~ msgid "To run the lesson in spanish"
+#~ msgstr "Käynnistää espanjankielisen oppitunnin"
+
+#~ msgid "To instruct gtypist to look for lesson `bar.typ' in a non standard directory"
+#~ msgstr "Kehottaa gtypist-ohjelmaa etsimään oppituntia 'bar.typ' epästandardista hakemistosta"
+
+#~ msgid "To run the lesson in the file `test.typ' of directory `temp', starting at label `TEST1', using the terminal's cursor, and run silently"
+#~ msgstr "Suorittaa oppitunnin tiedostosta 'test.typ' hakemistossa 'temp', alkaen tunnisteesta 'TEST1', käyttäen päätteen kohdistinta ja äänettömästi"
+
+#~ msgid "Report bugs to bug-gtypist@gnu.org"
+#~ msgstr "Virheilmoitukset osoitteeseen bug-gtypist@gnu.org"
+
+#~ msgid "%s:  argument format is incorrect\n"
+#~ msgstr "%s: argumentin muoto on virheellinen\n"
+
+#~ msgid "%s:  incorrect colour values\n"
+#~ msgstr "%s: virheellinen värimääritysparametrin arvo\n"
+
+#, fuzzy
+#~ msgid "%s: invalid scoring mode"
+#~ msgstr "%s: virheelinen värimääritysparametrin arvo\n"
+
+#~ msgid "%s: internal error: malloc\n"
+#~ msgstr "%s: sisäinen virhe: malloc\n"
+
+#~ msgid "Written by Simon Baldwin"
+#~ msgstr "Tekijä: Simon Baldwin"
+
+#~ msgid "internal error in strdup"
+#~ msgstr "sisäinen virhe strdup:ssa"
+
+#, fuzzy
+#~ msgid ""
+#~ "Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003 Simon Baldwin.\n"
+#~ "Copyright (C) 2003, 2004, 2008, 2011 GNU Typist Development Team.\n"
+#~ "This program comes with ABSOLUTELY NO WARRANTY; for details\n"
+#~ "please see the file 'COPYING' supplied with the source code.\n"
+#~ "This is free software, and you are welcome to redistribute it\n"
+#~ "under certain conditions; again, see 'COPYING' for details.\n"
+#~ "This program is released under the GNU General Public License."
+#~ msgstr ""
+#~ "Tekijänoikeus (C) 1998, 1999, 2000, 2001, 2002, 2003 Simon Baldwin.\n"
+#~ "Tekijänoikeus (C) 2003, 2004, 2008 GNU Typist Development Team.\n"
+#~ "Tätä ohjelmaa levitetään ILMAN MITÄÄN TAKUUTA; lisätietoja on\n"
+#~ "lähdekoodin mukana toimitetussa tiedostossa 'COPYING'.\n"
+#~ "Tämä ohjelma on vapaa, ja sitä saa levittää edelleen tiettyjen ehtojen\n"
+#~ "mukaisesti; yksityiskohdat ovat em. tiedostossa 'COPYING'.\n"
+#~ "Tämä ohjelma on julkaistu GNU Yleisen julkisen lisenssin (GPL) alaisena."
+
+#~ msgid " Raw speed      = %6.2f wpm "
+#~ msgstr " Raakanopeus     = %6.2f s/m "
+
+#, fuzzy
+#~ msgid " Raw speed      = %6.2f cpm "
+#~ msgstr " Raw speed      = %6.2f cpm "
+
+#~ msgid " Adjusted speed = %6.2f wpm "
+#~ msgstr " Korjattu nopeus = %6.2f s/m "
+
+#, fuzzy
+#~ msgid " Adjusted speed = %6.2f cpm "
+#~ msgstr " Adjusted speed = %6.2f cpm "
+
+#~ msgid "            with %.1f%% errors "
+#~ msgstr "      virheitä yhteensä %.1f%%. "
+
+#, fuzzy
+#~ msgid " Personal best  = %6.2f wpm "
+#~ msgstr " Raakanopeus     = %6.2f s/m "
+
+#, fuzzy
+#~ msgid " Personal best  = %6.2f cpm "
+#~ msgstr " Raw speed      = %6.2f cpm "
+
+#, fuzzy
+#~ msgid "           new personal best "
+#~ msgstr "      virheitä yhteensä %.1f%%. "
+
+#, fuzzy
+#~ msgid " internal error: fopen"
+#~ msgstr "sisäinen virhe: fseek"
+
+#~ msgid "options"
+#~ msgstr "optiot"
+
+#~ msgid " Press Return to continue... "
+#~ msgstr " Paina Return jatkaaksesi... "
