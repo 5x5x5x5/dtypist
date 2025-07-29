@@ -175,11 +175,11 @@ X:
         
         let script = parse_script_file(temp_file.path().to_str().unwrap()).unwrap();
         
-        assert_eq!(script.commands.len(), 6);
+        assert_eq!(script.commands.len(), 7); // Comment, Label, Tutorial, Drill, Goto, Label, Exit
         assert!(script.labels.contains_key("START"));
         assert!(script.labels.contains_key("END"));
-        assert_eq!(script.labels["START"], 1); // Index of *:START command
-        assert_eq!(script.labels["END"], 4);   // Index of *:END command
+        assert_eq!(script.labels["START"], 1); // Index of *:START command  
+        assert_eq!(script.labels["END"], 5);   // Index of *:END command
     }
     
     #[test]

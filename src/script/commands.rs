@@ -202,9 +202,18 @@ impl Command {
             chars::ON_FAILURE_SET => Command::OnFailureSet { 
                 label: data.to_string() 
             },
-            chars::MENU => Command::Menu { 
-                title: data.to_string(),
-                items: Vec::new(), // Will be populated by parser
+            chars::MENU => {
+                // Remove quotes and leading/trailing spaces from menu title
+                let cleaned_data = data.trim();
+                let title = if cleaned_data.starts_with('"') && cleaned_data.ends_with('"') && cleaned_data.len() >= 2 {
+                    cleaned_data[1..cleaned_data.len()-1].to_string()
+                } else {
+                    cleaned_data.to_string()
+                };
+                Command::Menu { 
+                    title,
+                    items: Vec::new(), // Will be populated by parser
+                }
             },
             _ => {
                 return Err(crate::script::ScriptError::InvalidCommand {

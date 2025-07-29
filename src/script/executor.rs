@@ -1,10 +1,16 @@
 //! Script command executor
 //! 
-//! Handles execution of parsed script commands.
-//! This will be expanded in later phases of the migration.
+//! Handles execution of parsed script commands with integrated exercise engine.
 
 use crate::script::{Script, ScriptResult};
 use crate::script::commands::Command;
+use crate::exercises::{TutorialExercise, DrillExercise, SpeedTestExercise, ExerciseOutcome};
+use crossterm::{
+    execute,
+    terminal::{Clear, ClearType},
+    cursor,
+};
+use std::io::{stdout, Write};
 
 /// Script executor state
 pub struct Executor {
@@ -44,22 +50,32 @@ impl Executor {
             Command::Label { .. } => Ok(ExecutionResult::Continue),
             
             Command::Tutorial { text } => {
-                // TODO: Implement tutorial display
-                println!("TUTORIAL: {}", text);
-                Ok(ExecutionResult::Continue)
+                let exercise = TutorialExercise::new(text);
+                match exercise.execute() {
+                    Ok(ExerciseOutcome::Completed(_)) => Ok(ExecutionResult::Continue),
+                    Ok(ExerciseOutcome::Quit) => Ok(ExecutionResult::Exit),
+                    Ok(ExerciseOutcome::Retry) => Ok(ExecutionResult::Continue), // Retry the same command
+                    Ok(ExerciseOutcome::Failed) => Ok(ExecutionResult::Continue), // Continue for tutorials
+                    Err(_) => Ok(ExecutionResult::Continue), // Handle errors gracefully
+                }
             },
             
             Command::Instruction { text } => {
-                // TODO: Implement instruction display  
-                println!("INSTRUCTION: {}", text);
-                Ok(ExecutionResult::Continue)
+                let mut stdout = stdout();
+                execute!(stdout, Clear(ClearType::All), cursor::MoveTo(0, 0)).ok();
+                println!("{}", text);
+                println!("\nPress any key to continue...");
+                stdout.flush().ok();
+                Ok(ExecutionResult::WaitForInput)
             },
             
             Command::Clear { banner } => {
-                // TODO: Implement screen clearing
+                let mut stdout = stdout();
+                execute!(stdout, Clear(ClearType::All), cursor::MoveTo(0, 0)).ok();
                 if let Some(banner_text) = banner {
-                    println!("BANNER: {}", banner_text);
+                    println!("=== {} ===\n", banner_text);
                 }
+                stdout.flush().ok();
                 Ok(ExecutionResult::Continue)
             },
             
@@ -70,15 +86,32 @@ impl Executor {
             Command::Exit => Ok(ExecutionResult::Exit),
             
             Command::Drill { text, practice_only } => {
-                // TODO: Implement drill exercise
-                println!("DRILL{}: {}", if practice_only { " (practice)" } else { "" }, text);
-                Ok(ExecutionResult::Continue)
+                let exercise = DrillExercise::new(text, practice_only, self.error_percentage);
+                match exercise.execute() {
+                    Ok(ExerciseOutcome::Completed(_)) => Ok(ExecutionResult::Continue),
+                    Ok(ExerciseOutcome::Quit) => Ok(ExecutionResult::Exit),
+                    Ok(ExerciseOutcome::Retry) => Ok(ExecutionResult::Continue), // Retry the same command
+                    Ok(ExerciseOutcome::Failed) => {
+                        // Jump to failure label if set, otherwise continue
+                        if let Some(ref label) = self.failure_label {
+                            Ok(ExecutionResult::Jump(label.clone()))
+                        } else {
+                            Ok(ExecutionResult::Continue)
+                        }
+                    },
+                    Err(_) => Ok(ExecutionResult::Continue), // Handle errors gracefully
+                }
             },
             
             Command::SpeedTest { text, practice_only } => {
-                // TODO: Implement speed test exercise
-                println!("SPEEDTEST{}: {}", if practice_only { " (practice)" } else { "" }, text);
-                Ok(ExecutionResult::Continue)
+                let exercise = SpeedTestExercise::new(text, practice_only, None); // No time limit by default
+                match exercise.execute() {
+                    Ok(ExerciseOutcome::Completed(_)) => Ok(ExecutionResult::Continue),
+                    Ok(ExerciseOutcome::Quit) => Ok(ExecutionResult::Exit),
+                    Ok(ExerciseOutcome::Retry) => Ok(ExecutionResult::Continue), // Retry the same command
+                    Ok(ExerciseOutcome::Failed) => Ok(ExecutionResult::Continue), // Speed tests don't typically fail
+                    Err(_) => Ok(ExecutionResult::Continue), // Handle errors gracefully
+                }
             },
             
             Command::ErrorMaxSet { percentage } => {
