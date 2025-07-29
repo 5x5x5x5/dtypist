@@ -45,8 +45,14 @@ impl TutorialExercise {
         // Clear screen and display text
         execute!(stdout, Clear(ClearType::All), cursor::MoveTo(0, 0))?;
         
-        // Display the tutorial text
-        println!("{}", self.text);
+        // Display the tutorial text (truncated to prevent excessive output)
+        const MAX_TUTORIAL_DISPLAY: usize = 2000;
+        let display_text = if self.text.len() > MAX_TUTORIAL_DISPLAY {
+            format!("{}...", &self.text[..MAX_TUTORIAL_DISPLAY])
+        } else {
+            self.text.clone()
+        };
+        println!("{}", display_text);
         println!("\nPress SPACE to continue, ESC to quit...");
         stdout.flush()?;
         
@@ -96,9 +102,15 @@ impl DrillExercise {
         println!("=== {} ===", if self.practice_only { "DRILL PRACTICE" } else { "DRILL" });
         println!("Type the following text. Press ESC to quit, Ctrl+R to retry.\n");
         
-        // Display target text
+        // Display target text (truncated to prevent excessive output)
+        const MAX_TARGET_DISPLAY: usize = 500;
+        let display_text = if self.text.len() > MAX_TARGET_DISPLAY {
+            format!("{}...", &self.text[..MAX_TARGET_DISPLAY])
+        } else {
+            self.text.clone()
+        };
         println!("Target:");
-        println!("{}\n", self.text);
+        println!("{}\n", display_text);
         
         println!("Your typing:");
         stdout.flush()?;
@@ -185,8 +197,12 @@ impl DrillExercise {
         // Move cursor to typing area
         execute!(stdout, cursor::MoveTo(0, 6))?;
         
+        // Limit display to prevent excessive output that could cause RangeError
+        const MAX_DISPLAY_CHARS: usize = 1000;
+        let display_limit = typed_text.len().min(MAX_DISPLAY_CHARS);
+        
         // Display typed characters with error highlighting
-        for (i, ch) in typed_text.chars().enumerate() {
+        for (i, ch) in typed_text.chars().take(display_limit).enumerate() {
             if i < target_chars.len() {
                 if ch == target_chars[i] {
                     queue!(stdout, SetForegroundColor(Color::Green), Print(ch))?;
@@ -256,9 +272,15 @@ impl SpeedTestExercise {
         }
         println!("Type as fast and accurately as possible. Press ESC to quit.\n");
         
-        // Display target text  
+        // Display target text (truncated to prevent excessive output)
+        const MAX_TARGET_DISPLAY: usize = 500;
+        let display_text = if self.text.len() > MAX_TARGET_DISPLAY {
+            format!("{}...", &self.text[..MAX_TARGET_DISPLAY])
+        } else {
+            self.text.clone()
+        };
         println!("Text to type:");
-        println!("{}\n", self.text);
+        println!("{}\n", display_text);
         
         println!("Press any key to start...");
         stdout.flush()?;
@@ -357,9 +379,13 @@ impl SpeedTestExercise {
         
         println!("Progress: {}/{} characters\n", position, target_chars.len());
         
+        // Limit display to prevent excessive output that could cause RangeError
+        const MAX_DISPLAY_CHARS: usize = 1000;
+        let display_limit = typed_text.len().min(MAX_DISPLAY_CHARS);
+        
         // Display typed text with highlighting
         print!("Typed: ");
-        for (i, ch) in typed_text.chars().enumerate() {
+        for (i, ch) in typed_text.chars().take(display_limit).enumerate() {
             if i < target_chars.len() {
                 if ch == target_chars[i] {
                     queue!(stdout, SetForegroundColor(Color::Green), Print(ch))?;
@@ -367,6 +393,11 @@ impl SpeedTestExercise {
                     queue!(stdout, SetForegroundColor(Color::Red), Print(ch))?;
                 }
             }
+        }
+        
+        // Add indication if text was truncated
+        if typed_text.len() > MAX_DISPLAY_CHARS {
+            queue!(stdout, SetForegroundColor(Color::Blue), Print("..."))?;
         }
         
         queue!(stdout, ResetColor)?;
