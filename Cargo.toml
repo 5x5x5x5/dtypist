@@ -9,12 +9,12 @@ repository = "https://github.com/your-repo/gtypist-rs"
 
 [[bin]]
 name = "gtypist"
-path = "src/bin/main.rs"
+path = "src/main.rs"
 
 [dependencies]
 crossterm = "0.27"
 serde = { version = "1.0", features = ["derive"] }
-clap = { version = "4.4", features = ["derive"] }
+clap = "2.34"
 chrono = { version = "0.4", features = ["serde"] }
 unicode-width = "0.1"
 thiserror = "1.0"

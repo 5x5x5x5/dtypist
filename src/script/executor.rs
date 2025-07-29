@@ -5,6 +5,7 @@
 use crate::script::{Script, ScriptResult};
 use crate::script::commands::Command;
 use crate::exercises::{TutorialExercise, DrillExercise, SpeedTestExercise, ExerciseOutcome};
+use crate::menu::Menu;
 use crossterm::{
     execute,
     terminal::{Clear, ClearType},
@@ -17,6 +18,7 @@ pub struct Executor {
     pub script: Script,
     pub error_percentage: f32,
     pub failure_label: Option<String>,
+    pub last_query_response: Option<bool>, // Track Y/N responses for conditional jumps
 }
 
 impl Executor {
@@ -26,6 +28,7 @@ impl Executor {
             script,
             error_percentage: 0.0,
             failure_label: None,
+            last_query_response: None,
         }
     }
     
@@ -33,10 +36,20 @@ impl Executor {
     pub fn execute_next(&mut self) -> ScriptResult<ExecutionResult> {
         if let Some(command) = self.script.current_command() {
             let result = self.execute_command(command.clone())?;
-            if !matches!(result, ExecutionResult::Jump(_)) {
-                self.script.next();
+            match result {
+                ExecutionResult::Jump(ref label) => {
+                    // Handle jump by updating script position
+                    self.script.goto_label(label)?;
+                    Ok(ExecutionResult::Continue)
+                },
+                _ => {
+                    // Normal execution - advance to next command
+                    if !matches!(result, ExecutionResult::Exit | ExecutionResult::Finished) {
+                        self.script.next();
+                    }
+                    Ok(result)
+                }
             }
-            Ok(result)
         } else {
             Ok(ExecutionResult::Finished)
         }
@@ -124,11 +137,71 @@ impl Executor {
                 Ok(ExecutionResult::Continue)
             },
             
-            _ => {
-                // TODO: Implement remaining commands
-                println!("TODO: Implement command {:?}", command);
+            Command::Menu { title, items } => {
+                let mut menu = Menu::new(title);
+                for item in items {
+                    menu.add_item(item.label, item.description);
+                }
+                
+                match menu.display() {
+                    Ok(Some(selected_label)) => Ok(ExecutionResult::Jump(selected_label)),
+                    Ok(None) => Ok(ExecutionResult::Exit), // User quit menu
+                    Err(_) => Ok(ExecutionResult::Continue), // Handle errors gracefully
+                }
+            },
+            
+            Command::Query { text } => {
+                let mut stdout = stdout();
+                execute!(stdout, Clear(ClearType::All), cursor::MoveTo(0, 0)).ok();
+                println!("{}", text);
+                println!("\nPress Y for yes, N for no, ESC to quit...");
+                stdout.flush().ok();
+                
+                // Handle user input for query
+                use crossterm::event::{read, Event, KeyCode, KeyEvent};
+                loop {
+                    match read() {
+                        Ok(Event::Key(KeyEvent { code: KeyCode::Char('y'), .. })) |
+                        Ok(Event::Key(KeyEvent { code: KeyCode::Char('Y'), .. })) => {
+                            self.last_query_response = Some(true);
+                            return Ok(ExecutionResult::Continue);
+                        },
+                        Ok(Event::Key(KeyEvent { code: KeyCode::Char('n'), .. })) |
+                        Ok(Event::Key(KeyEvent { code: KeyCode::Char('N'), .. })) => {
+                            self.last_query_response = Some(false);
+                            return Ok(ExecutionResult::Continue);
+                        },
+                        Ok(Event::Key(KeyEvent { code: KeyCode::Esc, .. })) => {
+                            return Ok(ExecutionResult::Exit);
+                        },
+                        _ => continue,
+                    }
+                }
+            },
+            
+            Command::YesGoto { label } => {
+                if let Some(true) = self.last_query_response {
+                    Ok(ExecutionResult::Jump(label))
+                } else {
+                    Ok(ExecutionResult::Continue)
+                }
+            },
+            
+            Command::NoGoto { label } => {
+                if let Some(false) = self.last_query_response {
+                    Ok(ExecutionResult::Jump(label))
+                } else {
+                    Ok(ExecutionResult::Continue)
+                }
+            },
+            
+            Command::KeyBind { sequence } => {
+                // TODO: Implement key binding functionality
+                // For now, just log and continue
+                println!("Key binding: {}", sequence);
                 Ok(ExecutionResult::Continue)
-            }
+            },
+            
         }
     }
 }
