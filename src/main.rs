@@ -196,10 +196,10 @@ fn display_goodbye() -> Result<(), Box<dyn std::error::Error>> {
     println!();
     println!("{}", center_text("=== GNU Typist ==="));
     println!();
-    println!("Thanks for using GNU Typist!");
-    println!("Keep practicing to improve your typing skills.");
+    print!("\x1B[1GThanks for using GNU Typist!\n");
+    print!("\x1B[1GKeep practicing to improve your typing skills.\n");
     println!();
-    println!("Press any key to exit...");
+    print!("\x1B[1GPress any key to exit...\n");
     println!();
     stdout.flush()?;
     
@@ -224,10 +224,10 @@ fn display_completion() -> Result<(), Box<dyn std::error::Error>> {
     println!();
     println!("{}", center_text("=== Lesson Complete ==="));
     println!();
-    println!("Congratulations! You have completed this lesson.");
-    println!("Continue practicing to improve your typing skills.");
+    print!("\x1B[1GCongratulations! You have completed this lesson.\n");
+    print!("\x1B[1GContinue practicing to improve your typing skills.\n");
     println!();
-    println!("Press any key to exit...");
+    print!("\x1B[1GPress any key to exit...\n");
     println!();
     stdout.flush()?;
     

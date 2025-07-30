@@ -171,7 +171,7 @@ impl DrillExercise {
         println!("{}", center_text(&format!("=== {} ===", 
             if self.practice_only { "DRILL PRACTICE" } else { "DRILL" })));
         println!();
-        println!("Type the following text. Press ESC to quit, Ctrl+R to retry.");
+        print!("\x1B[1GType the following text. Press ESC to quit, Ctrl+R to retry.\n");
         println!();
         
         // Display target text (truncated to prevent excessive output)
@@ -182,10 +182,10 @@ impl DrillExercise {
             self.text.clone()
         };
         
-        println!("Target:");
-        println!("{}", display_text);
+        print!("\x1B[1GTarget:\n");
+        print!("\x1B[1G{}\n", display_text);
         println!();
-        println!("Your typing:");
+        print!("\x1B[1GYour typing:\n");
         stdout.flush()?;
         
         let start_time = Instant::now();
@@ -303,14 +303,14 @@ impl DrillExercise {
         println!();
         println!("{}", center_text("=== RESULTS ==="));
         println!();
-        println!("Characters typed: {}", result.total_chars);
-        println!("Correct: {}", result.correct_chars);
-        println!("Errors: {}", result.errors);
-        println!("Accuracy: {:.1}%", 100.0 - result.error_rate);
-        println!("Speed: {:.1} WPM", result.wpm);
-        println!("Time: {:.1}s", result.duration.as_secs_f32());
+        print!("\x1B[1GCharacters typed: {}\n", result.total_chars);
+        print!("\x1B[1GCorrect: {}\n", result.correct_chars);
+        print!("\x1B[1GErrors: {}\n", result.errors);
+        print!("\x1B[1GAccuracy: {:.1}%\n", 100.0 - result.error_rate);
+        print!("\x1B[1GSpeed: {:.1} WPM\n", result.wpm);
+        print!("\x1B[1GTime: {:.1}s\n", result.duration.as_secs_f32());
         println!();
-        println!("Press any key to continue...");
+        print!("\x1B[1GPress any key to continue...\n");
         
         read()?;
         Ok(())
@@ -353,7 +353,7 @@ impl SpeedTestExercise {
             println!("Time limit: {} seconds", time_limit.as_secs());
         }
         println!();
-        println!("Type as fast and accurately as possible. Press ESC to quit.");
+        print!("\x1B[1GType as fast and accurately as possible. Press ESC to quit.\n");
         println!();
         
         // Display target text (truncated to prevent excessive output)
@@ -364,10 +364,10 @@ impl SpeedTestExercise {
             self.text.clone()
         };
         
-        println!("Text to type:");
-        println!("{}", display_text);
+        print!("\x1B[1GText to type:\n");
+        print!("\x1B[1G{}\n", display_text);
         println!();
-        println!("Press any key to start...");
+        print!("\x1B[1GPress any key to start...\n");
         stdout.flush()?;
         
         // Wait for start signal
@@ -498,12 +498,12 @@ impl SpeedTestExercise {
         println!();
         println!("{}", center_text("=== SPEED TEST RESULTS ==="));
         println!();
-        println!("Characters typed: {}", result.total_chars);
-        println!("Correct characters: {}", result.correct_chars);
-        println!("Errors: {}", result.errors);
-        println!("Accuracy: {:.1}%", 100.0 - result.error_rate);
-        println!("Speed: {:.1} WPM", result.wpm);
-        println!("Time: {:.1} seconds", result.duration.as_secs_f32());
+        print!("\x1B[1GCharacters typed: {}\n", result.total_chars);
+        print!("\x1B[1GCorrect characters: {}\n", result.correct_chars);
+        print!("\x1B[1GErrors: {}\n", result.errors);
+        print!("\x1B[1GAccuracy: {:.1}%\n", 100.0 - result.error_rate);
+        print!("\x1B[1GSpeed: {:.1} WPM\n", result.wpm);
+        print!("\x1B[1GTime: {:.1} seconds\n", result.duration.as_secs_f32());
         println!();
         
         // Grade the performance
@@ -514,9 +514,9 @@ impl SpeedTestExercise {
         } else {
             "Keep practicing!"
         };
-        println!("{}", grade);
+        print!("\x1B[1G{}\n", grade);
         println!();
-        println!("Press any key to continue...");
+        print!("\x1B[1GPress any key to continue...\n");
         
         read()?;
         Ok(())

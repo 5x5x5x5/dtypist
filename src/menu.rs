@@ -48,8 +48,19 @@ impl Menu {
             // Clear screen and display menu
             execute!(stdout, Clear(ClearType::All), cursor::MoveTo(0, 0))?;
             
-            // Display title
-            println!("=== {} ===\n", self.title);
+            // Display title (centered)
+            let title_text = format!("=== {} ===", self.title);
+            let width = match crossterm::terminal::size() {
+                Ok((w, _)) => w as usize,
+                Err(_) => 80
+            };
+            let padding = if title_text.len() < width {
+                (width - title_text.len()) / 2
+            } else {
+                0
+            };
+            println!("{}{}", " ".repeat(padding), title_text);
+            println!();
             
             // Find the maximum label width for consistent alignment
             let max_label_width = self.items.iter()
@@ -58,19 +69,20 @@ impl Menu {
                 .unwrap_or(10)
                 .max(10); // Minimum width of 10
             
-            // Display menu items with consistent formatting
+            // Display menu items with consistent formatting and cursor positioning
             for (i, item) in self.items.iter().enumerate() {
                 if i == selected {
                     // Highlight selected item
                     execute!(stdout, SetForegroundColor(Color::Yellow))?;
-                    println!("  > {:<width$} {}", item.label, item.title, width = max_label_width);
+                    print!("\x1B[1G  > {:<width$} {}\n", item.label, item.title, width = max_label_width);
                     execute!(stdout, ResetColor)?;
                 } else {
-                    println!("    {:<width$} {}", item.label, item.title, width = max_label_width);
+                    print!("\x1B[1G    {:<width$} {}\n", item.label, item.title, width = max_label_width);
                 }
             }
             
-            println!("\nUse UP/DOWN arrows to navigate, ENTER to select, ESC to quit");
+            println!();
+            print!("\x1B[1GUse UP/DOWN arrows to navigate, ENTER to select, ESC to quit\n");
             stdout.flush()?;
             
             // Handle user input
