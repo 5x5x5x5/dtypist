@@ -26,7 +26,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Test centering with different text lengths
     let test_texts = vec![
         "=== GNU Typist - Rust Implementation ===",
-        "Version 2.10.1", 
+        "Version 0.1.0", 
         "A typing tutor to help you learn touch typing.",
         "Press ESC at any time to exit.",
         "Press any key to continue...",
@@ -55,7 +55,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     
     println!();
     println!("{}", center_text("=== GNU Typist - Rust Implementation ===")); 
-    println!("{}", center_text("Version 2.10.1"));
+    println!("{}", center_text("Version 0.1.0"));
     println!();
     println!("{}", center_text("A typing tutor to help you learn touch typing."));
     println!("{}", center_text("Press ESC at any time to exit."));

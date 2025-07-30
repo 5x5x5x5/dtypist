@@ -32,7 +32,7 @@ fn main() {
 
 fn create_cli() -> App<'static, 'static> {
     App::new("gtypist")
-        .version("2.10.1-rust")
+        .version("0.1.0")
         .author("GNU Typist Team <bug-gtypist@gnu.org>")
         .about("A typing tutor program that teaches touch typing")
         .arg(Arg::with_name("lesson")
@@ -163,7 +163,7 @@ fn display_welcome() -> Result<(), Box<dyn std::error::Error>> {
     
     println!();
     println!("{}", center_text("=== GNU Typist - Rust Implementation ===")); 
-    println!("{}", center_text("Version 2.10.1"));
+    println!("{}", center_text("Version 0.1.0"));
     println!();
     println!("{}", center_text("A typing tutor to help you learn touch typing."));
     println!("{}", center_text("Press ESC at any time to exit."));
