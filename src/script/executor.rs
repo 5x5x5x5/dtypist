@@ -44,7 +44,7 @@ fn get_content_width() -> usize {
     }
 }
 
-/// Print text with simple, reliable left-justified formatting
+/// Print text with proper word wrapping and cursor positioning
 fn print_wrapped_text(text: &str) {
     const LINE_WIDTH: usize = 50;
     
@@ -55,7 +55,8 @@ fn print_wrapped_text(text: &str) {
     for word in words {
         // If adding this word would exceed the line width, print current line and start new one
         if !current_line.is_empty() && current_line.len() + 1 + word.len() > LINE_WIDTH {
-            println!("{}", current_line);
+            // Force cursor to column 1 and print the line
+            print!("\x1B[1G{}\n", current_line);
             current_line.clear();
         }
         
@@ -68,7 +69,7 @@ fn print_wrapped_text(text: &str) {
     
     // Print any remaining text
     if !current_line.is_empty() {
-        println!("{}", current_line);
+        print!("\x1B[1G{}\n", current_line);
     }
 }
 

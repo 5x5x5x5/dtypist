@@ -42,7 +42,7 @@ fn get_content_width() -> usize {
     50 // Fixed 50 characters for consistent, readable line lengths
 }
 
-/// Print text with simple, reliable left-justified formatting
+/// Print text with proper word wrapping and cursor positioning
 fn print_wrapped_text(text: &str) {
     const LINE_WIDTH: usize = 50;
     
@@ -53,7 +53,8 @@ fn print_wrapped_text(text: &str) {
     for word in words {
         // If adding this word would exceed the line width, print current line and start new one
         if !current_line.is_empty() && current_line.len() + 1 + word.len() > LINE_WIDTH {
-            println!("{}", current_line);
+            // Force cursor to column 1 and print the line
+            print!("\x1B[1G{}\n", current_line);
             current_line.clear();
         }
         
@@ -66,7 +67,7 @@ fn print_wrapped_text(text: &str) {
     
     // Print any remaining text
     if !current_line.is_empty() {
-        println!("{}", current_line);
+        print!("\x1B[1G{}\n", current_line);
     }
 }
 
@@ -98,8 +99,9 @@ impl TutorialExercise {
     pub fn execute(&self) -> Result<ExerciseOutcome, Box<dyn std::error::Error>> {
         let mut stdout = stdout();
         
-        // Clear screen with direct ANSI codes
-        print!("\x1B[2J\x1B[1;1H");
+        // Clear screen and position cursor at top-left
+        print!("\x1B[2J\x1B[H");
+        stdout.flush()?;
         
         println!();
         println!("{}", center_text("=== TUTORIAL ==="));
@@ -113,11 +115,11 @@ impl TutorialExercise {
             self.text.clone()
         };
         
-        // Print text with proper wrapping, left-justified
-        // Debug: Check for special characters
+        // Print text with proper wrapping, each line at left margin
         let clean_text = display_text.replace('\t', " ");
         print_wrapped_text(&clean_text);
         
+        println!();
         println!();
         println!("Press SPACE to continue, ESC to quit...");
         stdout.flush()?;
@@ -169,7 +171,7 @@ impl DrillExercise {
         println!("{}", center_text(&format!("=== {} ===", 
             if self.practice_only { "DRILL PRACTICE" } else { "DRILL" })));
         println!();
-        println!("Type the following text. Press ESC to quit, Ctrl+R to retry.");
+        print!("\x1B[1GType the following text. Press ESC to quit, Ctrl+R to retry.\n");
         println!();
         
         // Display target text (truncated to prevent excessive output)
@@ -180,10 +182,10 @@ impl DrillExercise {
             self.text.clone()
         };
         
-        println!("Target:");
-        println!("{}", display_text);
+        print!("\x1B[1GTarget:\n");
+        print!("\x1B[1G{}\n", display_text);
         println!();
-        println!("Your typing:");
+        print!("\x1B[1GYour typing:\n");
         stdout.flush()?;
         
         let start_time = Instant::now();
@@ -301,14 +303,14 @@ impl DrillExercise {
         println!();
         println!("{}", center_text("=== RESULTS ==="));
         println!();
-        println!("Characters typed: {}", result.total_chars);
-        println!("Correct: {}", result.correct_chars);
-        println!("Errors: {}", result.errors);
-        println!("Accuracy: {:.1}%", 100.0 - result.error_rate);
-        println!("Speed: {:.1} WPM", result.wpm);
-        println!("Time: {:.1}s", result.duration.as_secs_f32());
+        print!("\x1B[1GCharacters typed: {}\n", result.total_chars);
+        print!("\x1B[1GCorrect: {}\n", result.correct_chars);
+        print!("\x1B[1GErrors: {}\n", result.errors);
+        print!("\x1B[1GAccuracy: {:.1}%\n", 100.0 - result.error_rate);
+        print!("\x1B[1GSpeed: {:.1} WPM\n", result.wpm);
+        print!("\x1B[1GTime: {:.1}s\n", result.duration.as_secs_f32());
         println!();
-        println!("Press any key to continue...");
+        print!("\x1B[1GPress any key to continue...\n");
         
         read()?;
         Ok(())
@@ -351,7 +353,7 @@ impl SpeedTestExercise {
             println!("Time limit: {} seconds", time_limit.as_secs());
         }
         println!();
-        println!("Type as fast and accurately as possible. Press ESC to quit.");
+        print!("\x1B[1GType as fast and accurately as possible. Press ESC to quit.\n");
         println!();
         
         // Display target text (truncated to prevent excessive output)
@@ -362,10 +364,10 @@ impl SpeedTestExercise {
             self.text.clone()
         };
         
-        println!("Text to type:");
-        println!("{}", display_text);
+        print!("\x1B[1GText to type:\n");
+        print!("\x1B[1G{}\n", display_text);
         println!();
-        println!("Press any key to start...");
+        print!("\x1B[1GPress any key to start...\n");
         stdout.flush()?;
         
         // Wait for start signal
@@ -496,12 +498,12 @@ impl SpeedTestExercise {
         println!();
         println!("{}", center_text("=== SPEED TEST RESULTS ==="));
         println!();
-        println!("Characters typed: {}", result.total_chars);
-        println!("Correct characters: {}", result.correct_chars);
-        println!("Errors: {}", result.errors);
-        println!("Accuracy: {:.1}%", 100.0 - result.error_rate);
-        println!("Speed: {:.1} WPM", result.wpm);
-        println!("Time: {:.1} seconds", result.duration.as_secs_f32());
+        print!("\x1B[1GCharacters typed: {}\n", result.total_chars);
+        print!("\x1B[1GCorrect characters: {}\n", result.correct_chars);
+        print!("\x1B[1GErrors: {}\n", result.errors);
+        print!("\x1B[1GAccuracy: {:.1}%\n", 100.0 - result.error_rate);
+        print!("\x1B[1GSpeed: {:.1} WPM\n", result.wpm);
+        print!("\x1B[1GTime: {:.1} seconds\n", result.duration.as_secs_f32());
         println!();
         
         // Grade the performance
@@ -512,9 +514,9 @@ impl SpeedTestExercise {
         } else {
             "Keep practicing!"
         };
-        println!("{}", grade);
+        print!("\x1B[1G{}\n", grade);
         println!();
-        println!("Press any key to continue...");
+        print!("\x1B[1GPress any key to continue...\n");
         
         read()?;
         Ok(())
