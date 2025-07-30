@@ -267,8 +267,8 @@ impl DrillExercise {
         target_chars: &[char],
         position: usize
     ) -> Result<(), Box<dyn std::error::Error>> {
-        // Move cursor to typing area
-        execute!(stdout, cursor::MoveTo(0, 6))?;
+        // Move cursor to typing area (line after "Your typing:")
+        execute!(stdout, cursor::MoveTo(0, 9))?;
         
         // Limit display to prevent excessive output that could cause RangeError
         const MAX_DISPLAY_CHARS: usize = 1000;
