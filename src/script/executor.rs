@@ -2,7 +2,7 @@
 //! 
 //! Handles execution of parsed script commands with integrated exercise engine.
 
-use crate::script::{Script, ScriptResult};
+use crate::script::{Script, ScriptResult, load_text_file};
 use crate::script::commands::Command;
 use crate::exercises::{TutorialExercise, DrillExercise, SpeedTestExercise, ExerciseOutcome};
 use crate::menu::Menu;
@@ -263,6 +263,69 @@ impl Executor {
                     Ok(ExecutionResult::Jump(label))
                 } else {
                     Ok(ExecutionResult::Continue)
+                }
+            },
+            
+            Command::TutorialFile { path } => {
+                match load_text_file(&path, &self.script.path) {
+                    Ok(text) => {
+                        let exercise = TutorialExercise::new(text);
+                        match exercise.execute() {
+                            Ok(ExerciseOutcome::Completed(_)) => Ok(ExecutionResult::Continue),
+                            Ok(ExerciseOutcome::Quit) => Ok(ExecutionResult::Exit),
+                            Ok(ExerciseOutcome::Retry) => Ok(ExecutionResult::Continue),
+                            Ok(ExerciseOutcome::Failed) => Ok(ExecutionResult::Continue),
+                            Err(_) => Ok(ExecutionResult::Continue),
+                        }
+                    },
+                    Err(e) => {
+                        eprintln!("Error loading tutorial file '{}': {}", path, e);
+                        Ok(ExecutionResult::Continue)
+                    }
+                }
+            },
+            
+            Command::DrillFile { path, practice_only } => {
+                match load_text_file(&path, &self.script.path) {
+                    Ok(text) => {
+                        let exercise = DrillExercise::new(text, practice_only, self.error_percentage);
+                        match exercise.execute() {
+                            Ok(ExerciseOutcome::Completed(_)) => Ok(ExecutionResult::Continue),
+                            Ok(ExerciseOutcome::Quit) => Ok(ExecutionResult::Exit),
+                            Ok(ExerciseOutcome::Retry) => Ok(ExecutionResult::Continue),
+                            Ok(ExerciseOutcome::Failed) => {
+                                if let Some(ref label) = self.failure_label {
+                                    Ok(ExecutionResult::Jump(label.clone()))
+                                } else {
+                                    Ok(ExecutionResult::Continue)
+                                }
+                            },
+                            Err(_) => Ok(ExecutionResult::Continue),
+                        }
+                    },
+                    Err(e) => {
+                        eprintln!("Error loading drill file '{}': {}", path, e);
+                        Ok(ExecutionResult::Continue)
+                    }
+                }
+            },
+            
+            Command::SpeedTestFile { path, practice_only } => {
+                match load_text_file(&path, &self.script.path) {
+                    Ok(text) => {
+                        let exercise = SpeedTestExercise::new(text, practice_only, None);
+                        match exercise.execute() {
+                            Ok(ExerciseOutcome::Completed(_)) => Ok(ExecutionResult::Continue),
+                            Ok(ExerciseOutcome::Quit) => Ok(ExecutionResult::Exit),
+                            Ok(ExerciseOutcome::Retry) => Ok(ExecutionResult::Continue),
+                            Ok(ExerciseOutcome::Failed) => Ok(ExecutionResult::Continue),
+                            Err(_) => Ok(ExecutionResult::Continue),
+                        }
+                    },
+                    Err(e) => {
+                        eprintln!("Error loading speed test file '{}': {}", path, e);
+                        Ok(ExecutionResult::Continue)
+                    }
                 }
             },
             
