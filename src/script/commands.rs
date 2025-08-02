@@ -50,6 +50,21 @@ pub enum Command {
         practice_only: bool,
     },
     
+    /// Tutorial exercise from file (t:filename.txt)
+    TutorialFile { path: String },
+    
+    /// Drill exercise from file (f:filename.txt)
+    DrillFile { 
+        path: String,
+        practice_only: bool,
+    },
+    
+    /// Speed test exercise from file (z:filename.txt)
+    SpeedTestFile { 
+        path: String,
+        practice_only: bool,
+    },
+    
     /// Key binding (K:key_sequence)
     KeyBind { sequence: String },
     
@@ -92,6 +107,11 @@ pub mod chars {
     pub const DRILL_PRACTICE_ONLY: char = 'd';
     pub const SPEEDTEST: char = 'S';
     pub const SPEEDTEST_PRACTICE_ONLY: char = 's';
+    pub const TUTORIAL_FILE: char = 't';
+    pub const DRILL_FILE: char = 'f';
+    pub const DRILL_FILE_PRACTICE: char = 'p';
+    pub const SPEEDTEST_FILE: char = 'z';
+    pub const SPEEDTEST_FILE_PRACTICE: char = 'w';
     pub const KEYBIND: char = 'K';
     pub const ERROR_MAX_SET: char = 'E';
     pub const ON_FAILURE_SET: char = 'F';
@@ -175,6 +195,25 @@ impl Command {
             },
             chars::SPEEDTEST_PRACTICE_ONLY => Command::SpeedTest { 
                 text: data.to_string(),
+                practice_only: true,
+            },
+            chars::TUTORIAL_FILE => Command::TutorialFile { 
+                path: data.to_string() 
+            },
+            chars::DRILL_FILE => Command::DrillFile { 
+                path: data.to_string(),
+                practice_only: false,
+            },
+            chars::DRILL_FILE_PRACTICE => Command::DrillFile { 
+                path: data.to_string(),
+                practice_only: true,
+            },
+            chars::SPEEDTEST_FILE => Command::SpeedTestFile { 
+                path: data.to_string(),
+                practice_only: false,
+            },
+            chars::SPEEDTEST_FILE_PRACTICE => Command::SpeedTestFile { 
+                path: data.to_string(),
                 practice_only: true,
             },
             chars::KEYBIND => Command::KeyBind { 

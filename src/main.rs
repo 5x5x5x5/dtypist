@@ -4,9 +4,10 @@
 //! This is a Rust port of the original C implementation of GNU Typist.
 
 use clap::{App, Arg, ArgMatches};
-use gtypist_rs::{Script, Executor, ExecutionResult};
+use gtypist_rs::{Script, Executor, ExecutionResult, TutorialExercise, DrillExercise, SpeedTestExercise, ExerciseOutcome};
 use std::path::Path;
 use std::process;
+use std::fs;
 use crossterm::{
     execute,
     terminal::{Clear, ClearType, disable_raw_mode, enable_raw_mode},
@@ -60,9 +61,26 @@ fn create_cli() -> App<'static, 'static> {
         .arg(Arg::with_name("no-colours")
             .long("no-colours")
             .help("Disable colours in terminal"))
+        .arg(Arg::with_name("text-file")
+            .long("text-file")
+            .value_name("FILE")
+            .help("Use arbitrary text file as typing exercise")
+            .takes_value(true))
+        .arg(Arg::with_name("mode")
+            .long("mode")
+            .value_name("MODE")
+            .help("Exercise mode when using --text-file")
+            .possible_values(&["tutorial", "drill", "speedtest"])
+            .default_value("drill")
+            .takes_value(true))
 }
 
 fn run_application(matches: &ArgMatches) -> Result<(), Box<dyn std::error::Error>> {
+    // Check if user wants to use a text file directly
+    if let Some(text_file) = matches.value_of("text-file") {
+        return run_text_file_mode(text_file, matches);
+    }
+    
     let lesson_file = matches.value_of("lesson").unwrap_or("lessons/gtypist.typ");
     let start_label = matches.value_of("label");
     
@@ -126,6 +144,61 @@ fn run_application(matches: &ArgMatches) -> Result<(), Box<dyn std::error::Error
         if executor.script.is_finished() {
             display_completion()?;
             break;
+        }
+    }
+    
+    Ok(())
+}
+
+/// Run in text file mode - create a simple exercise from an arbitrary text file
+fn run_text_file_mode(text_file: &str, matches: &ArgMatches) -> Result<(), Box<dyn std::error::Error>> {
+    // Check if text file exists
+    if !Path::new(text_file).exists() {
+        return Err(format!("Text file not found: {}", text_file).into());
+    }
+    
+    // Read the text file content
+    let text_content = fs::read_to_string(text_file)
+        .map_err(|e| format!("Cannot read text file '{}': {}", text_file, e))?;
+    
+    // Get the exercise mode
+    let mode = matches.value_of("mode").unwrap_or("drill");
+    
+    // Display welcome message
+    display_welcome()?;
+    
+    // Enable raw mode for interactive exercises
+    if let Err(e) = enable_raw_mode() {
+        return Err(format!("Failed to enable terminal raw mode: {}", e).into());
+    }
+    
+    // Create and run the appropriate exercise
+    let outcome = match mode {
+        "tutorial" => {
+            let exercise = TutorialExercise::new(text_content);
+            exercise.execute()?
+        },
+        "drill" => {
+            let exercise = DrillExercise::new(text_content, false, 0.0); // No error limit for direct file mode
+            exercise.execute()?
+        },
+        "speedtest" => {
+            let exercise = SpeedTestExercise::new(text_content, false, None);
+            exercise.execute()?
+        },
+        _ => unreachable!(), // clap validates this
+    };
+    
+    // Handle the outcome
+    match outcome {
+        ExerciseOutcome::Completed(_) => {
+            display_completion()?;
+        },
+        ExerciseOutcome::Quit => {
+            display_goodbye()?;
+        },
+        _ => {
+            display_goodbye()?;
         }
     }
     

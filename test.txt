@@ -1,0 +1,7 @@
+The quick brown fox jumps over the lazy dog. This sentence contains every letter of the alphabet and is commonly used for typing practice. Let's add some more text to make it interesting for practice.
+
+Programming is fun! Here are some common programming words: function, variable, loop, condition, array, object, method, class, interface, algorithm.
+
+Numbers and symbols: 1234567890 !@#$%^&*()_+ {}[]|\"':;?><,.
+
+Practice makes perfect. Keep typing to improve your speed and accuracy.
